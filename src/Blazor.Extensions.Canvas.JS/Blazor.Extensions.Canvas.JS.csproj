@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <IsPackable>false</IsPackable>
+    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+    <LangVersion>latest</LangVersion>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <DefaultItemExcludes>${DefaultItemExcludes};dist\**;node_modules\**</DefaultItemExcludes>
+    <NoWarn>CS2008</NoWarn>
+    
+    <!-- VS's FastUpToDateCheck doesn't consider .ts file changes, so it's necessary to disable it to get incremental builds to work correctly (albeit not as fast as if FastUpToDateCheck did work for them) -->
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.3.0" />
+    <WebpackInputs Include="**\*.ts" Exclude="dist\**;node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WebpackInputs Remove="src\BlazorTypes.ts" />
+    <WebpackInputs Remove="src\Canvas.ts" />
+    <WebpackInputs Remove="src\Canvas2dContextManager.ts" />
+  </ItemGroup>
+
+  <Target Name="EnsureNpmRestored" Condition="!Exists('node_modules')">
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec Command="npm install" />
+  </Target>
+
+  <Target Name="RunWebpack" AfterTargets="ResolveReferences" Inputs="@(WebpackInputs)" Outputs="dist\blazor.extensions.canvas.js" DependsOnTargets="EnsureNpmRestored">
+    <RemoveDir Directories="dist" />
+    <Exec Command="npm run build" />
+    <ItemGroup>
+      <EmbeddedResource Include="dist\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+  </Target>
+</Project>
