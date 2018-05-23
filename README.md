@@ -22,6 +22,13 @@ This package wraps [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/H
 
 The following snippet shows how to consume the Canvas API in a Blazor component.
 
+On your `_ViewImports.cshtml` add the `using` and TagHelper entries:
+
+```c#
+@using Blazor.Extensions.Canvas
+@addTagHelper *, Blazor.Extensions.Canvas
+```
+
 On your .cshtml add a `BECanvas` and make sure you set the `ref` to a field on your component:
 
 ```c#
