@@ -17,7 +17,7 @@ namespace Blazor.Extensions.Canvas.Test.Pages
             this._context.FillRect(10, 100, 100, 100);
 
             this._context.Font = "48px serif";
-            this._context.StrokeText("Hello Attila!!!", 10, 100);
+            this._context.StrokeText("Hello Blazor!!!", 10, 100);
         }
     }
 }
