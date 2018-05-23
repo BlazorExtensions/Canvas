@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blazor.Extensions.Canvas.JS\Blazor.Extensions.Canvas.JS.csproj" />
+    <ProjectReference Include="..\Blazor.Extensions.Canvas.JS\Blazor.Extensions.Canvas.JS.csproj" PrivateAssets="All" />
   </ItemGroup>
 
   <Target Name="IncludeP2POutput">
