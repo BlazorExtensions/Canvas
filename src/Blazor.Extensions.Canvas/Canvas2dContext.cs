@@ -260,35 +260,35 @@ namespace Blazor.Extensions
         }
 
         #region Methods
-        public void FillRect(long x, long y, long width, long height) => this.CallMethod<object>(FILL_RECT_METHOD, new object[] { x, y, width, height });
-        public void ClearRect(long x, long y, long width, long height) => this.CallMethod<object>(CLEAR_RECT_METHOD, new object[] { x, y, width, height });
-        public void StrokeRect(long x, long y, long width, long height) => this.CallMethod<object>(STROKE_RECT_METHOD, new object[] { x, y, width, height });
-        public void FillText(string text, long x, long y, long? maxWidth = null) => this.CallMethod<object>(FILL_TEXT_METHOD, maxWidth.HasValue ? new object[] { text, x, y, maxWidth.Value } : new object[] { text, x, y });
-        public void StrokeText(string text, long x, long y, long? maxWidth = null) => this.CallMethod<object>(STROKE_TEXT_METHOD, maxWidth.HasValue ? new object[] { text, x, y, maxWidth.Value } : new object[] { text, x, y });
+        public void FillRect(double x, double y, double width, double height) => this.CallMethod<object>(FILL_RECT_METHOD, new object[] { x, y, width, height });
+        public void ClearRect(double x, double y, double width, double height) => this.CallMethod<object>(CLEAR_RECT_METHOD, new object[] { x, y, width, height });
+        public void StrokeRect(double x, double y, double width, double height) => this.CallMethod<object>(STROKE_RECT_METHOD, new object[] { x, y, width, height });
+        public void FillText(string text, double x, double y, double? maxWidth = null) => this.CallMethod<object>(FILL_TEXT_METHOD, maxWidth.HasValue ? new object[] { text, x, y, maxWidth.Value } : new object[] { text, x, y });
+        public void StrokeText(string text, double x, double y, double? maxWidth = null) => this.CallMethod<object>(STROKE_TEXT_METHOD, maxWidth.HasValue ? new object[] { text, x, y, maxWidth.Value } : new object[] { text, x, y });
         public TextMetrics MeasureText(string text) => this.CallMethod<TextMetrics>(MEASURE_TEXT_METHOD, new object[] { text });
         public float[] GetLineDash() => this.CallMethod<float[]>(GET_LINE_DASH_METHOD);
         public void SetLineDash(float[] segments) => this.CallMethod<object>(SET_LINE_DASH_METHOD, new object[] { segments });
         public void BeginPath() => this.CallMethod<object>(BEGIN_PATH_METHOD);
         public void ClosePath() => this.CallMethod<object>(CLOSE_PATH_METHOD);
-        public void MoveTo(long x, long y) => this.CallMethod<object>(MOVE_TO_METHOD, new object[] { x, y });
-        public void LineTo(long x, long y) => this.CallMethod<object>(LINE_TO_METHOD, new object[] { x, y });
-        public void BezierCurveTo(long cp1x, long cp1y, long cp2x, long cp2y, long x, long y) => this.CallMethod<object>(BEZIER_CURVE_TO_METHOD, new object[] { cp1x, cp1y, cp2x, cp2y, x, y });
-        public void QuadraticCurveTo(long cpx, long cpy, long x, long y) => this.CallMethod<object>(QUADRATIC_CURVE_TO_METHOD, new object[] { cpx, cpy, x, y });
-        public void Arc(long x, long y, long radius, long startAngle, long endAngle, bool? anticlockwise = null) => this.CallMethod<object>(ARC_METHOD, anticlockwise.HasValue ? new object[] { x, y, radius, startAngle, endAngle, anticlockwise.Value } : new object[] { x, y, radius, startAngle, endAngle });
-        public void ArcTo(long x1, long y1, long x2, long y2, long radius) => this.CallMethod<object>(ARC_TO_METHOD, new object[] { x1, y1, x2, y2, radius });
-        public void Rect(long x, long y, long width, long height) => this.CallMethod<object>(RECT_METHOD, new object[] { x, y, width, height });
+        public void MoveTo(double x, double y) => this.CallMethod<object>(MOVE_TO_METHOD, new object[] { x, y });
+        public void LineTo(double x, double y) => this.CallMethod<object>(LINE_TO_METHOD, new object[] { x, y });
+        public void BezierCurveTo(double cp1x, double cp1y, double cp2x, double cp2y, double x, double y) => this.CallMethod<object>(BEZIER_CURVE_TO_METHOD, new object[] { cp1x, cp1y, cp2x, cp2y, x, y });
+        public void QuadraticCurveTo(double cpx, double cpy, double x, double y) => this.CallMethod<object>(QUADRATIC_CURVE_TO_METHOD, new object[] { cpx, cpy, x, y });
+        public void Arc(double x, double y, double radius, double startAngle, double endAngle, bool? anticlockwise = null) => this.CallMethod<object>(ARC_METHOD, anticlockwise.HasValue ? new object[] { x, y, radius, startAngle, endAngle, anticlockwise.Value } : new object[] { x, y, radius, startAngle, endAngle });
+        public void ArcTo(double x1, double y1, double x2, double y2, double radius) => this.CallMethod<object>(ARC_TO_METHOD, new object[] { x1, y1, x2, y2, radius });
+        public void Rect(double x, double y, double width, double height) => this.CallMethod<object>(RECT_METHOD, new object[] { x, y, width, height });
         public void Fill() => this.CallMethod<object>(FILL_METHOD);
         public void Stroke() => this.CallMethod<object>(STROKE_METHOD);
         public void DrawFocusIfNeeded(ElementRef elementReference) => this.CallMethod<object>(DRAW_FOCUS_IF_NEEDED_METHOD, new object[] { elementReference });
         public void ScrollPathIntoView() => this.CallMethod<object>(SCROLL_PATH_INTO_VIEW_METHOD);
         public void Clip() => this.CallMethod<object>(CLIP_METHOD);
-        public bool IsPointInPath(long x, long y) => this.CallMethod<bool>(IS_POINT_IN_PATH_METHOD, new object[] { x, y });
-        public bool IsPointInStroke(long x, long y) => this.CallMethod<bool>(IS_POINT_IN_STROKE_METHOD, new object[] { x, y });
+        public bool IsPointInPath(double x, double y) => this.CallMethod<bool>(IS_POINT_IN_PATH_METHOD, new object[] { x, y });
+        public bool IsPointInStroke(double x, double y) => this.CallMethod<bool>(IS_POINT_IN_STROKE_METHOD, new object[] { x, y });
         public void Rotate(float angle) => this.CallMethod<object>(ROTATE_METHOD, new object[] { angle });
-        public void Scale(long x, long y) => this.CallMethod<object>(SCALE_METHOD, new object[] { x, y });
-        public void Translate(long x, long y) => this.CallMethod<object>(TRANSLATE_METHOD, new object[] { x, y });
-        public void Transform(long m11, long m12, long m21, long m22, long dx, long dy) => this.CallMethod<object>(TRANSFORM_METHOD, new object[] { m11, m12, m21, m22, dx, dy });
-        public void SetTransform(long m11, long m12, long m21, long m22, long dx, long dy) => this.CallMethod<object>(SET_TRANSFORM_METHOD, new object[] { m11, m12, m21, m22, dx, dy });
+        public void Scale(double x, double y) => this.CallMethod<object>(SCALE_METHOD, new object[] { x, y });
+        public void Translate(double x, double y) => this.CallMethod<object>(TRANSLATE_METHOD, new object[] { x, y });
+        public void Transform(double m11, double m12, double m21, double m22, double dx, double dy) => this.CallMethod<object>(TRANSFORM_METHOD, new object[] { m11, m12, m21, m22, dx, dy });
+        public void SetTransform(double m11, double m12, double m21, double m22, double dx, double dy) => this.CallMethod<object>(SET_TRANSFORM_METHOD, new object[] { m11, m12, m21, m22, dx, dy });
         public void Save() => this.CallMethod<object>(SAVE_METHOD);
         public void Restore() => this.CallMethod<object>(RESTORE_METHOD);
         #endregion
