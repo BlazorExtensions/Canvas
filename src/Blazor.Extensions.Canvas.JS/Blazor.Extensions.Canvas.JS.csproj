@@ -10,13 +10,13 @@
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <DefaultItemExcludes>${DefaultItemExcludes};dist\**;node_modules\**</DefaultItemExcludes>
     <NoWarn>CS2008</NoWarn>
-    
+
     <!-- VS's FastUpToDateCheck doesn't consider .ts file changes, so it's necessary to disable it to get incremental builds to work correctly (albeit not as fast as if FastUpToDateCheck did work for them) -->
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.4.0" />
     <WebpackInputs Include="**\*.ts" Exclude="dist\**;node_modules\**" />
   </ItemGroup>
 
