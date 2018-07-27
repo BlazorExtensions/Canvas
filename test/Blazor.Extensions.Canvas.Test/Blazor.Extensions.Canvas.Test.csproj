@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.4.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.4.0" />
-    <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.4.0" />
+    <PackageReference Include="Blazor.Extensions.Logging" Version="0.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.5.0" />
+    <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Blazor.Extensions.Canvas.JS\Blazor.Extensions.Canvas.JS.csproj" />
     <ProjectReference Include="..\..\src\Blazor.Extensions.Canvas\Blazor.Extensions.Canvas.csproj" />
   </ItemGroup>
 

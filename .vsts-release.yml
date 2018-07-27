@@ -1,0 +1,34 @@
+queue: 'Hosted VS2017'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+  - task: Npm@1
+    inputs:
+      command: 'install'
+      workingDir: src/Blazor.Extensions.Logging.JS
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
+      arguments: '--configuration $(buildConfiguration)'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: pack
+      packagesToPack: 'src/Blazor.Extensions.Logging/*.csproj'
+      packDirectory: '$(build.artifactStagingDirectory)'
+      configuration: '$(buildConfiguration)'
+      versioningScheme: byEnvVar
+      versionEnvVar: Version
+
+  - task: NuGetCommand@2
+    inputs:
+      command: push
+      packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
+      publishFeedCredentials: 'BlazorExtensions'
+      nuGetFeedType: external
+      versioningScheme: byEnvVar
+      versionEnvVar: Version

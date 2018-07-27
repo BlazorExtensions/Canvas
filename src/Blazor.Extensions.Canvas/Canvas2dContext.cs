@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Blazor;
-using Microsoft.AspNetCore.Blazor.Browser.Interop;
+using Microsoft.JSInterop;
 using System;
 
 namespace Blazor.Extensions
@@ -7,10 +7,10 @@ namespace Blazor.Extensions
     public class Canvas2dContext : IDisposable
     {
         #region Constants
-        private const string SET_CANVAS_PROPERTY_ACTION = "Blazor.Extensions.Canvas2d.SetProperty";
-        private const string CALL_CANVAS_METHOD_ACTION = "Blazor.Extensions.Canvas2d.Call";
-        private const string ADD_CANVAS_ACTION = "Blazor.Extensions.Canvas2d.Add";
-        private const string REMOVE_CANVAS_ACTION = "Blazor.Extensions.Canvas2d.Remove";
+        private const string SET_CANVAS_PROPERTY_ACTION = "BlazorExtensions.Canvas2d.SetProperty";
+        private const string CALL_CANVAS_METHOD_ACTION = "BlazorExtensions.Canvas2d.Call";
+        private const string ADD_CANVAS_ACTION = "BlazorExtensions.Canvas2d.Add";
+        private const string REMOVE_CANVAS_ACTION = "BlazorExtensions.Canvas2d.Remove";
         private const string FILL_STYLE_PROPERTY = "fillStyle";
         private const string STROKE_STYLE_PROPERTY = "strokeStyle";
         private const string FILL_RECT_METHOD = "fillRect";
@@ -256,7 +256,7 @@ namespace Blazor.Extensions
         internal Canvas2dContext(BECanvasComponent canvasReference)
         {
             this.Canvas = canvasReference.CanvasReference;
-            RegisteredFunction.Invoke<object>(ADD_CANVAS_ACTION, this.Canvas);
+            ((IJSInProcessRuntime)JSRuntime.Current).Invoke<object>(ADD_CANVAS_ACTION, this.Canvas);
         }
 
         #region Methods
@@ -296,22 +296,22 @@ namespace Blazor.Extensions
         #region Private Methods
         private void SetProperty(string property, object value)
         {
-            RegisteredFunction.Invoke<object>(SET_CANVAS_PROPERTY_ACTION, this.Canvas, property, value);
+            ((IJSInProcessRuntime)JSRuntime.Current).Invoke<object>(SET_CANVAS_PROPERTY_ACTION, this.Canvas, property, value);
         }
 
         private T CallMethod<T>(string method)
         {
-            return RegisteredFunction.Invoke<T>(CALL_CANVAS_METHOD_ACTION, this.Canvas, method);
+            return ((IJSInProcessRuntime)JSRuntime.Current).Invoke<T>(CALL_CANVAS_METHOD_ACTION, this.Canvas, method);
         }
 
         private T CallMethod<T>(string method, object value)
         {
-            return RegisteredFunction.Invoke<T>(CALL_CANVAS_METHOD_ACTION, this.Canvas, method, value);
+            return ((IJSInProcessRuntime)JSRuntime.Current).Invoke<T>(CALL_CANVAS_METHOD_ACTION, this.Canvas, method, value);
         }
 
         public void Dispose()
         {
-            RegisteredFunction.Invoke<object>(REMOVE_CANVAS_ACTION, this.Canvas);
+            ((IJSInProcessRuntime)JSRuntime.Current).Invoke<object>(REMOVE_CANVAS_ACTION, this.Canvas);
         } 
         #endregion
     }
