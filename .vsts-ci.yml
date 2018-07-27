@@ -17,7 +17,7 @@ steps:
   - task: DotNetCoreCLI@2
     inputs:
       command: pack
-      packagesToPack: 'src/Blazor.Extensions.Logging/*.csproj'
+      packagesToPack: 'src/Blazor.Extensions.Canvas/*.csproj'
       configuration: '$(buildConfiguration)'
       versioningScheme: byPrereleaseNumber
       majorVersion: '0'

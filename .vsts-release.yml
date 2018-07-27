@@ -7,7 +7,7 @@ steps:
   - task: Npm@1
     inputs:
       command: 'install'
-      workingDir: src/Blazor.Extensions.Logging.JS
+      workingDir: src/Blazor.Extensions.Canvas.JS
 
   - task: DotNetCoreCLI@2
     inputs:
@@ -18,7 +18,7 @@ steps:
   - task: DotNetCoreCLI@2
     inputs:
       command: pack
-      packagesToPack: 'src/Blazor.Extensions.Logging/*.csproj'
+      packagesToPack: 'src/Blazor.Extensions.Canvas/*.csproj'
       packDirectory: '$(build.artifactStagingDirectory)'
       configuration: '$(buildConfiguration)'
       versioningScheme: byEnvVar
