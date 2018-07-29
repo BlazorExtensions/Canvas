@@ -1,5 +1,5 @@
 {
-  "name": "blazor.extensions.logging",
+  "name": "blazor.extensions.canvas",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -9,9 +9,9 @@
   },
   "devDependencies": {
     "@types/emscripten": "0.0.31",
-    "webpack": "^4.16.0",
-    "webpack-cli": "^3.0.8",
+    "ts-loader": "^4.4.2",
     "typescript": "^2.9.2",
-    "ts-loader": "^4.4.2"
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0"
   }
 }
