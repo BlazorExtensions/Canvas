@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Blazor.Components;
-using Microsoft.Extensions.Logging;
 
 namespace Blazor.Extensions.Canvas.Test.Pages
 {
@@ -8,8 +7,6 @@ namespace Blazor.Extensions.Canvas.Test.Pages
         private Canvas2dContext _context;
 
         protected BECanvasComponent _canvasReference;
-
-        [Inject] private ILogger<IndexComponent> _logger { get; set; }
 
         protected override void OnAfterRender()
         {

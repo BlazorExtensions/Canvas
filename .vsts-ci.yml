@@ -7,7 +7,7 @@ steps:
   - task: Npm@1
     inputs:
       command: 'install'
-      workingDir: src/Blazor.Extensions.Logging.JS
+      workingDir: src/Blazor.Extensions.Canvas.JS
   - task: DotNetCoreCLI@2
     inputs:
       command: 'build'

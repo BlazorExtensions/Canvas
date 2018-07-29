@@ -16,7 +16,7 @@ module.exports = {
     ]
   },
   entry: {
-    "blazor.extensions.canvas": "./src/Initialize.ts"
+    "blazor.extensions.canvas": "./src/InitializeCanvas.ts"
   },
   output: {
     path: path.join(__dirname, "/dist"),
