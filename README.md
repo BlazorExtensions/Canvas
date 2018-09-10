@@ -16,6 +16,12 @@ This package wraps [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/H
 
 > **NOTE**: Only Canvas 2d is supported. WebGL will come later (contributions are welcome!).
 
+# Installation
+
+```
+Install-Package Blazor.Extensions.Canvas
+```
+
 # Sample
 
 ## Usage
