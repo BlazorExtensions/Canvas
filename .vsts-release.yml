@@ -27,7 +27,7 @@ steps:
   - task: NuGetCommand@2
     inputs:
       command: push
-      packagesToPush: '$(build.artifactStagingDirectory)/*.nupkg'
+      packagesToPush: '$(build.ArtifactStagingDirectory)/**/*.nupkg;!$(build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
       publishFeedCredentials: 'BlazorExtensions'
       nuGetFeedType: external
       versioningScheme: byEnvVar
