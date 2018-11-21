@@ -16,6 +16,11 @@ export class Canvas2dContextManager {
     this._canvasContexts.delete(canvas.id);
   }
 
+  public GetProperty = (canvas: HTMLCanvasElement, property: string) => {
+    const context = this.GetContext(canvas);
+    return context[property];
+  }
+
   public SetProperty = (canvas: HTMLCanvasElement, property: string, value: any) => {
     const context = this.GetContext(canvas);
     context[property] = value;

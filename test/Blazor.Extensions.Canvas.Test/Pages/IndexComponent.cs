@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Blazor.Components;
 
 namespace Blazor.Extensions.Canvas.Test.Pages
@@ -17,6 +18,18 @@ namespace Blazor.Extensions.Canvas.Test.Pages
 
             this._context.Font = "48px serif";
             this._context.StrokeText("Hello Blazor!!!", 10, 100);
+        }
+
+        protected override async Task OnAfterRenderAsync()
+        {
+            using (var asyncContext = await this._canvasReference.CreateCanvas2dAsync())
+            {
+                await asyncContext.FillStyle.SetAsync("red");
+                await asyncContext.FillRectAsync(110, 100, 100, 100);
+                
+                var color = await asyncContext.FillStyle.GetAsync();
+                await asyncContext.StrokeTextAsync(color, 110, 200);
+            }
         }
     }
 }

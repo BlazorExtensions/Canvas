@@ -1,61 +1,12 @@
 using Microsoft.AspNetCore.Blazor;
 using Microsoft.JSInterop;
 using System;
+using static Blazor.Extensions.Canvas2dContextConstants;
 
 namespace Blazor.Extensions
 {
     public class Canvas2dContext : IDisposable
     {
-        #region Constants
-        private const string SET_CANVAS_PROPERTY_ACTION = "BlazorExtensions.Canvas2d.SetProperty";
-        private const string CALL_CANVAS_METHOD_ACTION = "BlazorExtensions.Canvas2d.Call";
-        private const string ADD_CANVAS_ACTION = "BlazorExtensions.Canvas2d.Add";
-        private const string REMOVE_CANVAS_ACTION = "BlazorExtensions.Canvas2d.Remove";
-        private const string FILL_STYLE_PROPERTY = "fillStyle";
-        private const string STROKE_STYLE_PROPERTY = "strokeStyle";
-        private const string FILL_RECT_METHOD = "fillRect";
-        private const string CLEAR_RECT_METHOD = "clearRect";
-        private const string STROKE_RECT_METHOD = "strokeRect";
-        private const string FILL_TEXT_METHOD = "fillText";
-        private const string STROKE_TEXT_METHOD = "strokeText";
-        private const string MEASURE_TEXT_METHOD = "measureText";
-        private const string LINE_WIDTH_PROPERTY = "lineWidth";
-        private const string LINE_CAP_PROPERTY = "lineCap";
-        private const string LINE_JOIN_PROPERTY = "lineJoin";
-        private const string MITER_LIMIT_PROPERTY = "miterLimit";
-        private const string GET_LINE_DASH_METHOD = "getLineDash";
-        private const string SET_LINE_DASH_METHOD = "setLineDash";
-        private const string LINE_DASH_OFFSET_PROPERTY = "lineDashOffset";
-        private const string SHADOW_BLUR_PROPERTY = "shadowBlur";
-        private const string SHADOW_COLOR_PROPERTY = "shadowColor";
-        private const string SHADOW_OFFSET_X_PROPERTY = "shadowOffsetX";
-        private const string SHADOW_OFFSET_Y_PROPERTY = "shadowOffsetY";
-        private const string BEGIN_PATH_METHOD = "beginPath";
-        private const string CLOSE_PATH_METHOD = "closePath";
-        private const string MOVE_TO_METHOD = "moveTo";
-        private const string LINE_TO_METHOD = "lineTo";
-        private const string BEZIER_CURVE_TO_METHOD = "bezierCurveTo";
-        private const string QUADRATIC_CURVE_TO_METHOD = "quadraticCurveTo";
-        private const string ARC_METHOD = "arc";
-        private const string ARC_TO_METHOD = "arcTo";
-        private const string RECT_METHOD = "rect";
-        private const string FILL_METHOD = "fill";
-        private const string STROKE_METHOD = "stroke";
-        private const string DRAW_FOCUS_IF_NEEDED_METHOD = "drawFocusIfNeeded";
-        private const string SCROLL_PATH_INTO_VIEW_METHOD = "scrollPathIntoView";
-        private const string CLIP_METHOD = "clip";
-        private const string IS_POINT_IN_PATH_METHOD = "isPointInPath";
-        private const string IS_POINT_IN_STROKE_METHOD = "isPointInStroke";
-        private const string ROTATE_METHOD = "rotate";
-        private const string SCALE_METHOD = "scale";
-        private const string TRANSLATE_METHOD = "translate";
-        private const string TRANSFORM_METHOD = "transform";
-        private const string SET_TRANSFORM_METHOD = "setTransform";
-        private const string GLOBAL_ALPHA_PROPERTY = "globalAlpha";
-        private const string SAVE_METHOD = "save";
-        private const string RESTORE_METHOD = "restore"; 
-        #endregion
-
         #region Properties
         private string _fillStyle = "#000";
 
@@ -90,7 +41,7 @@ namespace Blazor.Extensions
             set
             {
                 this._font = value;
-                this.SetProperty("font", value);
+                this.SetProperty(FONT_PROPERTY, value);
             }
         }
 
@@ -102,7 +53,7 @@ namespace Blazor.Extensions
             set
             {
                 this._textAlign = value;
-                this.SetProperty("textAlign", value.ToString().ToLowerInvariant());
+                this.SetProperty(TEXT_ALIGN_PROPERTY, value.ToString().ToLowerInvariant());
             }
         }
 
@@ -114,7 +65,7 @@ namespace Blazor.Extensions
             set
             {
                 this._direction = value;
-                this.SetProperty("direction", value.ToString().ToLowerInvariant());
+                this.SetProperty(DIRECTION_PROPERTY, value.ToString().ToLowerInvariant());
             }
         }
 
@@ -126,7 +77,7 @@ namespace Blazor.Extensions
             set
             {
                 this._textBaseline = value;
-                this.SetProperty("textBaseline", value.ToString().ToLowerInvariant());
+                this.SetProperty(TEXT_BASELINE_PROPERTY, value.ToString().ToLowerInvariant());
             }
         }
 
