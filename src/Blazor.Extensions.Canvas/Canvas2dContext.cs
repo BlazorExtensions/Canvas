@@ -1,16 +1,11 @@
 using Microsoft.AspNetCore.Blazor;
-using Microsoft.JSInterop;
-using System;
+using Blazor.Extensions.Canvas;
 
 namespace Blazor.Extensions
 {
-    public class Canvas2dContext : IDisposable
+    public class Canvas2dContext : RenderingContext
     {
         #region Constants
-        private const string SET_CANVAS_PROPERTY_ACTION = "BlazorExtensions.Canvas2d.SetProperty";
-        private const string CALL_CANVAS_METHOD_ACTION = "BlazorExtensions.Canvas2d.Call";
-        private const string ADD_CANVAS_ACTION = "BlazorExtensions.Canvas2d.Add";
-        private const string REMOVE_CANVAS_ACTION = "BlazorExtensions.Canvas2d.Remove";
         private const string FILL_STYLE_PROPERTY = "fillStyle";
         private const string STROKE_STYLE_PROPERTY = "strokeStyle";
         private const string FILL_RECT_METHOD = "fillRect";
@@ -53,7 +48,7 @@ namespace Blazor.Extensions
         private const string SET_TRANSFORM_METHOD = "setTransform";
         private const string GLOBAL_ALPHA_PROPERTY = "globalAlpha";
         private const string SAVE_METHOD = "save";
-        private const string RESTORE_METHOD = "restore"; 
+        private const string RESTORE_METHOD = "restore";
         #endregion
 
         #region Properties
@@ -249,14 +244,12 @@ namespace Blazor.Extensions
                 this.SetProperty(GLOBAL_ALPHA_PROPERTY, value);
             }
         }
-
-        public ElementRef Canvas { get; private set; }
         #endregion
 
-        internal Canvas2dContext(BECanvasComponent canvasReference)
+        protected override string ContextName => "Canvas2d";
+
+        internal Canvas2dContext(BECanvasComponent canvasReference) : base(canvasReference)
         {
-            this.Canvas = canvasReference.CanvasReference;
-            ((IJSInProcessRuntime)JSRuntime.Current).Invoke<object>(ADD_CANVAS_ACTION, this.Canvas);
         }
 
         #region Methods
@@ -291,28 +284,6 @@ namespace Blazor.Extensions
         public void SetTransform(double m11, double m12, double m21, double m22, double dx, double dy) => this.CallMethod<object>(SET_TRANSFORM_METHOD, new object[] { m11, m12, m21, m22, dx, dy });
         public void Save() => this.CallMethod<object>(SAVE_METHOD);
         public void Restore() => this.CallMethod<object>(RESTORE_METHOD);
-        #endregion
-
-        #region Private Methods
-        private void SetProperty(string property, object value)
-        {
-            ((IJSInProcessRuntime)JSRuntime.Current).Invoke<object>(SET_CANVAS_PROPERTY_ACTION, this.Canvas, property, value);
-        }
-
-        private T CallMethod<T>(string method)
-        {
-            return ((IJSInProcessRuntime)JSRuntime.Current).Invoke<T>(CALL_CANVAS_METHOD_ACTION, this.Canvas, method);
-        }
-
-        private T CallMethod<T>(string method, object value)
-        {
-            return ((IJSInProcessRuntime)JSRuntime.Current).Invoke<T>(CALL_CANVAS_METHOD_ACTION, this.Canvas, method, value);
-        }
-
-        public void Dispose()
-        {
-            ((IJSInProcessRuntime)JSRuntime.Current).Invoke<object>(REMOVE_CANVAS_ACTION, this.Canvas);
-        } 
         #endregion
     }
 }
