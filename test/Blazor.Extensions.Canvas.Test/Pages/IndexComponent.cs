@@ -6,11 +6,11 @@ namespace Blazor.Extensions.Canvas.Test.Pages
     {
         private Canvas2dContext _context;
 
-        protected BECanvasComponent _canvasReference;
+        protected BECanvasComponent canvasReference;
 
         protected override void OnAfterRender()
         {
-            this._context = this._canvasReference.CreateCanvas2d();
+            this._context = this.canvasReference.CreateCanvas2D();
             this._context.FillStyle = "green";
 
             this._context.FillRect(10, 100, 100, 100);

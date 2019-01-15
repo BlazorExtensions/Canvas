@@ -1,10 +1,8 @@
-using Blazor.Extensions.Canvas;
-
-namespace Blazor.Extensions
+namespace Blazor.Extensions.Canvas
 {
     public static class CanvasContextExtensions
     {
-        public static Canvas2dContext CreateCanvas2d(this BECanvasComponent canvas)
+        public static Canvas2dContext CreateCanvas2D(this BECanvasComponent canvas)
         {
             return new Canvas2dContext(canvas);
         }

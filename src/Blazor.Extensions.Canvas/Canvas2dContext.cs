@@ -1,11 +1,12 @@
+using Blazor.Extensions.Canvas.Model;
 using Microsoft.AspNetCore.Blazor;
-using Blazor.Extensions.Canvas;
 
-namespace Blazor.Extensions
+namespace Blazor.Extensions.Canvas
 {
     public class Canvas2dContext : RenderingContext
     {
         #region Constants
+        private const string CONTEXT_NAME = "Canvas2d";
         private const string FILL_STYLE_PROPERTY = "fillStyle";
         private const string STROKE_STYLE_PROPERTY = "strokeStyle";
         private const string FILL_RECT_METHOD = "fillRect";
@@ -246,9 +247,7 @@ namespace Blazor.Extensions
         }
         #endregion
 
-        protected override string ContextName => "Canvas2d";
-
-        internal Canvas2dContext(BECanvasComponent canvasReference) : base(canvasReference)
+        internal Canvas2dContext(BECanvasComponent canvasReference) : base(canvasReference, CONTEXT_NAME)
         {
         }
 
@@ -265,7 +264,7 @@ namespace Blazor.Extensions
         public void ClosePath() => this.CallMethod<object>(CLOSE_PATH_METHOD);
         public void MoveTo(double x, double y) => this.CallMethod<object>(MOVE_TO_METHOD, new object[] { x, y });
         public void LineTo(double x, double y) => this.CallMethod<object>(LINE_TO_METHOD, new object[] { x, y });
-        public void BezierCurveTo(double cp1x, double cp1y, double cp2x, double cp2y, double x, double y) => this.CallMethod<object>(BEZIER_CURVE_TO_METHOD, new object[] { cp1x, cp1y, cp2x, cp2y, x, y });
+        public void BezierCurveTo(double cp1X, double cp1Y, double cp2X, double cp2Y, double x, double y) => this.CallMethod<object>(BEZIER_CURVE_TO_METHOD, new object[] { cp1X, cp1Y, cp2X, cp2Y, x, y });
         public void QuadraticCurveTo(double cpx, double cpy, double x, double y) => this.CallMethod<object>(QUADRATIC_CURVE_TO_METHOD, new object[] { cpx, cpy, x, y });
         public void Arc(double x, double y, double radius, double startAngle, double endAngle, bool? anticlockwise = null) => this.CallMethod<object>(ARC_METHOD, anticlockwise.HasValue ? new object[] { x, y, radius, startAngle, endAngle, anticlockwise.Value } : new object[] { x, y, radius, startAngle, endAngle });
         public void ArcTo(double x1, double y1, double x2, double y2, double radius) => this.CallMethod<object>(ARC_TO_METHOD, new object[] { x1, y1, x2, y2, radius });
