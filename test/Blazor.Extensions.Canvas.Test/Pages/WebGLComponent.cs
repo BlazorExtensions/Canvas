@@ -1,3 +1,4 @@
+using Blazor.Extensions.Canvas.WebGL;
 using Microsoft.AspNetCore.Blazor.Components;
 
 namespace Blazor.Extensions.Canvas.Test.Pages

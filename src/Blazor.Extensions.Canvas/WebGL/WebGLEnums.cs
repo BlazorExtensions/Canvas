@@ -1,4 +1,4 @@
-namespace Blazor.Extensions.Canvas
+namespace Blazor.Extensions.Canvas.WebGL
 {
     public enum BufferBits
     {

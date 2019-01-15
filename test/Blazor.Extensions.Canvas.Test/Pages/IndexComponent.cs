@@ -1,10 +1,11 @@
+using Blazor.Extensions.Canvas.Canvas2D;
 using Microsoft.AspNetCore.Blazor.Components;
 
 namespace Blazor.Extensions.Canvas.Test.Pages
 {
     public class IndexComponent : BlazorComponent
     {
-        private Canvas2dContext _context;
+        private Canvas2DContext _context;
 
         protected BECanvasComponent canvasReference;
 

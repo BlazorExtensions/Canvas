@@ -1,4 +1,4 @@
-namespace Blazor.Extensions.Canvas
+namespace Blazor.Extensions.Canvas.WebGL
 {
     public class WebGLContext : RenderingContext
     {
@@ -8,7 +8,7 @@ namespace Blazor.Extensions.Canvas
         private const string CLEAR = "clear";
         #endregion
 
-        internal WebGLContext(BECanvasComponent canvasReference) : base(canvasReference, CONTEXT_NAME)
+        internal WebGLContext(BECanvasComponent reference) : base(reference, CONTEXT_NAME)
         {
         }
 

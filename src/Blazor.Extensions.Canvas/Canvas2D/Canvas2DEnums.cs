@@ -1,4 +1,4 @@
-namespace Blazor.Extensions.Canvas
+namespace Blazor.Extensions.Canvas.Canvas2D
 {
     public enum TextAlign
     {

@@ -1,9 +1,9 @@
 using Blazor.Extensions.Canvas.Model;
 using Microsoft.AspNetCore.Blazor;
 
-namespace Blazor.Extensions.Canvas
+namespace Blazor.Extensions.Canvas.Canvas2D
 {
-    public class Canvas2dContext : RenderingContext
+    public class Canvas2DContext : RenderingContext
     {
         #region Constants
         private const string CONTEXT_NAME = "Canvas2d";
@@ -247,7 +247,7 @@ namespace Blazor.Extensions.Canvas
         }
         #endregion
 
-        internal Canvas2dContext(BECanvasComponent canvasReference) : base(canvasReference, CONTEXT_NAME)
+        internal Canvas2DContext(BECanvasComponent reference) : base(reference, CONTEXT_NAME)
         {
         }
 

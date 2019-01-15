@@ -15,9 +15,9 @@ namespace Blazor.Extensions.Canvas
 
         public ElementRef Canvas { get; }
 
-        internal RenderingContext(BECanvasComponent canvasReference, string contextName)
+        internal RenderingContext(BECanvasComponent reference, string contextName)
         {
-            this.Canvas = canvasReference.CanvasReference;
+            this.Canvas = reference.CanvasReference;
             this._contextName = contextName;
             ((IJSInProcessRuntime)JSRuntime.Current).Invoke<object>($"{NAMESPACE_PREFIX}.{this._contextName}.{ADD_ACTION}", this.Canvas);
         }
