@@ -14,5 +14,10 @@ namespace Blazor.Extensions
         {
             return new WebGLContext(canvas);
         }
+
+        public static WebGLContext CreateWebGL(this BECanvasComponent canvas, WebGLContextAttributes attributes)
+        {
+            return new WebGLContext(canvas, attributes);
+        }
     }
 }

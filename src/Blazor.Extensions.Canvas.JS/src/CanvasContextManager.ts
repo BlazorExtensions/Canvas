@@ -13,11 +13,15 @@ export class ContextManager {
       throw new Error(`Invalid context name: ${contextName}`);
   }
 
-  public add = (canvas: HTMLCanvasElement) => {
+  public add = (canvas: HTMLCanvasElement, parameters: any) => {
     if (!canvas) throw new Error('Invalid canvas.');
     if (this.contexts.get(canvas.id)) return;
 
-    const context = canvas.getContext(this.contextName);
+    var context;
+    if (parameters)
+      context = canvas.getContext(this.contextName, parameters);
+    else
+      context = canvas.getContext(this.contextName);
 
     if (!context) throw new Error('Invalid context.');
 
