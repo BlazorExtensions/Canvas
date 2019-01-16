@@ -1,7 +1,7 @@
 using Blazor.Extensions.Canvas.Canvas2D;
 using Blazor.Extensions.Canvas.WebGL;
 
-namespace Blazor.Extensions.Canvas
+namespace Blazor.Extensions
 {
     public static class CanvasContextExtensions
     {

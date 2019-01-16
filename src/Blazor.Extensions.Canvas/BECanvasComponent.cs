@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
 using System;
 
-namespace Blazor.Extensions.Canvas
+namespace Blazor.Extensions
 {
     public class BECanvasComponent : BlazorComponent
     {

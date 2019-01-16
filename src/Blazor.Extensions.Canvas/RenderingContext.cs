@@ -2,7 +2,7 @@ using System;
 using Microsoft.AspNetCore.Blazor;
 using Microsoft.JSInterop;
 
-namespace Blazor.Extensions.Canvas
+namespace Blazor.Extensions
 {
     public abstract class RenderingContext : IDisposable
     {
