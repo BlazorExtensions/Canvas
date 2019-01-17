@@ -120,7 +120,8 @@ namespace Blazor.Extensions.Canvas.WebGL
         CURRENT_PROGRAM = 0x8B8D,
         MAX_RENDERBUFFER_SIZE = 0x84E8,
         FRAMEBUFFER_BINDING = 0x8CA6,
-        RENDERBUFFER_BINDING = 0x8CA7
+        RENDERBUFFER_BINDING = 0x8CA7,
+        ACTIVE_TEXTURE = 0x84E0
     }
 
     public enum BufferUsageHint
@@ -373,5 +374,41 @@ namespace Blazor.Extensions.Canvas.WebGL
         UNPACK_FLIP_Y_WEBGL = 0x9240,
         UNPACK_PREMULTIPLY_ALPHA_WEBGL = 0x9241,
         UNPACK_COLORSPACE_CONVERSION_WEBGL = 0x9243
+    }
+
+    public enum Texture
+    {
+        TEXTURE0 = 0x84C0,
+        TEXTURE1,
+        TEXTURE2,
+        TEXTURE3,
+        TEXTURE4,
+        TEXTURE5,
+        TEXTURE6,
+        TEXTURE7,
+        TEXTURE8,
+        TEXTURE9,
+        TEXTURE10,
+        TEXTURE11,
+        TEXTURE12,
+        TEXTURE13,
+        TEXTURE14,
+        TEXTURE15,
+        TEXTURE16,
+        TEXTURE17,
+        TEXTURE18,
+        TEXTURE19,
+        TEXTURE20,
+        TEXTURE21,
+        TEXTURE22,
+        TEXTURE23,
+        TEXTURE24,
+        TEXTURE25,
+        TEXTURE26,
+        TEXTURE27,
+        TEXTURE28,
+        TEXTURE29,
+        TEXTURE30,
+        TEXTURE31
     }
 }

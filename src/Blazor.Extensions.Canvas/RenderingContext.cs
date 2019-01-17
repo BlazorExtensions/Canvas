@@ -8,6 +8,7 @@ namespace Blazor.Extensions
     {
         private const string NAMESPACE_PREFIX = "BlazorExtensions";
         private const string SET_PROPERTY_ACTION = "setProperty";
+        private const string GET_PROPERTY_ACTION = "getProperty";
         private const string CALL_METHOD_ACTION = "call";
         private const string ADD_ACTION = "add";
         private const string REMOVE_ACTION = "remove";
@@ -22,10 +23,15 @@ namespace Blazor.Extensions
             ((IJSInProcessRuntime)JSRuntime.Current).Invoke<object>($"{NAMESPACE_PREFIX}.{this._contextName}.{ADD_ACTION}", this.Canvas, parameters);
         }
 
-        #region Private Methods
+        #region Protected Methods
         protected void SetProperty(string property, object value)
         {
             ((IJSInProcessRuntime)JSRuntime.Current).Invoke<object>($"{NAMESPACE_PREFIX}.{this._contextName}.{SET_PROPERTY_ACTION}", this.Canvas, property, value);
+        }
+
+        protected T GetProperty<T>(string property)
+        {
+            return ((IJSInProcessRuntime)JSRuntime.Current).Invoke<T>($"{NAMESPACE_PREFIX}.{this._contextName}.{GET_PROPERTY_ACTION}", this.Canvas, property);
         }
 
         protected T CallMethod<T>(string method)

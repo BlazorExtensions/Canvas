@@ -9,9 +9,12 @@ namespace Blazor.Extensions.Canvas.Test.Pages
 
         protected override void OnAfterRender()
         {
-            WebGLContext context = this.canvasReference.CreateWebGL();
+            WebGLContext context = this.canvasReference.CreateWebGL(new WebGLContextAttributes
+            {
+                PowerPreference = WebGLContextAttributes.POWER_PREFERENCE_HIGH_PERFORMANCE
+            });
 
-            context.ClearColor(0, 0, 0, 1);
+            context.ClearColor(0, 1, 0, 1);
             context.Clear(BufferBits.COLOR_BUFFER_BIT);
         }
     }

@@ -37,6 +37,11 @@ export class ContextManager {
     context[property] = value;
   }
 
+  public getProperty = (canvas: HTMLCanvasElement, property: string) => {
+    const context = this.getContext(canvas);
+    return context[property];
+  }
+
   public call = (canvas: HTMLCanvasElement, method: string, args: any) => {
     const context = this.getContext(canvas);
     return this.prototypes[method].apply(context, args);
