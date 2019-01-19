@@ -155,9 +155,8 @@ namespace Blazor.Extensions.Canvas.WebGL
         VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F
     }
 
-    public enum Culling
+    public enum Face
     {
-        CULL_FACE = 0x0B44,
         FRONT = 0x0404,
         BACK = 0x0405,
         FRONT_AND_BACK = 0x0408
@@ -165,6 +164,7 @@ namespace Blazor.Extensions.Canvas.WebGL
 
     public enum EnableCap
     {
+        CULL_FACE = 0x0B44,
         BLEND = 0x0BE2,
         DEPTH_TEST = 0x0B71,
         DITHER = 0x0BD0,
@@ -191,22 +191,23 @@ namespace Blazor.Extensions.Canvas.WebGL
         CCW = 0x0901
     }
 
-    public enum Hint
+    public enum HintMode
     {
         DONT_CARE = 0x1100,
         FASTEST = 0x1101,
-        NICEST = 0x1102,
+        NICEST = 0x1102
+    }
+
+    public enum HintTarget
+    {
         GENERATE_MIPMAP_HINT = 0x8192
     }
 
     public enum PixelFormat
     {
-        DEPTH_COMPONENT = 0x1902,
         ALPHA = 0x1906,
         RGB = 0x1907,
         RGBA = 0x1908,
-        LUMINANCE = 0x1909,
-        LUMINANCE_ALPHA = 0x190A
     }
 
     public enum PixelType
@@ -214,7 +215,8 @@ namespace Blazor.Extensions.Canvas.WebGL
         UNSIGNED_BYTE = 0x1401,
         UNSIGNED_SHORT_4_4_4_4 = 0x8033,
         UNSIGNED_SHORT_5_5_5_1 = 0x8034,
-        UNSIGNED_SHORT_5_6_5 = 0x8363
+        UNSIGNED_SHORT_5_6_5 = 0x8363,
+        FLOAT = 0x1406
     }
 
     public enum ShaderType
@@ -241,7 +243,7 @@ namespace Blazor.Extensions.Canvas.WebGL
         MAX_VERTEX_ATTRIBS = 0x8869,
     }
 
-    public enum Function
+    public enum CompareFunction
     {
         NEVER = 0x0200,
         ALWAYS = 0x0207,
@@ -268,6 +270,17 @@ namespace Blazor.Extensions.Canvas.WebGL
     {
         TEXTURE_2D = 0x0DE1,
         TEXTURE_CUBE_MAP = 0x8513,
+    }
+
+    public enum Texture2DType
+    {
+        TEXTURE_2D = 0x0DE1,
+        TEXTURE_CUBE_MAP_POSITIVE_X = 0x8515,
+        TEXTURE_CUBE_MAP_NEGATIVE_X = 0x8516,
+        TEXTURE_CUBE_MAP_POSITIVE_Y = 0x8517,
+        TEXTURE_CUBE_MAP_NEGATIVE_Y = 0x8518,
+        TEXTURE_CUBE_MAP_POSITIVE_Z = 0x8519,
+        TEXTURE_CUBE_MAP_NEGATIVE_Z = 0x851A
     }
 
     public enum TextureParameter
