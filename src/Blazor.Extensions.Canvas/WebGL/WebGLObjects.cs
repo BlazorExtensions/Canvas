@@ -15,4 +15,39 @@ namespace Blazor.Extensions.Canvas.WebGL
         public const string POWER_PREFERENCE_HIGH_PERFORMANCE = "high-performance";
         public const string POWER_PREFERENCE_LOW_POWER = "low-power";
     }
+
+    public class WebGLShaderPrecisionFormat
+    {
+        public int RangeMin { get; set; }
+        public int RangeMax { get; set; }
+        public int Precision { get; set; }
+    }
+
+    public class WebGLActiveInfo
+    {
+        public string Name { get; set; } //todo: make readonly
+        public int Size { get; set; }
+        public UniformType Type { get; set; }
+    }
+
+    public class WebGLBuffer
+    { }
+
+    public class WebGLFramebuffer
+    { }
+
+    public class WebGLRenderbuffer
+    { }
+
+    public class WebGLTexture
+    { }
+
+    public class WebGLProgram
+    { }
+
+    public class WebGLShader
+    { }
+
+    public class WebGLUniformLocation
+    { }
 }

@@ -151,8 +151,12 @@ namespace Blazor.Extensions.Canvas.WebGL
         VERTEX_ATTRIB_ARRAY_STRIDE = 0x8624,
         VERTEX_ATTRIB_ARRAY_TYPE = 0x8625,
         VERTEX_ATTRIB_ARRAY_NORMALIZED = 0x886A,
-        VERTEX_ATTRIB_ARRAY_POINTER = 0x8645,
         VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F
+    }
+
+    public enum VertexAttributePointer
+    {
+        VERTEX_ATTRIB_ARRAY_POINTER = 0x8645
     }
 
     public enum Face
@@ -208,6 +212,8 @@ namespace Blazor.Extensions.Canvas.WebGL
         ALPHA = 0x1906,
         RGB = 0x1907,
         RGBA = 0x1908,
+        LUMINANCE = 0x1909,
+        LUMINANCE_ALPHA = 0x190A
     }
 
     public enum PixelType
@@ -239,8 +245,7 @@ namespace Blazor.Extensions.Canvas.WebGL
         VALIDATE_STATUS = 0x8B83,
         ATTACHED_SHADERS = 0x8B85,
         ACTIVE_ATTRIBUTES = 0x8B89,
-        ACTIVE_UNIFORMS = 0x8B86,
-        MAX_VERTEX_ATTRIBS = 0x8869,
+        ACTIVE_UNIFORMS = 0x8B86
     }
 
     public enum CompareFunction
@@ -387,6 +392,16 @@ namespace Blazor.Extensions.Canvas.WebGL
         UNPACK_FLIP_Y_WEBGL = 0x9240,
         UNPACK_PREMULTIPLY_ALPHA_WEBGL = 0x9241,
         UNPACK_COLORSPACE_CONVERSION_WEBGL = 0x9243
+    }
+
+    public enum RenderbufferFormat
+    {
+        RGBA4 = 0x8056,
+        RGB5_A1 = 0x8057,
+        RGB565 = 0x8D62,
+        DEPTH_COMPONENT16 = 0x81A5,
+        STENCIL_INDEX8 = 0x8D48,
+        DEPTH_STENCIL = 0x84F9
     }
 
     public enum Texture

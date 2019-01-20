@@ -58,6 +58,54 @@ namespace Blazor.Extensions.Canvas.WebGL
         private const string GET_FRAMEBUFFER_ATTACHMENT_PARAMETER = "getFramebufferAttachmentParameter";
         private const string IS_FRAMEBUFFER = "isFramebuffer";
         private const string READ_PIXELS = "readPixels";
+        private const string BIND_RENDERBUFFER = "bindRenderbuffer";
+        private const string CREATE_RENDERBUFFER = "createRenderbuffer";
+        private const string DELETE_RENDERBUFFER = "deleteRenderbuffer";
+        private const string GET_RENDERBUFFER_PARAMETER = "getRenderbufferParameter";
+        private const string IS_RENDERBUFFER = "isRenderbuffer";
+        private const string RENDERBUFFER_STORAGE = "renderbufferStorage";
+        private const string BIND_TEXTURE = "bindTexture";
+        private const string COPY_TEX_IMAGE_2D = "copyTexImage2D";
+        private const string COPY_TEX_SUB_IMAGE_2D = "copyTexSubImage2D";
+        private const string CREATE_TEXTURE = "createTexture";
+        private const string DELETE_TEXTURE = "deleteTexture";
+        private const string GENERATE_MIPMAP = "generateMipmap";
+        private const string GET_TEX_PARAMETER = "getTexParameter";
+        private const string IS_TEXTURE = "isTexture";
+        private const string TEX_IMAGE_2D = "texImage2D";
+        private const string TEX_SUB_IMAGE_2D = "texSubImage2D";
+        private const string TEX_PARAMETER_F = "texParameterf";
+        private const string TEX_PARAMETER_I = "texParameteri";
+        private const string ATTACH_SHADER = "attachShader";
+        private const string BIND_ATTRIB_LOCATION = "bindAttribLocation";
+        private const string COMPILE_SHADER = "compileShader";
+        private const string CREATE_PROGRAM = "createProgram";
+        private const string CREATE_SHADER = "createShader";
+        private const string DELETE_PROGRAM = "deleteProgram";
+        private const string DELETE_SHADER = "deleteShader";
+        private const string DETACH_SHADER = "detachShader";
+        private const string GET_ATTACHED_SHADERS = "getAttachedShaders";
+        private const string GET_PROGRAM_PARAMETER = "getProgramParameter";
+        private const string GET_PROGRAM_INFO_LOG = "getProgramInfoLog";
+        private const string GET_SHADER_PARAMETER = "getShaderParameter";
+        private const string GET_SHADER_PRECISION_FORMAT = "getShaderPrecisionFormat";
+        private const string GET_SHADER_INFO_LOG = "getShaderInfoLog";
+        private const string GET_SHADER_SOURCE = "getShaderSource";
+        private const string IS_PROGRAM = "isProgram";
+        private const string IS_SHADER = "isShader";
+        private const string LINK_PROGRAM = "linkProgram";
+        private const string SHADER_SOURCE = "shaderSource";
+        private const string USE_PROGRAM = "useProgram";
+        private const string VALIDATE_PROGRAM = "validateProgram";
+        private const string DISABLE_VERTEX_ATTRIB_ARRAY = "disableVertexAttribArray";
+        private const string ENABLE_VERTEX_ATTRIB_ARRAY = "enableVertexAttribArray";
+        private const string GET_ACTIVE_ATTRIB = "getActiveAttrib";
+        private const string GET_ACTIVE_UNIFORM = "getActiveUniform";
+        private const string GET_ATTRIB_LOCATION = "getAttribLocation";
+        private const string GET_UNIFORM = "getUniform";
+        private const string GET_UNIFORM_LOCATION = "getUniformLocation";
+        private const string GET_VERTEX_ATTRIB = "getVertexAttrib";
+        private const string GET_VERTEX_ATTRIB_OFFSET = "getVertexAttribOffset";
         #endregion
 
         #region Properties
@@ -126,18 +174,61 @@ namespace Blazor.Extensions.Canvas.WebGL
         public bool IsFramebuffer(WebGLFramebuffer framebuffer) => this.CallMethod<bool>(IS_FRAMEBUFFER, new object[] {framebuffer});
         public void ReadPixels(int x, int y, int width, int height, PixelFormat format, PixelType type, byte[] pixels) => this.CallMethod<object>(READ_PIXELS, new object[] {x, y, width, height, format, type, pixels}); //pixels should be an ArrayBufferView which the data gets read into
 
+        public void BindRenderbuffer(RenderbufferType target, WebGLRenderbuffer renderbuffer) => this.CallMethod<object>(BIND_RENDERBUFFER, new object[] {target, renderbuffer});
+        public WebGLRenderbuffer CreateRenderbuffer() => this.CallMethod<WebGLRenderbuffer>(CREATE_RENDERBUFFER);
+        public void DeleteRenderbuffer(WebGLRenderbuffer buffer) => this.CallMethod<object>(DELETE_RENDERBUFFER, new object[] {buffer});
+        public T GetRenderbufferParameter<T>(RenderbufferType target, RenderbufferParameter pname) => this.CallMethod<T>(GET_RENDERBUFFER_PARAMETER, new object[] {target, pname});
+        public bool IsRenderbuffer(WebGLRenderbuffer renderbuffer) => this.CallMethod<bool>(IS_RENDERBUFFER, new object[] {renderbuffer});
+        public void RenderbufferStorage(RenderbufferType type, RenderbufferFormat internalFormat, int width, int height) => this.CallMethod<object>(RENDERBUFFER_STORAGE, new object[] {type, internalFormat, width, height});
+
+        public void BindTexture(TextureType type, WebGLTexture texture) => this.CallMethod<object>(BIND_TEXTURE, new object[] {type, texture});
+        public void CopyTexImage2D(Texture2DType target, int level, PixelFormat format, int x, int y, int width, int height, int border) => this.CallMethod<object>(COPY_TEX_IMAGE_2D, new object[] {target, level, format, x, y, width, height, border});
+        public void CopyTexSubImage2D(Texture2DType target, int level, int xoffset, int yoffset, int x, int y, int width, int height) => this.CallMethod<object>(COPY_TEX_SUB_IMAGE_2D, new object[] {target, level, xoffset, yoffset, x, y, width, height});
+        public WebGLTexture CreateTexture() => this.CallMethod<WebGLTexture>(CREATE_TEXTURE);
+        public void DeleteTexture(WebGLTexture texture) => this.CallMethod<object>(DELETE_TEXTURE, new object[] {texture});
+        public void GenerateMipmap(TextureType target) => this.CallMethod<object>(GENERATE_MIPMAP, new object[] {target});
+        public T GetTexParameter<T>(TextureType target, TextureParameter pname) => this.CallMethod<T>(GET_TEX_PARAMETER, new object[] {target, pname});
+        public bool IsTexture(WebGLTexture texture) => this.CallMethod<bool>(IS_TEXTURE, new object[] {texture});
+        public void TexImage2D<T>(Texture2DType target, int level, PixelFormat internalFormat, int width, int height, PixelFormat format, PixelType type, T[] pixels)
+            where T : struct
+            => this.CallMethod<object>(TEX_IMAGE_2D, new object[] {target, level, internalFormat, width, height, format, type, pixels});
+        public void TexSubImage2D<T>(Texture2DType target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, T[] pixels)
+            where T : struct
+            => this.CallMethod<object>(TEX_SUB_IMAGE_2D, new object[] {target, level, xoffset, yoffset, width, height, format, type, pixels});
+        public void TexParameter(TextureType target, TextureParameter pname, float param) => this.CallMethod<object>(TEX_PARAMETER_F, new object[] {target, pname, param});
+        public void TexParameter(TextureType target, TextureParameter pname, int param) => this.CallMethod<object>(TEX_PARAMETER_I, new object[] {target, pname, param});
+
+        public void AttachShader(WebGLProgram program, WebGLShader shader) => this.CallMethod<object>(ATTACH_SHADER, new object[] {program, shader});
+        public void BindAttribLocation(WebGLProgram program, uint index, string name) => this.CallMethod<object>(BIND_ATTRIB_LOCATION, new object[] {program, index, name});
+        public void CompileShader(WebGLShader shader) => this.CallMethod<object>(COMPILE_SHADER, new object[] {shader});
+        public WebGLProgram CreateProgram() => this.CallMethod<WebGLProgram>(CREATE_PROGRAM);
+        public WebGLShader CreateShader(ShaderType type) => this.CallMethod<WebGLShader>(CREATE_SHADER, new object[] {type});
+        public void DeleteProgram(WebGLProgram program) => this.CallMethod<object>(DELETE_PROGRAM, new object[] {program});
+        public void DeleteShader(WebGLShader shader) => this.CallMethod<object>(DELETE_SHADER, new object[] {shader});
+        public void DetachShader(WebGLProgram program, WebGLShader shader) => this.CallMethod<object>(DETACH_SHADER, new object[] {program, shader});
+        public WebGLShader[] GetAttachedShaders(WebGLProgram program) => this.CallMethod<WebGLShader[]>(GET_ATTACHED_SHADERS, new object[] {program});
+        public T GetProgramParameter<T>(WebGLProgram program, ProgramParameter pname) => this.CallMethod<T>(GET_PROGRAM_PARAMETER, new object[] {program, pname});
+        public string GetProgramInfoLog(WebGLProgram program) => this.CallMethod<string>(GET_PROGRAM_INFO_LOG, new object[] {program});
+        public T GetShaderParameter<T>(WebGLShader shader, ShaderParameter pname) => this.CallMethod<T>(GET_SHADER_PARAMETER, new object[] {shader, pname});
+        public WebGLShaderPrecisionFormat GetShaderPrecisionFormat(ShaderType shaderType, ShaderPrecision precisionType) => this.CallMethod<WebGLShaderPrecisionFormat>(GET_SHADER_PRECISION_FORMAT, new object[] {shaderType, precisionType});
+        public string GetShaderInfoLog(WebGLShader shader) => this.CallMethod<string>(GET_SHADER_INFO_LOG, new object[] {shader});
+        public string GetShaderSource(WebGLShader shader) => this.CallMethod<string>(GET_SHADER_SOURCE, new object[] {shader});
+        public bool IsProgram(WebGLProgram program) => this.CallMethod<bool>(IS_PROGRAM, new object[] {program});
+        public bool IsShader(WebGLShader shader) => this.CallMethod<bool>(IS_SHADER, new object[] {shader});
+        public void LinkProgram(WebGLProgram program) => this.CallMethod<object>(LINK_PROGRAM, new object[] {program});
+        public void ShaderSource(WebGLShader shader, string source) => this.CallMethod<object>(SHADER_SOURCE, new object[] {shader, source});
+        public void UseProgram(WebGLProgram program) => this.CallMethod<object>(USE_PROGRAM, new object[] {program});
+        public void ValidateProgram(WebGLProgram program) => this.CallMethod<object>(VALIDATE_PROGRAM, new object[] {program});
+
+        public void DisableVertexAttribArray(uint index) => this.CallMethod<object>(DISABLE_VERTEX_ATTRIB_ARRAY, new object[] {index});
+        public void EnableVertexAttribArray(uint index) => this.CallMethod<object>(ENABLE_VERTEX_ATTRIB_ARRAY, new object[] {index});
+        public WebGLActiveInfo GetActiveAttrib(WebGLProgram program, uint index) => this.CallMethod<WebGLActiveInfo>(GET_ACTIVE_ATTRIB, new object[] {program, index});
+        public WebGLActiveInfo GetActiveUniform(WebGLProgram program, uint index) => this.CallMethod<WebGLActiveInfo>(GET_ACTIVE_UNIFORM, new object[] {program, index});
+        public int GetAttribLocation(WebGLProgram program, string name) => this.CallMethod<int>(GET_ATTRIB_LOCATION, new object[] {program, name});
+        public T GetUniform<T>(WebGLProgram program, WebGLUniformLocation location) => this.CallMethod<T>(GET_UNIFORM, new object[] {program, location});
+        public WebGLUniformLocation GetUniformLocation(WebGLProgram program, string name) => this.CallMethod<WebGLUniformLocation>(GET_UNIFORM_LOCATION, new object[] {program, name});
+        public T GetVertexAttrib<T>(uint index, VertexAttribute pname) => this.CallMethod<T>(GET_VERTEX_ATTRIB, new object[] {index, pname});
+        public long GetVertexAttribOffset(uint index, VertexAttributePointer pname) => this.CallMethod<long>(GET_VERTEX_ATTRIB_OFFSET, new object[] {index, pname});
         #endregion
     }
-
-    public class WebGLBuffer
-    { }
-
-    public class WebGLFramebuffer
-    { }
-
-    public class WebGLRenderbuffer
-    { }
-
-    public class WebGLTexture
-    { }
 }
