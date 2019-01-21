@@ -7,7 +7,7 @@ namespace Blazor.Extensions.Canvas.WebGL
         STENCIL_BUFFER_BIT = 0x400
     }
 
-    public enum Primitives
+    public enum Primitive
     {
         POINTS = 0,
         LINES = 1,
@@ -402,6 +402,17 @@ namespace Blazor.Extensions.Canvas.WebGL
         DEPTH_COMPONENT16 = 0x81A5,
         STENCIL_INDEX8 = 0x8D48,
         DEPTH_STENCIL = 0x84F9
+    }
+
+    public enum DataType
+    {
+        BYTE = 0x1400,
+        UNSIGNED_BYTE = 0x1401,
+        SHORT = 0x1402,
+        UNSIGNED_SHORT = 0x1403,
+        INT = 0x1404,
+        UNSIGNED_INT = 0x1405,
+        FLOAT = 0x1406
     }
 
     public enum Texture

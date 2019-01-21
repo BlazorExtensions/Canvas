@@ -1,3 +1,5 @@
+using System;
+
 namespace Blazor.Extensions.Canvas.WebGL
 {
     public class WebGLContext : RenderingContext
@@ -106,6 +108,14 @@ namespace Blazor.Extensions.Canvas.WebGL
         private const string GET_UNIFORM_LOCATION = "getUniformLocation";
         private const string GET_VERTEX_ATTRIB = "getVertexAttrib";
         private const string GET_VERTEX_ATTRIB_OFFSET = "getVertexAttribOffset";
+        private const string UNIFORM = "uniform";
+        private const string UNIFORM_MATRIX = "uniformMatrix";
+        private const string VERTEX_ATTRIB = "vertexAttrib";
+        private const string VERTEX_ATTRIB_POINTER = "vertexAttribPointer";
+        private const string DRAW_ARRAYS = "drawArrays";
+        private const string DRAW_ELEMENTS = "drawElements";
+        private const string FINISH = "finish";
+        private const string FLUSH = "flush";
         #endregion
 
         #region Properties
@@ -229,6 +239,93 @@ namespace Blazor.Extensions.Canvas.WebGL
         public WebGLUniformLocation GetUniformLocation(WebGLProgram program, string name) => this.CallMethod<WebGLUniformLocation>(GET_UNIFORM_LOCATION, new object[] {program, name});
         public T GetVertexAttrib<T>(uint index, VertexAttribute pname) => this.CallMethod<T>(GET_VERTEX_ATTRIB, new object[] {index, pname});
         public long GetVertexAttribOffset(uint index, VertexAttributePointer pname) => this.CallMethod<long>(GET_VERTEX_ATTRIB_OFFSET, new object[] {index, pname});
+        public void VertexAttribPointer(uint index, int size, DataType type, bool normalized, int stride, long offset) => this.CallMethod<object>(VERTEX_ATTRIB_POINTER, new object[] {index, size, type, normalized, stride, offset});
+
+        public void Uniform(WebGLUniformLocation location, params float[] value)
+        {
+            switch (value.Length)
+            {
+                case 1:
+                    this.CallMethod<object>(UNIFORM + "1fv", new object[] {location, value});
+                    break;
+                case 2:
+                    this.CallMethod<object>(UNIFORM + "2fv", new object[] {location, value});
+                    break;
+                case 3:
+                    this.CallMethod<object>(UNIFORM + "3fv", new object[] {location, value});
+                    break;
+                case 4:
+                    this.CallMethod<object>(UNIFORM + "4fv", new object[] {location, value});
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value.Length, "Value array is empty or too long");
+            }
+        }
+
+        public void Uniform(WebGLUniformLocation location, params int[] value)
+        {
+            switch (value.Length)
+            {
+                case 1:
+                    this.CallMethod<object>(UNIFORM + "1iv", new object[] {location, value});
+                    break;
+                case 2:
+                    this.CallMethod<object>(UNIFORM + "2iv", new object[] {location, value});
+                    break;
+                case 3:
+                    this.CallMethod<object>(UNIFORM + "3iv", new object[] {location, value});
+                    break;
+                case 4:
+                    this.CallMethod<object>(UNIFORM + "4iv", new object[] {location, value});
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value.Length, "Value array is empty or too long");
+            }
+        }
+
+        public void UniformMatrix(WebGLUniformLocation location, bool transpose, int[] value)
+        {
+            switch (value.Length)
+            {
+                case 2 * 2:
+                    this.CallMethod<object>(UNIFORM_MATRIX + "2fv", new object[] {location, transpose, value});
+                    break;
+                case 3 * 3:
+                    this.CallMethod<object>(UNIFORM_MATRIX + "3fv", new object[] {location, transpose, value});
+                    break;
+                case 4 * 4:
+                    this.CallMethod<object>(UNIFORM_MATRIX + "4fv", new object[] {location, transpose, value});
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value.Length, "Value array has incorrect size");
+            }
+        }
+
+        public void VertexAttrib(uint index, params float[] value)
+        {
+            switch (value.Length)
+            {
+                case 1:
+                    this.CallMethod<object>(VERTEX_ATTRIB + "1fv", new object[] {index, value});
+                    break;
+                case 2:
+                    this.CallMethod<object>(VERTEX_ATTRIB + "2fv", new object[] {index, value});
+                    break;
+                case 3:
+                    this.CallMethod<object>(VERTEX_ATTRIB + "3fv", new object[] {index, value});
+                    break;
+                case 4:
+                    this.CallMethod<object>(VERTEX_ATTRIB + "4fv", new object[] {index, value});
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value.Length, "Value array is empty or too long");
+            }
+        }
+
+        public void DrawArrays(Primitive mode, int first, int count) => this.CallMethod<object>(DRAW_ARRAYS, new object[] {mode, first, count});
+        public void DrawElements(Primitive mode, int count, DataType type, long offset) => this.CallMethod<object>(DRAW_ELEMENTS, new object[] {mode, count, type, offset});
+        public void Finish() => this.CallMethod<object>(FINISH);
+        public void Flush() => this.CallMethod<object>(FLUSH);
         #endregion
     }
 }
