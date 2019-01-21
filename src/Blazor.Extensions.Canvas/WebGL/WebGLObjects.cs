@@ -30,24 +30,30 @@ namespace Blazor.Extensions.Canvas.WebGL
         public UniformType Type { get; set; }
     }
 
-    public class WebGLBuffer
+    public class WebGLObject
+    {
+        public string WebGLType { get; set; }
+        public int Id { get; set; }
+    }
+
+    public class WebGLBuffer : WebGLObject
     { }
 
-    public class WebGLFramebuffer
+    public class WebGLFramebuffer : WebGLObject
     { }
 
-    public class WebGLRenderbuffer
+    public class WebGLRenderbuffer : WebGLObject
     { }
 
-    public class WebGLTexture
+    public class WebGLTexture : WebGLObject
     { }
 
-    public class WebGLProgram
+    public class WebGLProgram : WebGLObject
     { }
 
-    public class WebGLShader
+    public class WebGLShader : WebGLObject
     { }
 
-    public class WebGLUniformLocation
+    public class WebGLUniformLocation : WebGLObject
     { }
 }

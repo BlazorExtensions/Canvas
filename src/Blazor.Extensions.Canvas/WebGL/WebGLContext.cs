@@ -128,134 +128,134 @@ namespace Blazor.Extensions.Canvas.WebGL
         }
 
         #region Methods
-        public void ClearColor(float red, float green, float blue, float alpha) => this.CallMethod<object>(CLEAR_COLOR, new object[] {red, green, blue, alpha});
-        public void Clear(BufferBits mask) => this.CallMethod<object>(CLEAR, new object[] {mask});
+        public void ClearColor(float red, float green, float blue, float alpha) => this.CallMethod<object>(CLEAR_COLOR, red, green, blue, alpha);
+        public void Clear(BufferBits mask) => this.CallMethod<object>(CLEAR, mask);
         public WebGLContextAttributes GetContextAttributes() => this.CallMethod<WebGLContextAttributes>(GET_CONTEXT_ATTRIBUTES);
         public bool IsContextLost() => this.CallMethod<bool>(IS_CONTEXT_LOST);
-        public void Scissor(int x, int y, int width, int height) => this.CallMethod<object>(SCISSOR, new object[] {x, y, width, height});
-        public void Viewport(int x, int y, int width, int height) => this.CallMethod<object>(VIEWPORT, new object[] {x, y, width, height});
-        public void ActiveTexture(Texture texture) => this.CallMethod<object>(ACTIVE_TEXTURE, new object[] {texture});
-        public void BlendColor(float red, float green, float blue, float alpha) => this.CallMethod<object>(BLEND_COLOR, new object[] {red, green, blue, alpha});
-        public void BlendEquation(BlendingEquation equation) => this.CallMethod<object>(BLEND_EQUATION, new object[] {equation});
-        public void BlendEquationSeparate(BlendingEquation modeRGB, BlendingEquation modeAlpha) => this.CallMethod<object>(BLEND_EQUATION_SEPARATE, new object[] {modeRGB, modeAlpha});
-        public void BlendFunc(BlendingMode sfactor, BlendingMode dfactor) => this.CallMethod<object>(BLEND_FUNC, new object[] {sfactor, dfactor});
-        public void BlendFuncSeparate(BlendingMode srcRGB, BlendingMode dstRGB, BlendingMode srcAlpha, BlendingMode dstAlpha) => this.CallMethod<object>(BLEND_FUNC_SEPARATE, new object[] {srcRGB, dstRGB, srcAlpha, dstAlpha});
-        public void ClearDepth(float depth) => this.CallMethod<object>(CLEAR_DEPTH, new object[] {depth});
-        public void ClearStencil(int stencil) => this.CallMethod<object>(CLEAR_STENCIL, new object[] {stencil});
-        public void ColorMask(bool red, bool green, bool blue, bool alpha) => this.CallMethod<object>(COLOR_MASK, new object[] {red, green, blue, alpha});
-        public void CullFace(Face mode) => this.CallMethod<object>(CULL_FACE, new object[] {mode});
-        public void DepthFunc(CompareFunction func) => this.CallMethod<object>(DEPTH_FUNC, new object[] {func});
-        public void DepthMask(bool flag) => this.CallMethod<object>(DEPTH_MASK, new object[] {flag});
-        public void DepthRange(float zNear, float zFar) => this.CallMethod<object>(DEPTH_RANGE, new object[] {zNear, zFar});
-        public void Disable(EnableCap cap) => this.CallMethod<object>(DISABLE, new object[] {cap});
-        public void Enable(EnableCap cap) => this.CallMethod<object>(ENABLE, new object[] {cap});
-        public void FrontFace(FrontFaceDirection mode) => this.CallMethod<object>(FRONT_FACE, new object[] {mode});
-        public T GetParameter<T>(Parameter parameter) => this.CallMethod<T>(GET_PARAMETER, new object[] {parameter});
+        public void Scissor(int x, int y, int width, int height) => this.CallMethod<object>(SCISSOR, x, y, width, height);
+        public void Viewport(int x, int y, int width, int height) => this.CallMethod<object>(VIEWPORT, x, y, width, height);
+        public void ActiveTexture(Texture texture) => this.CallMethod<object>(ACTIVE_TEXTURE, texture);
+        public void BlendColor(float red, float green, float blue, float alpha) => this.CallMethod<object>(BLEND_COLOR, red, green, blue, alpha);
+        public void BlendEquation(BlendingEquation equation) => this.CallMethod<object>(BLEND_EQUATION, equation);
+        public void BlendEquationSeparate(BlendingEquation modeRGB, BlendingEquation modeAlpha) => this.CallMethod<object>(BLEND_EQUATION_SEPARATE, modeRGB, modeAlpha);
+        public void BlendFunc(BlendingMode sfactor, BlendingMode dfactor) => this.CallMethod<object>(BLEND_FUNC, sfactor, dfactor);
+        public void BlendFuncSeparate(BlendingMode srcRGB, BlendingMode dstRGB, BlendingMode srcAlpha, BlendingMode dstAlpha) => this.CallMethod<object>(BLEND_FUNC_SEPARATE, srcRGB, dstRGB, srcAlpha, dstAlpha);
+        public void ClearDepth(float depth) => this.CallMethod<object>(CLEAR_DEPTH, depth);
+        public void ClearStencil(int stencil) => this.CallMethod<object>(CLEAR_STENCIL, stencil);
+        public void ColorMask(bool red, bool green, bool blue, bool alpha) => this.CallMethod<object>(COLOR_MASK, red, green, blue, alpha);
+        public void CullFace(Face mode) => this.CallMethod<object>(CULL_FACE, mode);
+        public void DepthFunc(CompareFunction func) => this.CallMethod<object>(DEPTH_FUNC, func);
+        public void DepthMask(bool flag) => this.CallMethod<object>(DEPTH_MASK, flag);
+        public void DepthRange(float zNear, float zFar) => this.CallMethod<object>(DEPTH_RANGE, zNear, zFar);
+        public void Disable(EnableCap cap) => this.CallMethod<object>(DISABLE, cap);
+        public void Enable(EnableCap cap) => this.CallMethod<object>(ENABLE, cap);
+        public void FrontFace(FrontFaceDirection mode) => this.CallMethod<object>(FRONT_FACE, mode);
+        public T GetParameter<T>(Parameter parameter) => this.CallMethod<T>(GET_PARAMETER, parameter);
         public Error GetError() => this.CallMethod<Error>(GET_ERROR);
-        public void Hint(HintTarget target, HintMode mode) => this.CallMethod<object>(HINT, new object[] {target, mode});
-        public bool IsEnabled(EnableCap cap) => this.CallMethod<bool>(IS_ENABLED, new object[] {cap});
-        public bool LineWidth(float width) => this.CallMethod<bool>(LINE_WIDTH, new object[] {width});
-        public bool PixelStoreI(PixelStorageMode pname, int param) => this.CallMethod<bool>(PIXEL_STORE_I, new object[] {pname, param});
-        public void PolygonOffset(float factor, float units) => this.CallMethod<object>(POLYGON_OFFSET, new object[] {factor, units});
-        public void SampleCoverage(float value, bool invert) => this.CallMethod<object>(SAMPLE_COVERAGE, new object[] {value, invert});
-        public void StencilFunc(CompareFunction func, int reference, uint mask) => this.CallMethod<object>(STENCIL_FUNC, new object[] {func, reference, mask});
-        public void StencilFuncSeparate(Face face, CompareFunction func, int reference, uint mask) => this.CallMethod<object>(STENCIL_FUNC_SEPARATE, new object[] {face, func, reference, mask});
-        public void StencilMask(uint mask) => this.CallMethod<object>(STENCIL_MASK, new object[] {mask});
-        public void StencilMaskSeparate(Face face, uint mask) => this.CallMethod<object>(STENCIL_MASK_SEPARATE, new object[] {face, mask});
-        public void StencilOp(StencilFunction fail, StencilFunction zfail, StencilFunction zpass) => this.CallMethod<object>(STENCIL_OP, new object[] {fail, zfail, zpass});
-        public void StencilOpSeparate(Face face, StencilFunction fail, StencilFunction zfail, StencilFunction zpass) => this.CallMethod<object>(STENCIL_OP_SEPARATE, new object[] {face, fail, zfail, zpass});
+        public void Hint(HintTarget target, HintMode mode) => this.CallMethod<object>(HINT, target, mode);
+        public bool IsEnabled(EnableCap cap) => this.CallMethod<bool>(IS_ENABLED, cap);
+        public bool LineWidth(float width) => this.CallMethod<bool>(LINE_WIDTH, width);
+        public bool PixelStoreI(PixelStorageMode pname, int param) => this.CallMethod<bool>(PIXEL_STORE_I, pname, param);
+        public void PolygonOffset(float factor, float units) => this.CallMethod<object>(POLYGON_OFFSET, factor, units);
+        public void SampleCoverage(float value, bool invert) => this.CallMethod<object>(SAMPLE_COVERAGE, value, invert);
+        public void StencilFunc(CompareFunction func, int reference, uint mask) => this.CallMethod<object>(STENCIL_FUNC, func, reference, mask);
+        public void StencilFuncSeparate(Face face, CompareFunction func, int reference, uint mask) => this.CallMethod<object>(STENCIL_FUNC_SEPARATE, face, func, reference, mask);
+        public void StencilMask(uint mask) => this.CallMethod<object>(STENCIL_MASK, mask);
+        public void StencilMaskSeparate(Face face, uint mask) => this.CallMethod<object>(STENCIL_MASK_SEPARATE, face, mask);
+        public void StencilOp(StencilFunction fail, StencilFunction zfail, StencilFunction zpass) => this.CallMethod<object>(STENCIL_OP, fail, zfail, zpass);
+        public void StencilOpSeparate(Face face, StencilFunction fail, StencilFunction zfail, StencilFunction zpass) => this.CallMethod<object>(STENCIL_OP_SEPARATE, face, fail, zfail, zpass);
 
-        public void BindBuffer(BufferType target, WebGLBuffer buffer) => this.CallMethod<object>(BIND_BUFFER, new object[] {target, buffer});
-        public void BufferData(BufferType target, int size, BufferUsageHint usage) => this.CallMethod<object>(BUFFER_DATA, new object[] {target, size, usage});
-        public void BufferData(BufferType target, byte[] data, BufferUsageHint usage) => this.CallMethod<object>(BUFFER_DATA, new object[] {target, data, usage});
-        public void BufferSubData(BufferType target, uint offset, byte[] data) => this.CallMethod<object>(BUFFER_SUB_DATA, new object[] {target, offset, data});
+        public void BindBuffer(BufferType target, WebGLBuffer buffer) => this.CallMethod<object>(BIND_BUFFER, target, buffer);
+        public void BufferData(BufferType target, int size, BufferUsageHint usage) => this.CallMethod<object>(BUFFER_DATA, target, size, usage);
+        public void BufferData<T>(BufferType target, T[] data, BufferUsageHint usage) => this.CallMethod<object>(BUFFER_DATA, target, data, usage);
+        public void BufferSubData(BufferType target, uint offset, byte[] data) => this.CallMethod<object>(BUFFER_SUB_DATA, target, offset, data);
         public WebGLBuffer CreateBuffer() => this.CallMethod<WebGLBuffer>(CREATE_BUFFER);
-        public void DeleteBuffer(WebGLBuffer buffer) => this.CallMethod<WebGLBuffer>(DELETE_BUFFER, new object[] {buffer});
-        public T GetBufferParameter<T>(BufferType target, BufferParameter pname) => this.CallMethod<T>(GET_BUFFER_PARAMETER, new object[] {target, pname});
-        public bool IsBuffer(WebGLBuffer buffer) => this.CallMethod<bool>(IS_BUFFER, new object[] {buffer});
+        public void DeleteBuffer(WebGLBuffer buffer) => this.CallMethod<WebGLBuffer>(DELETE_BUFFER, buffer);
+        public T GetBufferParameter<T>(BufferType target, BufferParameter pname) => this.CallMethod<T>(GET_BUFFER_PARAMETER, target, pname);
+        public bool IsBuffer(WebGLBuffer buffer) => this.CallMethod<bool>(IS_BUFFER, buffer);
 
-        public void BindFramebuffer(FramebufferType target, WebGLFramebuffer framebuffer) => this.CallMethod<object>(BIND_FRAMEBUFFER, new object[] {target, framebuffer});
-        public FramebufferStatus CheckFramebufferStatus(FramebufferType target) => this.CallMethod<FramebufferStatus>(CHECK_FRAMEBUFFER_STATUS, new object[] {target});
+        public void BindFramebuffer(FramebufferType target, WebGLFramebuffer framebuffer) => this.CallMethod<object>(BIND_FRAMEBUFFER, target, framebuffer);
+        public FramebufferStatus CheckFramebufferStatus(FramebufferType target) => this.CallMethod<FramebufferStatus>(CHECK_FRAMEBUFFER_STATUS, target);
         public WebGLFramebuffer CreateFramebuffer() => this.CallMethod<WebGLFramebuffer>(CREATE_FRAMEBUFFER);
-        public void DeleteFramebuffer(WebGLFramebuffer buffer) => this.CallMethod<object>(DELETE_FRAMEBUFFER, new object[] {buffer});
-        public void FramebufferRenderbuffer(FramebufferType target, FramebufferAttachment attachment, RenderbufferType renderbuffertarget, WebGLRenderbuffer renderbuffer) => this.CallMethod<object>(FRAMEBUFFER_RENDERBUFFER, new object[] {target, attachment, renderbuffertarget, renderbuffer});
-        public void FramebufferTexture2D(FramebufferType target, FramebufferAttachment attachment, Texture2DType textarget, WebGLTexture texture, int level) => this.CallMethod<object>(FRAMEBUFFER_TEXTURE_2D, new object[] {target, attachment, textarget, texture, level});
-        public T GetFramebufferAttachmentParameter<T>(FramebufferType target, FramebufferAttachment attachment, FramebufferAttachmentParameter pname) => this.CallMethod<T>(GET_FRAMEBUFFER_ATTACHMENT_PARAMETER, new object[] {target, attachment, pname});
-        public bool IsFramebuffer(WebGLFramebuffer framebuffer) => this.CallMethod<bool>(IS_FRAMEBUFFER, new object[] {framebuffer});
-        public void ReadPixels(int x, int y, int width, int height, PixelFormat format, PixelType type, byte[] pixels) => this.CallMethod<object>(READ_PIXELS, new object[] {x, y, width, height, format, type, pixels}); //pixels should be an ArrayBufferView which the data gets read into
+        public void DeleteFramebuffer(WebGLFramebuffer buffer) => this.CallMethod<object>(DELETE_FRAMEBUFFER, buffer);
+        public void FramebufferRenderbuffer(FramebufferType target, FramebufferAttachment attachment, RenderbufferType renderbuffertarget, WebGLRenderbuffer renderbuffer) => this.CallMethod<object>(FRAMEBUFFER_RENDERBUFFER, target, attachment, renderbuffertarget, renderbuffer);
+        public void FramebufferTexture2D(FramebufferType target, FramebufferAttachment attachment, Texture2DType textarget, WebGLTexture texture, int level) => this.CallMethod<object>(FRAMEBUFFER_TEXTURE_2D, target, attachment, textarget, texture, level);
+        public T GetFramebufferAttachmentParameter<T>(FramebufferType target, FramebufferAttachment attachment, FramebufferAttachmentParameter pname) => this.CallMethod<T>(GET_FRAMEBUFFER_ATTACHMENT_PARAMETER, target, attachment, pname);
+        public bool IsFramebuffer(WebGLFramebuffer framebuffer) => this.CallMethod<bool>(IS_FRAMEBUFFER, framebuffer);
+        public void ReadPixels(int x, int y, int width, int height, PixelFormat format, PixelType type, byte[] pixels) => this.CallMethod<object>(READ_PIXELS, x, y, width, height, format, type, pixels); //pixels should be an ArrayBufferView which the data gets read into
 
-        public void BindRenderbuffer(RenderbufferType target, WebGLRenderbuffer renderbuffer) => this.CallMethod<object>(BIND_RENDERBUFFER, new object[] {target, renderbuffer});
+        public void BindRenderbuffer(RenderbufferType target, WebGLRenderbuffer renderbuffer) => this.CallMethod<object>(BIND_RENDERBUFFER, target, renderbuffer);
         public WebGLRenderbuffer CreateRenderbuffer() => this.CallMethod<WebGLRenderbuffer>(CREATE_RENDERBUFFER);
-        public void DeleteRenderbuffer(WebGLRenderbuffer buffer) => this.CallMethod<object>(DELETE_RENDERBUFFER, new object[] {buffer});
-        public T GetRenderbufferParameter<T>(RenderbufferType target, RenderbufferParameter pname) => this.CallMethod<T>(GET_RENDERBUFFER_PARAMETER, new object[] {target, pname});
-        public bool IsRenderbuffer(WebGLRenderbuffer renderbuffer) => this.CallMethod<bool>(IS_RENDERBUFFER, new object[] {renderbuffer});
-        public void RenderbufferStorage(RenderbufferType type, RenderbufferFormat internalFormat, int width, int height) => this.CallMethod<object>(RENDERBUFFER_STORAGE, new object[] {type, internalFormat, width, height});
+        public void DeleteRenderbuffer(WebGLRenderbuffer buffer) => this.CallMethod<object>(DELETE_RENDERBUFFER, buffer);
+        public T GetRenderbufferParameter<T>(RenderbufferType target, RenderbufferParameter pname) => this.CallMethod<T>(GET_RENDERBUFFER_PARAMETER, target, pname);
+        public bool IsRenderbuffer(WebGLRenderbuffer renderbuffer) => this.CallMethod<bool>(IS_RENDERBUFFER, renderbuffer);
+        public void RenderbufferStorage(RenderbufferType type, RenderbufferFormat internalFormat, int width, int height) => this.CallMethod<object>(RENDERBUFFER_STORAGE, type, internalFormat, width, height);
 
-        public void BindTexture(TextureType type, WebGLTexture texture) => this.CallMethod<object>(BIND_TEXTURE, new object[] {type, texture});
-        public void CopyTexImage2D(Texture2DType target, int level, PixelFormat format, int x, int y, int width, int height, int border) => this.CallMethod<object>(COPY_TEX_IMAGE_2D, new object[] {target, level, format, x, y, width, height, border});
-        public void CopyTexSubImage2D(Texture2DType target, int level, int xoffset, int yoffset, int x, int y, int width, int height) => this.CallMethod<object>(COPY_TEX_SUB_IMAGE_2D, new object[] {target, level, xoffset, yoffset, x, y, width, height});
+        public void BindTexture(TextureType type, WebGLTexture texture) => this.CallMethod<object>(BIND_TEXTURE, type, texture);
+        public void CopyTexImage2D(Texture2DType target, int level, PixelFormat format, int x, int y, int width, int height, int border) => this.CallMethod<object>(COPY_TEX_IMAGE_2D, target, level, format, x, y, width, height, border);
+        public void CopyTexSubImage2D(Texture2DType target, int level, int xoffset, int yoffset, int x, int y, int width, int height) => this.CallMethod<object>(COPY_TEX_SUB_IMAGE_2D, target, level, xoffset, yoffset, x, y, width, height);
         public WebGLTexture CreateTexture() => this.CallMethod<WebGLTexture>(CREATE_TEXTURE);
-        public void DeleteTexture(WebGLTexture texture) => this.CallMethod<object>(DELETE_TEXTURE, new object[] {texture});
-        public void GenerateMipmap(TextureType target) => this.CallMethod<object>(GENERATE_MIPMAP, new object[] {target});
-        public T GetTexParameter<T>(TextureType target, TextureParameter pname) => this.CallMethod<T>(GET_TEX_PARAMETER, new object[] {target, pname});
-        public bool IsTexture(WebGLTexture texture) => this.CallMethod<bool>(IS_TEXTURE, new object[] {texture});
+        public void DeleteTexture(WebGLTexture texture) => this.CallMethod<object>(DELETE_TEXTURE, texture);
+        public void GenerateMipmap(TextureType target) => this.CallMethod<object>(GENERATE_MIPMAP, target);
+        public T GetTexParameter<T>(TextureType target, TextureParameter pname) => this.CallMethod<T>(GET_TEX_PARAMETER, target, pname);
+        public bool IsTexture(WebGLTexture texture) => this.CallMethod<bool>(IS_TEXTURE, texture);
         public void TexImage2D<T>(Texture2DType target, int level, PixelFormat internalFormat, int width, int height, PixelFormat format, PixelType type, T[] pixels)
             where T : struct
-            => this.CallMethod<object>(TEX_IMAGE_2D, new object[] {target, level, internalFormat, width, height, format, type, pixels});
+            => this.CallMethod<object>(TEX_IMAGE_2D, target, level, internalFormat, width, height, format, type, pixels);
         public void TexSubImage2D<T>(Texture2DType target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, T[] pixels)
             where T : struct
-            => this.CallMethod<object>(TEX_SUB_IMAGE_2D, new object[] {target, level, xoffset, yoffset, width, height, format, type, pixels});
-        public void TexParameter(TextureType target, TextureParameter pname, float param) => this.CallMethod<object>(TEX_PARAMETER_F, new object[] {target, pname, param});
-        public void TexParameter(TextureType target, TextureParameter pname, int param) => this.CallMethod<object>(TEX_PARAMETER_I, new object[] {target, pname, param});
+            => this.CallMethod<object>(TEX_SUB_IMAGE_2D, target, level, xoffset, yoffset, width, height, format, type, pixels);
+        public void TexParameter(TextureType target, TextureParameter pname, float param) => this.CallMethod<object>(TEX_PARAMETER_F, target, pname, param);
+        public void TexParameter(TextureType target, TextureParameter pname, int param) => this.CallMethod<object>(TEX_PARAMETER_I, target, pname, param);
 
-        public void AttachShader(WebGLProgram program, WebGLShader shader) => this.CallMethod<object>(ATTACH_SHADER, new object[] {program, shader});
-        public void BindAttribLocation(WebGLProgram program, uint index, string name) => this.CallMethod<object>(BIND_ATTRIB_LOCATION, new object[] {program, index, name});
-        public void CompileShader(WebGLShader shader) => this.CallMethod<object>(COMPILE_SHADER, new object[] {shader});
+        public void AttachShader(WebGLProgram program, WebGLShader shader) => this.CallMethod<object>(ATTACH_SHADER, program, shader);
+        public void BindAttribLocation(WebGLProgram program, uint index, string name) => this.CallMethod<object>(BIND_ATTRIB_LOCATION, program, index, name);
+        public void CompileShader(WebGLShader shader) => this.CallMethod<object>(COMPILE_SHADER, shader);
         public WebGLProgram CreateProgram() => this.CallMethod<WebGLProgram>(CREATE_PROGRAM);
-        public WebGLShader CreateShader(ShaderType type) => this.CallMethod<WebGLShader>(CREATE_SHADER, new object[] {type});
-        public void DeleteProgram(WebGLProgram program) => this.CallMethod<object>(DELETE_PROGRAM, new object[] {program});
-        public void DeleteShader(WebGLShader shader) => this.CallMethod<object>(DELETE_SHADER, new object[] {shader});
-        public void DetachShader(WebGLProgram program, WebGLShader shader) => this.CallMethod<object>(DETACH_SHADER, new object[] {program, shader});
-        public WebGLShader[] GetAttachedShaders(WebGLProgram program) => this.CallMethod<WebGLShader[]>(GET_ATTACHED_SHADERS, new object[] {program});
-        public T GetProgramParameter<T>(WebGLProgram program, ProgramParameter pname) => this.CallMethod<T>(GET_PROGRAM_PARAMETER, new object[] {program, pname});
-        public string GetProgramInfoLog(WebGLProgram program) => this.CallMethod<string>(GET_PROGRAM_INFO_LOG, new object[] {program});
-        public T GetShaderParameter<T>(WebGLShader shader, ShaderParameter pname) => this.CallMethod<T>(GET_SHADER_PARAMETER, new object[] {shader, pname});
-        public WebGLShaderPrecisionFormat GetShaderPrecisionFormat(ShaderType shaderType, ShaderPrecision precisionType) => this.CallMethod<WebGLShaderPrecisionFormat>(GET_SHADER_PRECISION_FORMAT, new object[] {shaderType, precisionType});
-        public string GetShaderInfoLog(WebGLShader shader) => this.CallMethod<string>(GET_SHADER_INFO_LOG, new object[] {shader});
-        public string GetShaderSource(WebGLShader shader) => this.CallMethod<string>(GET_SHADER_SOURCE, new object[] {shader});
-        public bool IsProgram(WebGLProgram program) => this.CallMethod<bool>(IS_PROGRAM, new object[] {program});
-        public bool IsShader(WebGLShader shader) => this.CallMethod<bool>(IS_SHADER, new object[] {shader});
-        public void LinkProgram(WebGLProgram program) => this.CallMethod<object>(LINK_PROGRAM, new object[] {program});
-        public void ShaderSource(WebGLShader shader, string source) => this.CallMethod<object>(SHADER_SOURCE, new object[] {shader, source});
-        public void UseProgram(WebGLProgram program) => this.CallMethod<object>(USE_PROGRAM, new object[] {program});
-        public void ValidateProgram(WebGLProgram program) => this.CallMethod<object>(VALIDATE_PROGRAM, new object[] {program});
+        public WebGLShader CreateShader(ShaderType type) => this.CallMethod<WebGLShader>(CREATE_SHADER, type);
+        public void DeleteProgram(WebGLProgram program) => this.CallMethod<object>(DELETE_PROGRAM, program);
+        public void DeleteShader(WebGLShader shader) => this.CallMethod<object>(DELETE_SHADER, shader);
+        public void DetachShader(WebGLProgram program, WebGLShader shader) => this.CallMethod<object>(DETACH_SHADER, program, shader);
+        public WebGLShader[] GetAttachedShaders(WebGLProgram program) => this.CallMethod<WebGLShader[]>(GET_ATTACHED_SHADERS, program);
+        public T GetProgramParameter<T>(WebGLProgram program, ProgramParameter pname) => this.CallMethod<T>(GET_PROGRAM_PARAMETER, program, pname);
+        public string GetProgramInfoLog(WebGLProgram program) => this.CallMethod<string>(GET_PROGRAM_INFO_LOG, program);
+        public T GetShaderParameter<T>(WebGLShader shader, ShaderParameter pname) => this.CallMethod<T>(GET_SHADER_PARAMETER, shader, pname);
+        public WebGLShaderPrecisionFormat GetShaderPrecisionFormat(ShaderType shaderType, ShaderPrecision precisionType) => this.CallMethod<WebGLShaderPrecisionFormat>(GET_SHADER_PRECISION_FORMAT, shaderType, precisionType);
+        public string GetShaderInfoLog(WebGLShader shader) => this.CallMethod<string>(GET_SHADER_INFO_LOG, shader);
+        public string GetShaderSource(WebGLShader shader) => this.CallMethod<string>(GET_SHADER_SOURCE, shader);
+        public bool IsProgram(WebGLProgram program) => this.CallMethod<bool>(IS_PROGRAM, program);
+        public bool IsShader(WebGLShader shader) => this.CallMethod<bool>(IS_SHADER, shader);
+        public void LinkProgram(WebGLProgram program) => this.CallMethod<object>(LINK_PROGRAM, program);
+        public void ShaderSource(WebGLShader shader, string source) => this.CallMethod<object>(SHADER_SOURCE, shader, source);
+        public void UseProgram(WebGLProgram program) => this.CallMethod<object>(USE_PROGRAM, program);
+        public void ValidateProgram(WebGLProgram program) => this.CallMethod<object>(VALIDATE_PROGRAM, program);
 
-        public void DisableVertexAttribArray(uint index) => this.CallMethod<object>(DISABLE_VERTEX_ATTRIB_ARRAY, new object[] {index});
-        public void EnableVertexAttribArray(uint index) => this.CallMethod<object>(ENABLE_VERTEX_ATTRIB_ARRAY, new object[] {index});
-        public WebGLActiveInfo GetActiveAttrib(WebGLProgram program, uint index) => this.CallMethod<WebGLActiveInfo>(GET_ACTIVE_ATTRIB, new object[] {program, index});
-        public WebGLActiveInfo GetActiveUniform(WebGLProgram program, uint index) => this.CallMethod<WebGLActiveInfo>(GET_ACTIVE_UNIFORM, new object[] {program, index});
-        public int GetAttribLocation(WebGLProgram program, string name) => this.CallMethod<int>(GET_ATTRIB_LOCATION, new object[] {program, name});
-        public T GetUniform<T>(WebGLProgram program, WebGLUniformLocation location) => this.CallMethod<T>(GET_UNIFORM, new object[] {program, location});
-        public WebGLUniformLocation GetUniformLocation(WebGLProgram program, string name) => this.CallMethod<WebGLUniformLocation>(GET_UNIFORM_LOCATION, new object[] {program, name});
-        public T GetVertexAttrib<T>(uint index, VertexAttribute pname) => this.CallMethod<T>(GET_VERTEX_ATTRIB, new object[] {index, pname});
-        public long GetVertexAttribOffset(uint index, VertexAttributePointer pname) => this.CallMethod<long>(GET_VERTEX_ATTRIB_OFFSET, new object[] {index, pname});
-        public void VertexAttribPointer(uint index, int size, DataType type, bool normalized, int stride, long offset) => this.CallMethod<object>(VERTEX_ATTRIB_POINTER, new object[] {index, size, type, normalized, stride, offset});
+        public void DisableVertexAttribArray(uint index) => this.CallMethod<object>(DISABLE_VERTEX_ATTRIB_ARRAY, index);
+        public void EnableVertexAttribArray(uint index) => this.CallMethod<object>(ENABLE_VERTEX_ATTRIB_ARRAY, index);
+        public WebGLActiveInfo GetActiveAttrib(WebGLProgram program, uint index) => this.CallMethod<WebGLActiveInfo>(GET_ACTIVE_ATTRIB, program, index);
+        public WebGLActiveInfo GetActiveUniform(WebGLProgram program, uint index) => this.CallMethod<WebGLActiveInfo>(GET_ACTIVE_UNIFORM, program, index);
+        public int GetAttribLocation(WebGLProgram program, string name) => this.CallMethod<int>(GET_ATTRIB_LOCATION, program, name);
+        public T GetUniform<T>(WebGLProgram program, WebGLUniformLocation location) => this.CallMethod<T>(GET_UNIFORM, program, location);
+        public WebGLUniformLocation GetUniformLocation(WebGLProgram program, string name) => this.CallMethod<WebGLUniformLocation>(GET_UNIFORM_LOCATION, program, name);
+        public T GetVertexAttrib<T>(uint index, VertexAttribute pname) => this.CallMethod<T>(GET_VERTEX_ATTRIB, index, pname);
+        public long GetVertexAttribOffset(uint index, VertexAttributePointer pname) => this.CallMethod<long>(GET_VERTEX_ATTRIB_OFFSET, index, pname);
+        public void VertexAttribPointer(uint index, int size, DataType type, bool normalized, int stride, long offset) => this.CallMethod<object>(VERTEX_ATTRIB_POINTER, index, size, type, normalized, stride, offset);
 
         public void Uniform(WebGLUniformLocation location, params float[] value)
         {
             switch (value.Length)
             {
                 case 1:
-                    this.CallMethod<object>(UNIFORM + "1fv", new object[] {location, value});
+                    this.CallMethod<object>(UNIFORM + "1fv", location, value);
                     break;
                 case 2:
-                    this.CallMethod<object>(UNIFORM + "2fv", new object[] {location, value});
+                    this.CallMethod<object>(UNIFORM + "2fv", location, value);
                     break;
                 case 3:
-                    this.CallMethod<object>(UNIFORM + "3fv", new object[] {location, value});
+                    this.CallMethod<object>(UNIFORM + "3fv", location, value);
                     break;
                 case 4:
-                    this.CallMethod<object>(UNIFORM + "4fv", new object[] {location, value});
+                    this.CallMethod<object>(UNIFORM + "4fv", location, value);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(value), value.Length, "Value array is empty or too long");
@@ -267,16 +267,16 @@ namespace Blazor.Extensions.Canvas.WebGL
             switch (value.Length)
             {
                 case 1:
-                    this.CallMethod<object>(UNIFORM + "1iv", new object[] {location, value});
+                    this.CallMethod<object>(UNIFORM + "1iv", location, value);
                     break;
                 case 2:
-                    this.CallMethod<object>(UNIFORM + "2iv", new object[] {location, value});
+                    this.CallMethod<object>(UNIFORM + "2iv", location, value);
                     break;
                 case 3:
-                    this.CallMethod<object>(UNIFORM + "3iv", new object[] {location, value});
+                    this.CallMethod<object>(UNIFORM + "3iv", location, value);
                     break;
                 case 4:
-                    this.CallMethod<object>(UNIFORM + "4iv", new object[] {location, value});
+                    this.CallMethod<object>(UNIFORM + "4iv", location, value);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(value), value.Length, "Value array is empty or too long");
@@ -288,13 +288,13 @@ namespace Blazor.Extensions.Canvas.WebGL
             switch (value.Length)
             {
                 case 2 * 2:
-                    this.CallMethod<object>(UNIFORM_MATRIX + "2fv", new object[] {location, transpose, value});
+                    this.CallMethod<object>(UNIFORM_MATRIX + "2fv", location, transpose, value);
                     break;
                 case 3 * 3:
-                    this.CallMethod<object>(UNIFORM_MATRIX + "3fv", new object[] {location, transpose, value});
+                    this.CallMethod<object>(UNIFORM_MATRIX + "3fv", location, transpose, value);
                     break;
                 case 4 * 4:
-                    this.CallMethod<object>(UNIFORM_MATRIX + "4fv", new object[] {location, transpose, value});
+                    this.CallMethod<object>(UNIFORM_MATRIX + "4fv", location, transpose, value);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(value), value.Length, "Value array has incorrect size");
@@ -306,24 +306,24 @@ namespace Blazor.Extensions.Canvas.WebGL
             switch (value.Length)
             {
                 case 1:
-                    this.CallMethod<object>(VERTEX_ATTRIB + "1fv", new object[] {index, value});
+                    this.CallMethod<object>(VERTEX_ATTRIB + "1fv", index, value);
                     break;
                 case 2:
-                    this.CallMethod<object>(VERTEX_ATTRIB + "2fv", new object[] {index, value});
+                    this.CallMethod<object>(VERTEX_ATTRIB + "2fv", index, value);
                     break;
                 case 3:
-                    this.CallMethod<object>(VERTEX_ATTRIB + "3fv", new object[] {index, value});
+                    this.CallMethod<object>(VERTEX_ATTRIB + "3fv", index, value);
                     break;
                 case 4:
-                    this.CallMethod<object>(VERTEX_ATTRIB + "4fv", new object[] {index, value});
+                    this.CallMethod<object>(VERTEX_ATTRIB + "4fv", index, value);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(value), value.Length, "Value array is empty or too long");
             }
         }
 
-        public void DrawArrays(Primitive mode, int first, int count) => this.CallMethod<object>(DRAW_ARRAYS, new object[] {mode, first, count});
-        public void DrawElements(Primitive mode, int count, DataType type, long offset) => this.CallMethod<object>(DRAW_ELEMENTS, new object[] {mode, count, type, offset});
+        public void DrawArrays(Primitive mode, int first, int count) => this.CallMethod<object>(DRAW_ARRAYS, mode, first, count);
+        public void DrawElements(Primitive mode, int count, DataType type, long offset) => this.CallMethod<object>(DRAW_ELEMENTS, mode, count, type, offset);
         public void Finish() => this.CallMethod<object>(FINISH);
         public void Flush() => this.CallMethod<object>(FLUSH);
         #endregion

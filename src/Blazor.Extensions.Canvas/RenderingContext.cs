@@ -39,7 +39,7 @@ namespace Blazor.Extensions
             return ((IJSInProcessRuntime)JSRuntime.Current).Invoke<T>($"{NAMESPACE_PREFIX}.{this._contextName}.{CALL_METHOD_ACTION}", this.Canvas, method);
         }
 
-        protected T CallMethod<T>(string method, object value)
+        protected T CallMethod<T>(string method, params object[] value)
         {
             return ((IJSInProcessRuntime)JSRuntime.Current).Invoke<T>($"{NAMESPACE_PREFIX}.{this._contextName}.{CALL_METHOD_ACTION}", this.Canvas, method, value);
         }
