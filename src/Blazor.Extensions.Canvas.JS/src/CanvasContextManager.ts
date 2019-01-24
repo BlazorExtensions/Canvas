@@ -70,7 +70,7 @@ export class ContextManager {
     if (object.hasOwnProperty("webGLType") && object.hasOwnProperty("id")) {
       return (this.webGLObject.get(object["webGLType"]) as Map<number, any>).get(object["id"]);
     } else if (Array.isArray(object)) {
-      return Float32Array.of(...(object as number[]));
+      return Int8Array.of(...(object as number[]));
     } else
       return object;
   }

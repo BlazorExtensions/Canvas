@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace Blazor.Extensions.Canvas.WebGL
 {
@@ -167,8 +168,8 @@ namespace Blazor.Extensions.Canvas.WebGL
 
         public void BindBuffer(BufferType target, WebGLBuffer buffer) => this.CallMethod<object>(BIND_BUFFER, target, buffer);
         public void BufferData(BufferType target, int size, BufferUsageHint usage) => this.CallMethod<object>(BUFFER_DATA, target, size, usage);
-        public void BufferData<T>(BufferType target, T[] data, BufferUsageHint usage) => this.CallMethod<object>(BUFFER_DATA, target, data, usage);
-        public void BufferSubData(BufferType target, uint offset, byte[] data) => this.CallMethod<object>(BUFFER_SUB_DATA, target, offset, data);
+        public void BufferData<T>(BufferType target, T[] data, BufferUsageHint usage) => this.CallMethod<object>(BUFFER_DATA, target, this.ConvertToByteArray(data), usage);
+        public void BufferSubData<T>(BufferType target, uint offset, T[] data) => this.CallMethod<object>(BUFFER_SUB_DATA, target, offset, this.ConvertToByteArray(data));
         public WebGLBuffer CreateBuffer() => this.CallMethod<WebGLBuffer>(CREATE_BUFFER);
         public void DeleteBuffer(WebGLBuffer buffer) => this.CallMethod<WebGLBuffer>(DELETE_BUFFER, buffer);
         public T GetBufferParameter<T>(BufferType target, BufferParameter pname) => this.CallMethod<T>(GET_BUFFER_PARAMETER, target, pname);
@@ -326,6 +327,13 @@ namespace Blazor.Extensions.Canvas.WebGL
         public void DrawElements(Primitive mode, int count, DataType type, long offset) => this.CallMethod<object>(DRAW_ELEMENTS, mode, count, type, offset);
         public void Finish() => this.CallMethod<object>(FINISH);
         public void Flush() => this.CallMethod<object>(FLUSH);
+
+        private byte[] ConvertToByteArray<T>(T[] arr)
+        {
+            byte[] byteArr = new byte[arr.Length * Marshal.SizeOf<T>()];
+            Buffer.BlockCopy(arr, 0, byteArr, 0, byteArr.Length);
+            return byteArr;
+        }
         #endregion
     }
 }
