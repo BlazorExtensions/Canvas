@@ -284,7 +284,7 @@ namespace Blazor.Extensions.Canvas.WebGL
             }
         }
 
-        public void UniformMatrix(WebGLUniformLocation location, bool transpose, int[] value)
+        public void UniformMatrix(WebGLUniformLocation location, bool transpose, float[] value)
         {
             switch (value.Length)
             {
