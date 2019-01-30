@@ -1,6 +1,6 @@
 export class ContextManager {
   private readonly contexts = new Map<string, any>();
-  private readonly webGLObject = new Map<string, Map<number, any>>();
+  private readonly webGLObject = new Array<any>();
   private readonly contextName: string;
   private webGLContext = false;
   private readonly prototypes: any;
@@ -17,8 +17,6 @@ export class ContextManager {
       this.webGLContext = true;
     } else
       throw new Error(`Invalid context name: ${contextName}`);
-
-    this.webGLTypes.forEach((type) => this.webGLObject.set(type.name, new Map<number, any>()));
   }
 
   public add = (canvas: HTMLCanvasElement, parameters: any) => {
@@ -65,20 +63,23 @@ export class ContextManager {
   }
 
   private deserialize = (method: string, object: any) => {
+    if (!this.webGLContext) return object; //deserialization only needs to happen for webGL
+
     if (object.hasOwnProperty("webGLType") && object.hasOwnProperty("id")) {
-      return (this.webGLObject.get(object["webGLType"]) as Map<number, any>).get(object["id"]);
-    } else if (this.webGLContext && Array.isArray(object) && !method.endsWith("v")) {
+      return (this.webGLObject[object["id"]]);
+    } else if (Array.isArray(object) && !method.endsWith("v")) {
       return Int8Array.of(...(object as number[]));
     } else
       return object;
   }
 
   private serialize = (object: any) => {
+    if (!this.webGLContext) return object; //serialization only needs to happen for webGL
+
     const type = this.webGLTypes.find((type) => object instanceof type);
     if (type != undefined) {
-      const objectMap = this.webGLObject.get(type.name) as Map<number, any>;
-      const id = objectMap.size;
-      objectMap.set(id, object);
+      const id = this.webGLObject.length;
+      this.webGLObject.push(object);
 
       return {
         webGLType: type.name,
