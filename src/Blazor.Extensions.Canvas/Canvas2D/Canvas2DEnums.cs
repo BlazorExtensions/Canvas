@@ -1,4 +1,4 @@
-namespace Blazor.Extensions
+namespace Blazor.Extensions.Canvas.Canvas2D
 {
     public enum TextAlign
     {
@@ -23,7 +23,7 @@ namespace Blazor.Extensions
     {
         Inherit,
         LTR,
-        RTL        
+        RTL
     }
 
     public enum LineCap
