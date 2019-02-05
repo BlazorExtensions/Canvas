@@ -14,7 +14,7 @@ Blazor Extensions are a set of packages with the goal of adding useful things to
 
 This package wraps [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) APIs. 
 
-> **NOTE**: Only Canvas 2d is supported. WebGL will come later (contributions are welcome!).
+> **NOTE**: Only Canvas 2D is supported for now. WebGL will come in the next release.
 
 # Installation
 
@@ -43,25 +43,43 @@ On your .cshtml add a `BECanvas` and make sure you set the `ref` to a field on y
 
 <h1>Canvas demo!!!</h1>
 
-<BECanvas ref="@_canvasReference"></BECanvas>
+<BECanvas ref="@canvasReference"></BECanvas>
 ```
 
-On your component C# code (regardless if inline on .cshtml or in a .cs file), from a `BECanvasComponent` reference, create a `Canvas2dContext`, and then use the context methods to draw on the canvas: 
+### Canvas2D
+
+On your component C# code (regardless if inline on .cshtml or in a .cs file), from a `BECanvasComponent` reference, create a `Canvas2DContext`, and then use the context methods to draw on the canvas: 
 
 ```c#
 private Canvas2dContext _context;
 
-protected BECanvasComponent _canvasReference;
+protected BECanvasComponent canvasReference;
 
 protected override void OnAfterRender()
 {
-    this._context = this._canvasReference.CreateCanvas2d();
+    this._context = this.canvasReference.CreateCanvas2D();
     this._context.FillStyle = "green";
 
     this._context.FillRect(10, 100, 100, 100);
 
     this._context.Font = "48px serif";
     this._context.StrokeText("Hello Blazor!!!", 10, 100);
+}
+```
+
+### WebGL
+
+You can access a WebGL context similar to how you would access the Canvas2D context by using ``CreateWebGL`` instead
+
+```c#
+protected BECanvasComponent canvasReference;
+
+protected override void OnAfterRender()
+{
+    WebGLContext context = this.canvasReference.CreateWebGL();
+
+    context.ClearColor(1, 0, 0, 1); // Sets the clear color to red
+    context.Clear(BufferBits.COLOR_BUFFER_BIT); //Clears the screen with red
 }
 ```
 
