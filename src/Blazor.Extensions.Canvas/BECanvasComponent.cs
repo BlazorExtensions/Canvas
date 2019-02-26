@@ -12,6 +12,9 @@ namespace Blazor.Extensions
         [Parameter]
         protected long Width { get; set; }
 
+        [Parameter]
+        protected Action<UIMouseEventArgs> onclick { get; set; }
+
         protected readonly string Id = Guid.NewGuid().ToString();
         protected ElementRef canvasRef;
 

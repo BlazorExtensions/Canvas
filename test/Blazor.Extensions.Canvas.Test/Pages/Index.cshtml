@@ -6,5 +6,20 @@
 <a href="/webgl">View WebGL page</a><br>
 
 Welcome to your new app.
+<p>
+    The canvas has been clicked @clickCount time(s).
+</p>
 
-<BECanvas Width="300" Height="400" ref="@canvasReference"></BECanvas>
+<div>
+    <BECanvas Width="300" Height="400" ref="@canvasReference" onclick="@canvasClicked"></BECanvas>
+</div>
+
+@functions{
+    int clickCount = 0;
+
+    void canvasClicked(UIMouseEventArgs e)
+    {
+        clickCount++;
+        this.StateHasChanged();
+    }
+}
