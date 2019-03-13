@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Blazor;
 using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.JSInterop;
 using System;
 
 namespace Blazor.Extensions
@@ -16,5 +17,8 @@ namespace Blazor.Extensions
         protected ElementRef canvasRef;
 
         internal ElementRef CanvasReference => this.canvasRef;
+
+        [Inject]
+        internal IJSRuntime JSRuntime { get; set; }
     }
 }

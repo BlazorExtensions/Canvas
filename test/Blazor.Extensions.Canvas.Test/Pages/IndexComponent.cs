@@ -1,5 +1,6 @@
 using Blazor.Extensions.Canvas.Canvas2D;
 using Microsoft.AspNetCore.Blazor.Components;
+using System.Threading.Tasks;
 
 namespace Blazor.Extensions.Canvas.Test.Pages
 {
@@ -9,15 +10,15 @@ namespace Blazor.Extensions.Canvas.Test.Pages
 
         protected BECanvasComponent canvasReference;
 
-        protected override void OnAfterRender()
+        protected override async Task OnAfterRenderAsync()
         {
-            this._context = this.canvasReference.CreateCanvas2D();
-            this._context.FillStyle = "green";
+            this._context = await this.canvasReference.CreateCanvas2DAsync();
+            await this._context.SetFillStyleAsync("green");
 
-            this._context.FillRect(10, 100, 100, 100);
+            await this._context.FillRectAsync(10, 100, 100, 100);
 
-            this._context.Font = "48px serif";
-            this._context.StrokeText("Hello Blazor!!!", 10, 100);
+            await this._context.SetFontAsync("48px serif");
+            await this._context.StrokeTextAsync("Hello Blazor!!!", 10, 100);
         }
     }
 }

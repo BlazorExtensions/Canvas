@@ -1,3 +1,8 @@
+interface BatchedCall {
+  call: string;
+  name: string;
+  parameters: any[];
+}
 export class ContextManager {
   private readonly contexts = new Map<string, any>();
   private readonly webGLObject = new Array<any>();
@@ -40,7 +45,7 @@ export class ContextManager {
 
   public setProperty = (canvas: HTMLCanvasElement, property: string, value: any) => {
     const context = this.getContext(canvas);
-    context[property] = this.deserialize(property, value);
+    this.setPropertyWithContext(context, property, value);
   }
 
   public getProperty = (canvas: HTMLCanvasElement, property: string) => {
@@ -50,7 +55,29 @@ export class ContextManager {
 
   public call = (canvas: HTMLCanvasElement, method: string, args: any) => {
     const context = this.getContext(canvas);
+    return this.callWithContext(context, method, args);
+  }
+
+  public callBatch = (canvas: HTMLCanvasElement, batchedCalls: BatchedCall[]) => {
+    const context = this.getContext(canvas);
+    for (let i = 0; i < batchedCalls.length; i++) {
+      if (batchedCalls[i].call === "call") {
+        this.callWithContext(context, batchedCalls[i].name, batchedCalls[i].parameters);
+      } else if (batchedCalls[i].call === "setProperty") {
+        this.setPropertyWithContext(
+          context,
+          batchedCalls[i].name,
+          Array.isArray(batchedCalls[i].parameters) && batchedCalls[i].parameters.length > 0 ? batchedCalls[i].parameters[0] : null);
+      }
+    }
+  }
+
+  private callWithContext = (context: any, method: string, args: any) => {
     return this.serialize(this.prototypes[method].apply(context, args != undefined ? args.map((value) => this.deserialize(method, value)) : []));
+  }
+
+  private setPropertyWithContext = (context: any, property: string, value: any) => {
+    context[property] = this.deserialize(property, value);
   }
 
   private getContext = (canvas: HTMLCanvasElement) => {
