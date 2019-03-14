@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Blazor.Hosting;
 
-namespace Blazor.Extensions.Canvas.Test
+namespace Blazor.Extensions.Canvas.Test.ClientSide
 {
     public class Program
     {

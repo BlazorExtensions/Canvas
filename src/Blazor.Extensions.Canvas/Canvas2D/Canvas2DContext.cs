@@ -1,5 +1,5 @@
 using Blazor.Extensions.Canvas.Model;
-using Microsoft.AspNetCore.Blazor;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 

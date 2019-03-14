@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Blazor;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 namespace Blazor.Extensions
@@ -23,6 +23,7 @@ namespace Blazor.Extensions
 
         private bool _awaitingBatchedCall;
         private List<CanvasBatchedCallInfo> _batchedCalls = new List<CanvasBatchedCallInfo>();
+        private bool _batching;
         private bool _initialized;
 
         public ElementRef Canvas { get; }
@@ -53,6 +54,21 @@ namespace Blazor.Extensions
         }
 
         #region Protected Methods
+
+        public async Task BeginBatchAsync()
+        {
+            await this._semaphoreSlim.WaitAsync();
+            this._batching = true;
+            this._semaphoreSlim.Release();
+        }
+
+        public async Task EndBatchAsync()
+        {
+            await this._semaphoreSlim.WaitAsync();
+
+            await this.BatchCallInnerAsync();
+        }
+
         protected async Task SetPropertyAsync(string property, object value)
         {
             await this.BatchPropertySetAsync(property, value);
@@ -93,27 +109,35 @@ namespace Blazor.Extensions
             await this.BatchMethodCallAsync(method, value);
         }
 
-        private async Task BatchCallAsync(string call, string name, params object[] value)
+        private async Task BatchCallInnerAsync()
         {
-            this._batchedCalls.Add(new CanvasBatchedCallInfo(call, name, value));
-
-            await this._semaphoreSlim.WaitAsync();
-            if (this._awaitingBatchedCall)
-            {
-                this._semaphoreSlim.Release();
-                return;
-            }
-
             this._awaitingBatchedCall = true;
             var currentBatch = this._batchedCalls.ToArray();
             this._batchedCalls.Clear();
             this._semaphoreSlim.Release();
 
-            await this._jsRuntime.InvokeAsync<object>($"{NAMESPACE_PREFIX}.{this._contextName}.{CALL_BATCH_ACTION}", this.Canvas, currentBatch);
+            _ = await this._jsRuntime.InvokeAsync<object>($"{NAMESPACE_PREFIX}.{this._contextName}.{CALL_BATCH_ACTION}", this.Canvas, currentBatch);
 
             await this._semaphoreSlim.WaitAsync();
             this._awaitingBatchedCall = false;
+            this._batching = false;
             this._semaphoreSlim.Release();
+        }
+
+        private async Task BatchCallAsync(string call, string name, params object[] value)
+        {
+            await this._semaphoreSlim.WaitAsync();
+
+            this._batchedCalls.Add(new CanvasBatchedCallInfo(call, name, value));
+
+            if (this._batching || this._awaitingBatchedCall)
+            {
+                this._semaphoreSlim.Release();
+            }
+            else
+            {
+                await this.BatchCallInnerAsync();
+            }
         }
 
         private async Task BatchMethodCallAsync(string method, object[] value = null)
@@ -130,6 +154,7 @@ namespace Blazor.Extensions
         {
             Task.Run(async () => await this._jsRuntime.InvokeAsync<object>($"{NAMESPACE_PREFIX}.{this._contextName}.{REMOVE_ACTION}", this.Canvas));
         }
+
         #endregion
     }
 }
