@@ -19,11 +19,11 @@ namespace Blazor.Extensions
         private readonly string _contextName;
         private readonly IJSRuntime _jsRuntime;
         private readonly object _parameters;
+        private readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
 
         private bool _awaitingBatchedCall;
         private List<CanvasBatchedCallInfo> _batchedCalls = new List<CanvasBatchedCallInfo>();
         private bool _initialized;
-        private SemaphoreSlim _semaphoreSlim;
 
         public ElementRef Canvas { get; }
 
