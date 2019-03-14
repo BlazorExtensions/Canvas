@@ -34,7 +34,11 @@
     <WebpackOutputs Include="dist\**\*.js" />
   </ItemGroup>
 
-  <Target Name="CopyDistForServerSideTest" AfterTargets="RunWebpack" DependsOnTargets="RunWebpack">
+  <Target Name="CopyDist" AfterTargets="RunWebpack" DependsOnTargets="RunWebpack">
     <Copy SourceFiles="@(WebpackOutputs)" DestinationFolder="..\..\test\Blazor.Extensions.Canvas.Test.ServerSide\wwwroot\dist" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyDistForServerSideTest" AfterTargets="RunWebpack" DependsOnTargets="RunWebpack">
+    <Copy SourceFiles="@(WebpackOutputs)" DestinationFolder="..\.." SkipUnchangedFiles="true" />
   </Target>
 </Project>

@@ -14,7 +14,11 @@ Blazor Extensions are a set of packages with the goal of adding useful things to
 
 This package wraps [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) APIs. 
 
-> **NOTE**: Only Canvas 2d is supported. WebGL will come later (contributions are welcome!).
+Both Canvas 2D and WebGL are supported.
+
+Both client and server-side scenarios using either Blazor or Razor Components are supported.
+
+**NOTE** Currently targets the v0.9.0 preview version of Blazor/Razor Components, which has a limitation regarding static files included in component libraries (aspnet/AspNetCore#6349). As a temporary workaround, manually add the `blazor.extensions.canvas.js` file in a `&lt;script&gt;` tag in the `&lt;head&gt;` element of your project website.
 
 # Installation
 
@@ -26,8 +30,6 @@ Install-Package Blazor.Extensions.Canvas
 
 ## Usage
 
-The following snippet shows how to consume the Canvas API in a Blazor component.
-
 On your `_ViewImports.cshtml` add the `using` and TagHelper entries:
 
 ```c#
@@ -38,32 +40,81 @@ On your `_ViewImports.cshtml` add the `using` and TagHelper entries:
 On your .cshtml add a `BECanvas` and make sure you set the `ref` to a field on your component:
 
 ```c#
-@page "/"
-@inherits IndexComponent
-
-<h1>Canvas demo!!!</h1>
-
 <BECanvas ref="@_canvasReference"></BECanvas>
 ```
 
-On your component C# code (regardless if inline on .cshtml or in a .cs file), from a `BECanvasComponent` reference, create a `Canvas2dContext`, and then use the context methods to draw on the canvas: 
+### 2D
+
+On your component C# code (regardless if inline on .razor or in a .cs file), from a `BECanvasComponent` reference, create a `Canvas2DContext`, and then use the context methods to draw on the canvas:
 
 ```c#
-private Canvas2dContext _context;
+private Canvas2DContext _context;
 
 protected BECanvasComponent _canvasReference;
 
-protected override void OnAfterRender()
+protected override async Task OnAfterRenderAsync()
 {
-    this._context = this._canvasReference.CreateCanvas2d();
-    this._context.FillStyle = "green";
+    this._context = await this._canvasReference.CreateCanvas2DAsync();
+    await this._context.SetFillStyleAsync("green");
 
-    this._context.FillRect(10, 100, 100, 100);
+    await this._context.FillRectAsync(10, 100, 100, 100);
 
-    this._context.Font = "48px serif";
-    this._context.StrokeText("Hello Blazor!!!", 10, 100);
+    await this._context.SetFontAsync("48px serif");
+    await this._context.StrokeTextAsync("Hello Blazor!!!", 10, 100);
 }
 ```
+
+**NOTE** You cannot call `CreateCanvas2DAsync` in `OnInitAsync`, because the underlying `&lt;canvas&gt;` element is not yet present in the generated markup.
+
+### WebGL
+
+On your component C# code (regardless if inline on .razor or in a .cs file), from a `BECanvasComponent` reference, create a `WebGLContext`, and then use the context methods to draw on the canvas:
+
+```c#
+private WebGLContext _context;
+
+protected BECanvasComponent _canvasReference;
+
+protected override async Task OnAfterRenderAsync()
+{
+    this._context = await this._canvasReference.CreateWebGLAsync(new WebGLContextAttributes
+    {
+        PowerPreference = WebGLContextAttributes.POWER_PREFERENCE_HIGH_PERFORMANCE
+    });
+    
+    await this._context.ClearColorAsync(0, 0, 0, 1);
+    await this._context.ClearAsync(BufferBits.COLOR_BUFFER_BIT);
+}
+```
+
+**NOTE** You cannot call `CreateWebGLAsync` in `OnInitAsync`, because the underlying `&lt;canvas&gt;` element is not yet present in the generated markup.
+
+### Call Batching
+
+All javascript interop are batched as needed to improve performance. In high-performance scenarios this behavior will not have any effect: each call will execute immediately. In low-performance scenarios, consective calls to canvas APIs will be queued. JavaScript interop calls will be made with each batch of queued commands sequentially, to avoid the performance impact of multiple concurrent interop calls.
+
+When using server-side Razor Components, because of the server-side rendering mechanism, only the last drawing operation executed will appear to render on the client, overwriting all previous operations. In the example code above, for example, drawing the triangles would appear to "erase" the black background drawn immediately before, leaving the canvas transparent.
+
+To avoid this issue, all WebGL **drawing** operations should be explicitly preceded and followed by `BeginBatchAsync` and `EndBatchAsync` calls.
+
+For example:
+
+```c#
+await this._context.ClearColorAsync(0, 0, 0, 1); // this call does not draw anything, so it does not need to be included in the explicit batch
+
+await this._context.BeginBatchAsync(); // begin the explicit batch
+
+await this._context.ClearAsync(BufferBits.COLOR_BUFFER_BIT);
+await this._context.DrawArraysAsync(Primitive.TRIANGLES, 0, 3);
+
+await this._context.EndBatchAsync(); // execute all currently batched calls
+```
+
+It is best to structure your code so that `BeginBatchAsync` and `EndBatchAsync` surround as few calls as possible. That will allow the automatic batching behavior to send calls in the most efficient manner possible, and avoid unnecessary performance impacts.
+
+Methods which return values are never batched. Such methods may be called at any time, *even after calling `BeginBatchAsync`*, without interrupting the batching of other calls.
+
+***NOTE*** The "overwriting" behavior of server-side code is unpredictable, and shouldn't be relied on as a feature. In low-performance situations calls can be batched automatically, even when you don't explicitly use `BeginBatchAsync` and `EndBatchAsync`.
 
 # Contributions and feedback
 

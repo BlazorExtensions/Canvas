@@ -7,6 +7,8 @@ namespace Blazor.Extensions.Canvas.Test.ServerSide.Components.Pages
 {
     public class WebGLComponent : ComponentBase
     {
+        private WebGLContext _context;
+
         protected BECanvasComponent _canvasReference;
 
         private const string VS_SOURCE = "attribute vec3 aPos;" +
@@ -27,17 +29,17 @@ namespace Blazor.Extensions.Canvas.Test.ServerSide.Components.Pages
 
         protected override async Task OnAfterRenderAsync()
         {
-            WebGLContext context = await this._canvasReference.CreateWebGLAsync(new WebGLContextAttributes
+            this._context = await this._canvasReference.CreateWebGLAsync(new WebGLContextAttributes
             {
                 PowerPreference = WebGLContextAttributes.POWER_PREFERENCE_HIGH_PERFORMANCE
             });
 
-            await context.ClearColorAsync(0, 0, 0, 1);
+            await this._context.ClearColorAsync(0, 0, 0, 1);
 
-            var program = await this.InitProgramAsync(context, VS_SOURCE, FS_SOURCE);
+            var program = await this.InitProgramAsync(this._context, VS_SOURCE, FS_SOURCE);
 
-            var vertexBuffer = await context.CreateBufferAsync();
-            await context.BindBufferAsync(BufferType.ARRAY_BUFFER, vertexBuffer);
+            var vertexBuffer = await this._context.CreateBufferAsync();
+            await this._context.BindBufferAsync(BufferType.ARRAY_BUFFER, vertexBuffer);
 
             var vertices = new[]
             {
@@ -45,19 +47,19 @@ namespace Blazor.Extensions.Canvas.Test.ServerSide.Components.Pages
                 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
                 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f
             };
-            await context.BufferDataAsync(BufferType.ARRAY_BUFFER, vertices, BufferUsageHint.STATIC_DRAW);
+            await this._context.BufferDataAsync(BufferType.ARRAY_BUFFER, vertices, BufferUsageHint.STATIC_DRAW);
 
-            await context.VertexAttribPointerAsync(0, 3, DataType.FLOAT, false, 6 * sizeof(float), 0);
-            await context.VertexAttribPointerAsync(1, 3, DataType.FLOAT, false, 6 * sizeof(float), 3 * sizeof(float));
-            await context.EnableVertexAttribArrayAsync(0);
-            await context.EnableVertexAttribArrayAsync(1);
+            await this._context.VertexAttribPointerAsync(0, 3, DataType.FLOAT, false, 6 * sizeof(float), 0);
+            await this._context.VertexAttribPointerAsync(1, 3, DataType.FLOAT, false, 6 * sizeof(float), 3 * sizeof(float));
+            await this._context.EnableVertexAttribArrayAsync(0);
+            await this._context.EnableVertexAttribArrayAsync(1);
 
-            await context.UseProgramAsync(program);
+            await this._context.UseProgramAsync(program);
 
-            await context.BeginBatchAsync();
-            await context.ClearAsync(BufferBits.COLOR_BUFFER_BIT);
-            await context.DrawArraysAsync(Primitive.TRIANGLES, 0, 3);
-            await context.EndBatchAsync();
+            await this._context.BeginBatchAsync();
+            await this._context.ClearAsync(BufferBits.COLOR_BUFFER_BIT);
+            await this._context.DrawArraysAsync(Primitive.TRIANGLES, 0, 3);
+            await this._context.EndBatchAsync();
         }
 
         private async Task<WebGLProgram> InitProgramAsync(WebGLContext gl, string vsSource, string fsSource)
