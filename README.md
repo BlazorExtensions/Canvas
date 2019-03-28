@@ -77,10 +77,7 @@ protected BECanvasComponent _canvasReference;
 
 protected override async Task OnAfterRenderAsync()
 {
-    this._context = await this._canvasReference.CreateWebGLAsync(new WebGLContextAttributes
-    {
-        PowerPreference = WebGLContextAttributes.POWER_PREFERENCE_HIGH_PERFORMANCE
-    });
+    this._context = await this._canvasReference.CreateWebGLAsync();
     
     await this._context.ClearColorAsync(0, 0, 0, 1);
     await this._context.ClearAsync(BufferBits.COLOR_BUFFER_BIT);
