@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -14,7 +14,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.7.0" />
     <WebpackInputs Include="**\*.ts" Exclude="dist\**;node_modules\**" />
   </ItemGroup>
 
@@ -29,5 +28,17 @@
     <ItemGroup>
       <EmbeddedResource Include="dist\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />
     </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <WebpackOutputs Include="dist\**\*.js" />
+  </ItemGroup>
+
+  <Target Name="CopyDist" AfterTargets="RunWebpack" DependsOnTargets="RunWebpack">
+    <Copy SourceFiles="@(WebpackOutputs)" DestinationFolder="..\..\test\Blazor.Extensions.Canvas.Test.ServerSide\wwwroot\dist" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyDistForServerSideTest" AfterTargets="RunWebpack" DependsOnTargets="RunWebpack">
+    <Copy SourceFiles="@(WebpackOutputs)" DestinationFolder="..\.." SkipUnchangedFiles="true" />
   </Target>
 </Project>

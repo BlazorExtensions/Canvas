@@ -40,7 +40,7 @@ export class ContextManager {
 
   public setProperty = (canvas: HTMLCanvasElement, property: string, value: any) => {
     const context = this.getContext(canvas);
-    context[property] = this.deserialize(property, value);
+    this.setPropertyWithContext(context, property, value);
   }
 
   public getProperty = (canvas: HTMLCanvasElement, property: string) => {
@@ -50,7 +50,30 @@ export class ContextManager {
 
   public call = (canvas: HTMLCanvasElement, method: string, args: any) => {
     const context = this.getContext(canvas);
+    return this.callWithContext(context, method, args);
+  }
+
+  public callBatch = (canvas: HTMLCanvasElement, batchedCalls: any[][]) => {
+    const context = this.getContext(canvas);
+    for (let i = 0; i < batchedCalls.length; i++) {
+      let params = batchedCalls[i].slice(2);
+      if (batchedCalls[i][1]) {
+        this.callWithContext(context, batchedCalls[i][0], params);
+      } else {
+        this.setPropertyWithContext(
+          context,
+          batchedCalls[i][0],
+          Array.isArray(params) && params.length > 0 ? params[0] : null);
+      }
+    }
+  }
+
+  private callWithContext = (context: any, method: string, args: any) => {
     return this.serialize(this.prototypes[method].apply(context, args != undefined ? args.map((value) => this.deserialize(method, value)) : []));
+  }
+
+  private setPropertyWithContext = (context: any, property: string, value: any) => {
+    context[property] = this.deserialize(property, value);
   }
 
   private getContext = (canvas: HTMLCanvasElement) => {

@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Blazor;
-using Microsoft.AspNetCore.Blazor.Components;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
 
 namespace Blazor.Extensions
 {
-    public class BECanvasComponent : BlazorComponent
+    public class BECanvasComponent : ComponentBase
     {
         [Parameter]
         protected long Height { get; set; }
@@ -13,8 +13,11 @@ namespace Blazor.Extensions
         protected long Width { get; set; }
 
         protected readonly string Id = Guid.NewGuid().ToString();
-        protected ElementRef canvasRef;
+        protected ElementRef _canvasRef;
 
-        internal ElementRef CanvasReference => this.canvasRef;
+        internal ElementRef CanvasReference => this._canvasRef;
+
+        [Inject]
+        internal IJSRuntime JSRuntime { get; set; }
     }
 }
