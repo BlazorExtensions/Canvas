@@ -5,9 +5,9 @@ variables:
 
 steps:
   - task: DotNetCoreInstaller@0
-    displayName: 'Use .NET Core sdk 3.0.100-preview3-010431'
+    displayName: 'Use .NET Core sdk 3.0.100-preview-011223'
     inputs:
-      version: '3.0.100-preview3-010431'
+      version: '3.0.100-preview-011223'
   - task: Npm@1
     inputs:
       command: 'install'
