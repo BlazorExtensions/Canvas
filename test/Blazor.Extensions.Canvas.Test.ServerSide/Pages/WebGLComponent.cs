@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 
-namespace Blazor.Extensions.Canvas.Test.ServerSide.Components.Pages
+namespace Blazor.Extensions.Canvas.Test.ServerSide.Pages
 {
     public class WebGLComponent : ComponentBase
     {

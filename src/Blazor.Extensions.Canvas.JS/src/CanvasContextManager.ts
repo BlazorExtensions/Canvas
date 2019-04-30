@@ -1,8 +1,3 @@
-interface BatchedCall {
-  call: string;
-  name: string;
-  parameters: any[];
-}
 export class ContextManager {
   private readonly contexts = new Map<string, any>();
   private readonly webGLObject = new Array<any>();
@@ -58,16 +53,17 @@ export class ContextManager {
     return this.callWithContext(context, method, args);
   }
 
-  public callBatch = (canvas: HTMLCanvasElement, batchedCalls: BatchedCall[]) => {
+  public callBatch = (canvas: HTMLCanvasElement, batchedCalls: any[][]) => {
     const context = this.getContext(canvas);
     for (let i = 0; i < batchedCalls.length; i++) {
-      if (batchedCalls[i].call === "call") {
-        this.callWithContext(context, batchedCalls[i].name, batchedCalls[i].parameters);
-      } else if (batchedCalls[i].call === "setProperty") {
+      let params = batchedCalls[i].slice(2);
+      if (batchedCalls[i][1]) {
+        this.callWithContext(context, batchedCalls[i][0], params);
+      } else {
         this.setPropertyWithContext(
           context,
-          batchedCalls[i].name,
-          Array.isArray(batchedCalls[i].parameters) && batchedCalls[i].parameters.length > 0 ? batchedCalls[i].parameters[0] : null);
+          batchedCalls[i][0],
+          Array.isArray(params) && params.length > 0 ? params[0] : null);
       }
     }
   }

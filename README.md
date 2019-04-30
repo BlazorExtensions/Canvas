@@ -18,7 +18,7 @@ Both Canvas 2D and WebGL are supported.
 
 Both client and server-side scenarios using either Blazor or Razor Components are supported.
 
-**NOTE** Currently targets the v0.9.0 preview version of Blazor/Razor Components, which has a limitation regarding static files included in component libraries (aspnet/AspNetCore#6349). As a temporary workaround, manually add the `blazor.extensions.canvas.js` file in a `&lt;script&gt;` tag in the `&lt;head&gt;` element of your project website.
+**NOTE** Currently targets the v3.0.0-preview4 version of Blazor/Razor Components, which has a limitation regarding static files included in component libraries (aspnet/AspNetCore#6349). As a temporary workaround, manually add the `blazor.extensions.canvas.js` file in a `<script>` tag in the `<head>` element of your project website.
 
 # Installation
 
@@ -64,7 +64,7 @@ protected override async Task OnAfterRenderAsync()
 }
 ```
 
-**NOTE** You cannot call `CreateCanvas2DAsync` in `OnInitAsync`, because the underlying `&lt;canvas&gt;` element is not yet present in the generated markup.
+**NOTE** You cannot call `CreateCanvas2DAsync` in `OnInitAsync`, because the underlying `<canvas>` element is not yet present in the generated markup.
 
 ### WebGL
 
@@ -84,7 +84,7 @@ protected override async Task OnAfterRenderAsync()
 }
 ```
 
-**NOTE** You cannot call `CreateWebGLAsync` in `OnInitAsync`, because the underlying `&lt;canvas&gt;` element is not yet present in the generated markup.
+**NOTE** You cannot call `CreateWebGLAsync` in `OnInitAsync`, because the underlying `<canvas>` element is not yet present in the generated markup.
 
 ### Call Batching
 

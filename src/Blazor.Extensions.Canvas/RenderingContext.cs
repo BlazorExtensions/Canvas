@@ -10,19 +10,18 @@ namespace Blazor.Extensions
     public abstract class RenderingContext : IDisposable
     {
         private const string NAMESPACE_PREFIX = "BlazorExtensions";
-        private const string SET_PROPERTY_ACTION = "setProperty";
         private const string GET_PROPERTY_ACTION = "getProperty";
         private const string CALL_METHOD_ACTION = "call";
         private const string CALL_BATCH_ACTION = "callBatch";
         private const string ADD_ACTION = "add";
         private const string REMOVE_ACTION = "remove";
+        private readonly List<object[]> _batchedCallObjects = new List<object[]>();
         private readonly string _contextName;
         private readonly IJSRuntime _jsRuntime;
         private readonly object _parameters;
         private readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
 
         private bool _awaitingBatchedCall;
-        private List<CanvasBatchedCallInfo> _batchedCalls = new List<CanvasBatchedCallInfo>();
         private bool _batching;
         private bool _initialized;
 
@@ -69,9 +68,24 @@ namespace Blazor.Extensions
             await this.BatchCallInnerAsync();
         }
 
-        protected async Task SetPropertyAsync(string property, object value)
+        protected async Task BatchCallAsync(string name, bool isMethodCall, params object[] value)
         {
-            await this.BatchPropertySetAsync(property, value);
+            await this._semaphoreSlim.WaitAsync();
+
+            var callObject = new object[value.Length + 2];
+            callObject[0] = name;
+            callObject[1] = isMethodCall;
+            Array.Copy(value, 0, callObject, 2, value.Length);
+            this._batchedCallObjects.Add(callObject);
+
+            if (this._batching || this._awaitingBatchedCall)
+            {
+                this._semaphoreSlim.Release();
+            }
+            else
+            {
+                await this.BatchCallInnerAsync();
+            }
         }
 
         protected async Task<T> GetPropertyAsync<T>(string property)
@@ -89,11 +103,6 @@ namespace Blazor.Extensions
             return await this._jsRuntime.InvokeAsync<T>($"{NAMESPACE_PREFIX}.{this._contextName}.{CALL_METHOD_ACTION}", this.Canvas, method);
         }
 
-        protected async Task CallMethodAsync(string method)
-        {
-            await this.BatchMethodCallAsync(method);
-        }
-
         protected T CallMethod<T>(string method, params object[] value)
         {
             return this.CallMethodAsync<T>(method, value).GetAwaiter().GetResult();
@@ -104,16 +113,11 @@ namespace Blazor.Extensions
             return await this._jsRuntime.InvokeAsync<T>($"{NAMESPACE_PREFIX}.{this._contextName}.{CALL_METHOD_ACTION}", this.Canvas, method, value);
         }
 
-        protected async Task CallMethodAsync(string method, params object[] value)
-        {
-            await this.BatchMethodCallAsync(method, value);
-        }
-
         private async Task BatchCallInnerAsync()
         {
             this._awaitingBatchedCall = true;
-            var currentBatch = this._batchedCalls.ToArray();
-            this._batchedCalls.Clear();
+            var currentBatch = this._batchedCallObjects.ToArray();
+            this._batchedCallObjects.Clear();
             this._semaphoreSlim.Release();
 
             _ = await this._jsRuntime.InvokeAsync<object>($"{NAMESPACE_PREFIX}.{this._contextName}.{CALL_BATCH_ACTION}", this.Canvas, currentBatch);
@@ -122,32 +126,6 @@ namespace Blazor.Extensions
             this._awaitingBatchedCall = false;
             this._batching = false;
             this._semaphoreSlim.Release();
-        }
-
-        private async Task BatchCallAsync(string call, string name, params object[] value)
-        {
-            await this._semaphoreSlim.WaitAsync();
-
-            this._batchedCalls.Add(new CanvasBatchedCallInfo(call, name, value));
-
-            if (this._batching || this._awaitingBatchedCall)
-            {
-                this._semaphoreSlim.Release();
-            }
-            else
-            {
-                await this.BatchCallInnerAsync();
-            }
-        }
-
-        private async Task BatchMethodCallAsync(string method, object[] value = null)
-        {
-            await this.BatchCallAsync(CALL_METHOD_ACTION, method, value);
-        }
-
-        private async Task BatchPropertySetAsync(string property, object value)
-        {
-            await this.BatchCallAsync(SET_PROPERTY_ACTION, property, value);
         }
 
         public void Dispose()

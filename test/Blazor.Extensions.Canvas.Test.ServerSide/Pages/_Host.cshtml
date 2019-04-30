@@ -1,4 +1,7 @@
-@page "{*clientPath}"
+@page "/"
+@namespace Blazor.Extensions.Canvas.Test.ServerSide.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +14,6 @@
 <body>
     <app>@(await Html.RenderComponentAsync<App>())</app>
 
-    <script src="_framework/components.server.js"></script>
+    <script src="_framework/blazor.server.js"></script>
 </body>
 </html>

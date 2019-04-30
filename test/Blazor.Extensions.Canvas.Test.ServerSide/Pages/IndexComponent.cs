@@ -2,7 +2,7 @@ using Blazor.Extensions.Canvas.Canvas2D;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
-namespace Blazor.Extensions.Canvas.Test.ServerSide.Components.Pages
+namespace Blazor.Extensions.Canvas.Test.ServerSide.Pages
 {
     public class IndexComponent : ComponentBase
     {

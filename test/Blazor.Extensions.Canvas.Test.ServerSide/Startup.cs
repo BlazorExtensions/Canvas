@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Blazor.Extensions.Canvas.Test.ServerSide.Components;
 
 namespace Blazor.Extensions.Canvas.Test.ServerSide
 {
@@ -10,10 +9,8 @@ namespace Blazor.Extensions.Canvas.Test.ServerSide
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
-                .AddNewtonsoftJson();
-
-            services.AddRazorComponents();
+            services.AddRazorPages();
+            services.AddServerSideBlazor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -25,10 +22,12 @@ namespace Blazor.Extensions.Canvas.Test.ServerSide
 
             app.UseStaticFiles();
 
-            app.UseRouting(routes =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRazorPages();
-                routes.MapComponentHub<App>("app");
+                endpoints.MapBlazorHub();
+                endpoints.MapFallbackToPage("/_Host");
             });
         }
     }
