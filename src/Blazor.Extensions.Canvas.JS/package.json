@@ -7,6 +7,9 @@
     "build": "webpack-cli",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "lodash": ">=4.17.11"
+  },
   "devDependencies": {
     "@types/emscripten": "0.0.31",
     "ts-loader": "^4.4.2",
