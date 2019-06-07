@@ -31,4 +31,10 @@
     </ItemGroup>
   </Target>
 
+  <ItemGroup>
+    <Content Update="**\*.razor">
+      <Pack>false</Pack>
+    </Content>
+  </ItemGroup>
+  
 </Project>
