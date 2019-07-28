@@ -7,7 +7,7 @@ steps:
   - task: DotNetCoreInstaller@0
     inputs:
       packageType: 'sdk'
-      version: '3.0.100-preview4-011223'
+      version: 3.0.100-preview7-012821
   - task: Npm@1
     inputs:
       command: 'install'
