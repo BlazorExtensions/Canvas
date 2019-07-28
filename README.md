@@ -18,7 +18,8 @@ Both Canvas 2D and WebGL are supported.
 
 Both client and server-side scenarios using either Blazor or Razor Components are supported.
 
-**NOTE** Currently targets the v3.0.0-preview4 version of Blazor/Razor Components, which has a limitation regarding static files included in component libraries (aspnet/AspNetCore#6349). As a temporary workaround, manually add the `blazor.extensions.canvas.js` file in a `<script>` tag in the `<head>` element of your project website.
+**NOTE** Currently targets the v3.0.0-preview4 version of Blazor/Razor Components, which has a limitation regarding static files included in component libraries (aspnet/AspNetCore#6349). As a temporary workaround, manually add the `blazor.extensions.canvas.js` file to wwwroot and add a reference to it in a `<script>` tag in the `<head>` element of your project website (`_Host.cshtml`):
+`<script src="blazor.extensions.canvas.js"></script>`
 
 # Installation
 
@@ -37,9 +38,11 @@ On your `_ViewImports.cshtml` add the `using` and TagHelper entries:
 @addTagHelper *, Blazor.Extensions.Canvas
 ```
 
-On your .cshtml add a `BECanvas` and make sure you set the `ref` to a field on your component:
+On your .razor add a `BECanvas` and make sure you set the `ref` to a field on your component:
 
 ```c#
+@using Blazor.Extensions.Canvas
+...
 <BECanvas ref="@_canvasReference"></BECanvas>
 ```
 
@@ -48,6 +51,9 @@ On your .cshtml add a `BECanvas` and make sure you set the `ref` to a field on y
 On your component C# code (regardless if inline on .razor or in a .cs file), from a `BECanvasComponent` reference, create a `Canvas2DContext`, and then use the context methods to draw on the canvas:
 
 ```c#
+using Blazor.Extensions;
+using Blazor.Extensions.Canvas.Canvas2D;
+
 private Canvas2DContext _context;
 
 protected BECanvasComponent _canvasReference;
@@ -71,6 +77,9 @@ protected override async Task OnAfterRenderAsync()
 On your component C# code (regardless if inline on .razor or in a .cs file), from a `BECanvasComponent` reference, create a `WebGLContext`, and then use the context methods to draw on the canvas:
 
 ```c#
+using Blazor.Extensions;
+using Blazor.Extensions.Canvas.WebGL;
+
 private WebGLContext _context;
 
 protected BECanvasComponent _canvasReference;
