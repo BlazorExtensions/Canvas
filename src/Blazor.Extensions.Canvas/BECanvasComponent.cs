@@ -19,5 +19,8 @@ namespace Blazor.Extensions
 
         [Inject]
         internal IJSRuntime JSRuntime { get; set; }
+
+        [Parameter]
+        protected Action<UIMouseEventArgs> OnClick { get; set; }
     }
 }
