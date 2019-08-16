@@ -31,19 +31,12 @@ Install-Package Blazor.Extensions.Canvas
 
 ## Usage
 
-On your `_ViewImports.cshtml` add the `using` and TagHelper entries:
-
-```c#
-@using Blazor.Extensions.Canvas
-@addTagHelper *, Blazor.Extensions.Canvas
-```
-
-On your .razor add a `BECanvas` and make sure you set the `ref` to a field on your component:
+On your .razor add a `BECanvas` and make sure you set the `@ref` to a field on your component:
 
 ```c#
 @using Blazor.Extensions.Canvas
 ...
-<BECanvas ref="@_canvasReference"></BECanvas>
+<BECanvas @ref="@_canvasReference"></BECanvas>
 ```
 
 ### 2D
