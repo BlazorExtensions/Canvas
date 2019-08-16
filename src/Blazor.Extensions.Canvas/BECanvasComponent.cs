@@ -7,20 +7,20 @@ namespace Blazor.Extensions
     public class BECanvasComponent : ComponentBase
     {
         [Parameter]
-        protected long Height { get; set; }
+        public long Height { get; set; }
 
         [Parameter]
-        protected long Width { get; set; }
+        public long Width { get; set; }
 
         protected readonly string Id = Guid.NewGuid().ToString();
-        protected ElementRef _canvasRef;
+        protected ElementReference _canvasRef;
 
-        internal ElementRef CanvasReference => this._canvasRef;
+        internal ElementReference CanvasReference => this._canvasRef;
 
         [Inject]
         internal IJSRuntime JSRuntime { get; set; }
 
         [Parameter]
-        protected Action<UIMouseEventArgs> OnClick { get; set; }
+        public Action<UIMouseEventArgs> OnClick { get; set; }
     }
 }

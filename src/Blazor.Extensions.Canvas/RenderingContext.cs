@@ -25,7 +25,7 @@ namespace Blazor.Extensions
         private bool _batching;
         private bool _initialized;
 
-        public ElementRef Canvas { get; }
+        public ElementReference Canvas { get; }
 
         internal RenderingContext(BECanvasComponent reference, string contextName, object parameters = null)
         {
