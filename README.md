@@ -16,9 +16,9 @@ This package wraps [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/H
 
 Both Canvas 2D and WebGL are supported.
 
-Both client and server-side scenarios using either Blazor or Razor Components are supported.
+Both WebAssembly (client-side) and server-side scenarios are supported.
 
-**NOTE** Currently targets the v3.0.0-preview4 version of Blazor/Razor Components, which has a limitation regarding static files included in component libraries (aspnet/AspNetCore#6349). As a temporary workaround, manually add the `blazor.extensions.canvas.js` file in a `<script>` tag in the `<head>` element of your project website.
+**NOTE** Currently targets the v3.0.0-preview8 version of Blazor.
 
 # Installation
 
@@ -30,22 +30,29 @@ Install-Package Blazor.Extensions.Canvas
 
 ## Usage
 
-On your `_ViewImports.cshtml` add the `using` and TagHelper entries:
+In your `index.html` file (WebAssembly/client-side) or `_Host.cshtml` (server-side) file, place a reference to the library's script file:
+
+```html
+<script src="_content/Blazor.Extensions.Canvas/blazor.extensions.canvas.js"></script>
+```
+
+In your `_Imports.razor` add the following `using` entry:
 
 ```c#
 @using Blazor.Extensions.Canvas
-@addTagHelper *, Blazor.Extensions.Canvas
 ```
 
-On your .cshtml add a `BECanvas` and make sure you set the `ref` to a field on your component:
+In the component where you want to place a canvas element, add a `BECanvas`. Make sure to set the `ref` to a field on your component, and include the `suppressField` parameter to suppress automatic field generation:
 
 ```c#
-<BECanvas ref="@_canvasReference"></BECanvas>
+<BECanvas Width="300" Height="400" @ref="_canvasReference" @ref:suppressField></BECanvas>
 ```
 
 ### 2D
 
-On your component C# code (regardless if inline on .razor or in a .cs file), from a `BECanvasComponent` reference, create a `Canvas2DContext`, and then use the context methods to draw on the canvas:
+In your component C# code (regardless if inline on .razor or in a .cs file), add a `BECanvasComponent` reference which matches the `ref` you set on your `BECanvas`.
+
+Create a `Canvas2DContext`, and then use the context methods to draw on the canvas:
 
 ```c#
 private Canvas2DContext _context;
@@ -68,7 +75,9 @@ protected override async Task OnAfterRenderAsync()
 
 ### WebGL
 
-On your component C# code (regardless if inline on .razor or in a .cs file), from a `BECanvasComponent` reference, create a `WebGLContext`, and then use the context methods to draw on the canvas:
+In your component C# code (regardless if inline on .razor or in a .cs file), add a `BECanvasComponent` reference which matches the `ref` you set on your `BECanvas`.
+
+Create a `WebGLContext`, and then use the context methods to draw on the canvas:
 
 ```c#
 private WebGLContext _context;

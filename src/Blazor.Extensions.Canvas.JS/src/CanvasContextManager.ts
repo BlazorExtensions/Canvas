@@ -86,18 +86,30 @@ export class ContextManager {
   }
 
   private deserialize = (method: string, object: any) => {
-    if (!this.webGLContext) return object; //deserialization only needs to happen for webGL
+    if (!this.webGLContext || object == undefined) return object; //deserialization only needs to happen for webGL
 
     if (object.hasOwnProperty("webGLType") && object.hasOwnProperty("id")) {
       return (this.webGLObject[object["id"]]);
     } else if (Array.isArray(object) && !method.endsWith("v")) {
       return Int8Array.of(...(object as number[]));
+    } else if (typeof(object) === "string" && (method === "bufferData" || method === "bufferSubData")) {
+      let binStr = window.atob(object);
+      let length = binStr.length;
+      let bytes = new Uint8Array(length);
+      for (var i = 0; i < length; i++) {
+          bytes[i] = binStr.charCodeAt(i);
+      }
+      return bytes;
     } else
       return object;
   }
 
   private serialize = (object: any) => {
-    if (!this.webGLContext) return object; //serialization only needs to happen for webGL
+    if (object instanceof TextMetrics) {
+        return { width: object.width };
+    }
+
+    if (!this.webGLContext || object == undefined) return object; //serialization only needs to happen for webGL
 
     const type = this.webGLTypes.find((type) => object instanceof type);
     if (type != undefined) {
@@ -107,7 +119,7 @@ export class ContextManager {
       return {
         webGLType: type.name,
         id: id
-      };
+        };
     } else
       return object;
   }
