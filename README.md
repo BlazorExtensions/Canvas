@@ -16,7 +16,7 @@ This package wraps [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/H
 
 Both Canvas 2D and WebGL are supported.
 
-Both WebAssembly (client-side) and server-side scenarios are supported.
+Both Blazor Server Apps and Blazor WebAssembly Apps are supported.
 
 **NOTE** Currently targets the v3.0.0-preview8 version of Blazor.
 
@@ -30,7 +30,7 @@ Install-Package Blazor.Extensions.Canvas
 
 ## Usage
 
-In your `index.html` file (WebAssembly/client-side) or `_Host.cshtml` (server-side) file, place a reference to the library's script file:
+In your `index.html` file (WebAssembly Apps) or `_Host.cshtml` (Server Apps) file, place a reference to the library's script file:
 
 ```html
 <script src="_content/Blazor.Extensions.Canvas/blazor.extensions.canvas.js"></script>
