@@ -27,7 +27,7 @@ namespace Blazor.Extensions.Canvas.Test.ServerSide.Pages
                                             "gl_FragColor = vec4(vColor, 1.0);" +
                                          "}";
 
-        protected override async Task OnAfterRenderAsync()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             this._context = await this._canvasReference.CreateWebGLAsync(new WebGLContextAttributes
             {

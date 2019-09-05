@@ -52,7 +52,7 @@ private Canvas2DContext _context;
 
 protected BECanvasComponent _canvasReference;
 
-protected override async Task OnAfterRenderAsync()
+protected override async Task OnAfterRenderAsync(bool firstRender)
 {
     this._context = await this._canvasReference.CreateCanvas2DAsync();
     await this._context.SetFillStyleAsync("green");
@@ -75,7 +75,7 @@ private WebGLContext _context;
 
 protected BECanvasComponent _canvasReference;
 
-protected override async Task OnAfterRenderAsync()
+protected override async Task OnAfterRenderAsync(bool firstRender)
 {
     this._context = await this._canvasReference.CreateWebGLAsync();
     

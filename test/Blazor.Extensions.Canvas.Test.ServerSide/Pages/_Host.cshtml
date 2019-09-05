@@ -12,7 +12,7 @@
     <script src="~/dist/blazor.extensions.canvas.js"></script>
 </head>
 <body>
-    <app>@(await Html.RenderComponentAsync<App>())</app>
+    <app>@(await Html.RenderComponentAsync<App>(RenderMode.Server))</app>
 
     <script src="_framework/blazor.server.js"></script>
 </body>
