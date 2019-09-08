@@ -52,6 +52,7 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         private const string GLOBAL_ALPHA_PROPERTY = "globalAlpha";
         private const string SAVE_METHOD = "save";
         private const string RESTORE_METHOD = "restore";
+        private const string DRAW_IMAGE_METHOD = "drawImage";
         #endregion
 
         #region Properties
@@ -319,6 +320,10 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         public void Restore() => this.CallMethod<object>(RESTORE_METHOD);
         public async Task RestoreAsync() => await this.BatchCallAsync(RESTORE_METHOD, isMethodCall: true);
 
+        public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy);
+        public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy, double dWidth, double dHeight) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy, dWidth, dHeight);
+        public async Task DrawImageAsync(ElementReference elementReference, double sx, double sy, double sWidth, double sHeight, double dx, double dy, double dWidth, double dHeight) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+
         #endregion Methods
-        }
+    }
 }
