@@ -9,6 +9,7 @@
     <OutputType>Library</OutputType>
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2POutput</TargetsForTfmSpecificBuildOutput>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup>
