@@ -1,7 +1,7 @@
 # Canvas
 HTML5 Canvas API implementation for Microsoft Blazor
 
-[![Build status](https://dotnet-ci.visualstudio.com/DotnetCI/_apis/build/status/Blazor-Extensions-Canvas-CI?branch=master)](https://dotnet-ci.visualstudio.com/DotnetCI/_build/latest?definitionId=15&branch=master)
+[![Build](https://github.com/BlazorExtensions/Canvas/workflows/CI/badge.svg)](https://github.com/BlazorExtensions/Canvas/actions)
 [![Package Version](https://img.shields.io/nuget/v/Blazor.Extensions.Canvas.svg)](https://www.nuget.org/packages/Blazor.Extensions.Canvas)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Blazor.Extensions.Canvas.svg)](https://www.nuget.org/packages/Blazor.Extensions.Canvas)
 [![License](https://img.shields.io/github/license/BlazorExtensions/Canvas.svg)](https://github.com/BlazorExtensions/Canvas/blob/master/LICENSE)
@@ -42,10 +42,10 @@ In your `_Imports.razor` add the following `using` entry:
 @using Blazor.Extensions.Canvas
 ```
 
-In the component where you want to place a canvas element, add a `BECanvas`. Make sure to set the `ref` to a field on your component, and include the `suppressField` parameter to suppress automatic field generation:
+In the component where you want to place a canvas element, add a `BECanvas`. Make sure to set the `ref` to a field on your component:
 
 ```c#
-<BECanvas Width="300" Height="400" @ref="_canvasReference" @ref:suppressField></BECanvas>
+<BECanvas Width="300" Height="400" @ref="_canvasReference" ></BECanvas>
 ```
 
 ### 2D

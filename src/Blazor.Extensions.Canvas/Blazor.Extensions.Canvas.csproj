@@ -3,6 +3,8 @@
   <PropertyGroup>
     <Title>Blazor Extensions Canvas</Title>
     <Description>HTML5 Canvas API implementation for ASP.NET Core Blazor.</Description>
+    <PackageId>Blazor.Extensions.Canvas</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -18,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-preview9.19424.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

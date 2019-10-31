@@ -241,8 +241,8 @@ namespace Blazor.Extensions.Canvas.WebGL
         public async Task<bool> IsEnabledAsync(EnableCap cap) => await this.CallMethodAsync<bool>(IS_ENABLED, cap);
 
         [Obsolete("Use the async version instead, which is already called internally.")]
-        public bool LineWidth(float width) => this.CallMethod<bool>(LINE_WIDTH, width);
-        public async Task<bool> LineWidthAsync(float width) => await this.CallMethodAsync<bool>(LINE_WIDTH, width);
+        public void LineWidth(float width) => this.CallMethod<object>(LINE_WIDTH, width);
+        public async Task LineWidthAsync(float width) => await this.CallMethodAsync<object>(LINE_WIDTH, width);
 
         [Obsolete("Use the async version instead, which is already called internally.")]
         public bool PixelStoreI(PixelStorageMode pname, int param) => this.CallMethod<bool>(PIXEL_STORE_I, pname, param);

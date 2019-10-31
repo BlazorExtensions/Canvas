@@ -1,0 +1,36 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.0.100
+    - name: Build
+      run: dotnet build --configuration Release
+    - name: Pack
+      working-directory: src/Blazor.Extensions.Canvas
+      run: dotnet pack --configuration Release
+    - name: Push
+      working-directory: src/Blazor.Extensions.Canvas/bin/Release
+      run: |
+        dotnet nuget push Blazor.Extensions.Canvas.*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
+    - name: Create Release
+      uses: actions/create-release@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
