@@ -272,8 +272,8 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         public async Task StrokeAsync() => await this.BatchCallAsync(STROKE_METHOD, isMethodCall: true);
 
         [Obsolete("Use the async version instead, which is already called internally.")]
-        public void DrawFocusIfNeeded(ElementRef elementReference) => this.CallMethod<object>(DRAW_FOCUS_IF_NEEDED_METHOD, elementReference);
-        public async Task DrawFocusIfNeededAsync(ElementRef elementReference) => await this.BatchCallAsync(DRAW_FOCUS_IF_NEEDED_METHOD, isMethodCall: true, elementReference);
+        public void DrawFocusIfNeeded(ElementReference elementReference) => this.CallMethod<object>(DRAW_FOCUS_IF_NEEDED_METHOD, elementReference);
+        public async Task DrawFocusIfNeededAsync(ElementReference elementReference) => await this.BatchCallAsync(DRAW_FOCUS_IF_NEEDED_METHOD, isMethodCall: true, elementReference);
 
         [Obsolete("Use the async version instead, which is already called internally.")]
         public void ScrollPathIntoView() => this.CallMethod<object>(SCROLL_PATH_INTO_VIEW_METHOD);

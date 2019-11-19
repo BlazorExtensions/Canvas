@@ -1,8 +1,8 @@
+using System.Threading.Tasks;
 using Blazor.Extensions.Canvas.Canvas2D;
 using Blazor.Extensions.Canvas.WebGL;
-using System.Threading.Tasks;
 
-namespace Blazor.Extensions
+namespace Blazor.Extensions.Canvas
 {
     public static class CanvasContextExtensions
     {

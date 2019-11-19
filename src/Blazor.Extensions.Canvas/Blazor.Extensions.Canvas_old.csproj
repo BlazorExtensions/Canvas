@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor" ToolsVersion="Current">
+  <PropertyGroup>
+    <Title>Blazor Extensions Canvas</Title>
+    <Description>HTML5 Canvas API implementation for ASP.NET Core Blazor.</Description>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <ProjectGuid>{1BD23FF7-FA05-4C6C-ACB8-86B158B37590}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2POutput</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>7.3</LangVersion>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Browser" Version="3.0.0-preview7.19365.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blazor.Extensions.Canvas.JS\Blazor.Extensions.Canvas.JS.csproj" PrivateAssets="All" />
+  </ItemGroup>
+  <Target Name="IncludeP2POutput">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(OutputPath)Blazor.Extensions.Canvas.JS.dll" />
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <Content Update="**\*.razor">
+      <Pack>false</Pack>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BECanvasComponent.cs" />
+    <Compile Include="Canvas2D\Canvas2DContext.cs" />
+    <Compile Include="Canvas2D\Canvas2DEnums.cs" />
+    <Compile Include="CanvasContextExtensions.cs" />
+    <Compile Include="Model\TextMetrics.cs" />
+    <Compile Include="RenderingContext.cs" />
+    <Compile Include="WebGL\WebGLContext.cs" />
+    <Compile Include="WebGL\WebGLEnums.cs" />
+    <Compile Include="WebGL\WebGLObjects.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BECanvas.razor" />
+  </ItemGroup>
+</Project>

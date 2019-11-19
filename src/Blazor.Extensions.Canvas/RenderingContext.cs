@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace Blazor.Extensions
+namespace Blazor.Extensions.Canvas
 {
     public abstract class RenderingContext : IDisposable
     {
@@ -25,7 +25,7 @@ namespace Blazor.Extensions
         private bool _batching;
         private bool _initialized;
 
-        public ElementRef Canvas { get; }
+        public ElementReference Canvas { get; }
 
         internal RenderingContext(BECanvasComponent reference, string contextName, object parameters = null)
         {

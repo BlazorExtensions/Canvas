@@ -1,28 +1,30 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using System;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 
-namespace Blazor.Extensions
+namespace Blazor.Extensions.Canvas
 {
     public class BECanvasComponent : ComponentBase
     {
         [Parameter]
-        protected long Height { get; set; }
+        public int Height { get; set; }
 
         [Parameter]
-        protected long Width { get; set; }
+        public int Width { get; set; }
 
         [Parameter]
-        protected string Id { get; set; } = Guid.NewGuid().ToString();
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        protected ElementRef _canvasRef;
-
-        internal ElementRef CanvasReference => this._canvasRef;
+        public ElementReference CanvasReference { get; set; }
 
         [Inject]
-        internal IJSRuntime JSRuntime { get; set; }
+        public IJSRuntime JSRuntime { get; set; }
 
         [Parameter]
-        protected Action<UIMouseEventArgs> OnClick { get; set; }
+        public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+        [Parameter]
+        public RenderFragment ChildContent { get; set; }
     }
 }
