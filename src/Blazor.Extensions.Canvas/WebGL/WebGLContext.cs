@@ -405,12 +405,12 @@ namespace Blazor.Extensions.Canvas.WebGL
         public async Task<bool> IsTextureAsync(WebGLTexture texture) => await this.CallMethodAsync<bool>(IS_TEXTURE, texture);
 
         [Obsolete("Use the async version instead, which is already called internally.")]
-        public void TexImage2D<T>(Texture2DType target, int level, PixelFormat internalFormat, int width, int height, PixelFormat format, PixelType type, T[] pixels)
+        public void TexImage2D<T>(Texture2DType target, int level, PixelFormat internalFormat, int width, int height, int border, PixelFormat format, PixelType type, T[] pixels)
             where T : struct
-            => this.CallMethod<object>(TEX_IMAGE_2D, target, level, internalFormat, width, height, format, type, pixels);
-        public async Task TexImage2DAsync<T>(Texture2DType target, int level, PixelFormat internalFormat, int width, int height, PixelFormat format, PixelType type, T[] pixels)
+            => this.CallMethod<object>(TEX_IMAGE_2D, target, level, internalFormat, width, height, border, format, type, pixels);
+        public async Task TexImage2DAsync<T>(Texture2DType target, int level, PixelFormat internalFormat, int width, int height, int border, PixelFormat format, PixelType type, T[] pixels)
             where T : struct
-            => await this.BatchCallAsync(TEX_IMAGE_2D, isMethodCall: true, target, level, internalFormat, width, height, format, type, pixels);
+            => await this.BatchCallAsync(TEX_IMAGE_2D, isMethodCall: true, target, level, internalFormat, width, height, border, format, type, pixels);
 
         [Obsolete("Use the async version instead, which is already called internally.")]
         public void TexSubImage2D<T>(Texture2DType target, int level, int xoffset, int yoffset, int width, int height, PixelFormat format, PixelType type, T[] pixels)
