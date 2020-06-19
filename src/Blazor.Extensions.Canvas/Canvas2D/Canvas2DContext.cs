@@ -53,6 +53,8 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         private const string SAVE_METHOD = "save";
         private const string RESTORE_METHOD = "restore";
         private const string DRAW_IMAGE_METHOD = "drawImage";
+        private const string GET_IMAGE_DATA_METHOD = "getImageData";
+        private const string PUT_IMAGE_DATA_METHOD = "putImageData";
         #endregion
 
         #region Properties
@@ -319,6 +321,14 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         [Obsolete("Use the async version instead, which is already called internally.")]
         public void Restore() => this.CallMethod<object>(RESTORE_METHOD);
         public async Task RestoreAsync() => await this.BatchCallAsync(RESTORE_METHOD, isMethodCall: true);
+
+        [Obsolete("Use the async version instead, which is already called internally.")]
+        public ImageData GetImageData(double sx, double sy, double sh, double sw) => this.CallMethod<ImageData>(GET_IMAGE_DATA_METHOD, sx, sy, sh, sw);
+        public async Task<ImageData> GetImageDataAsync(double sx, double sy, double sh, double sw) => await this.CallMethodAsync<ImageData>(GET_IMAGE_DATA_METHOD, sx, sy, sh, sw);
+
+        [Obsolete("Use the async version instead, which is already called internally.")]
+        public void PutImageData(ImageData imageData, double dx, double dy) => this.CallMethod<object>(PUT_IMAGE_DATA_METHOD, imageData, dx, dy);
+        public async Task PutImageDataAsync(ImageData imageData, double dx, double dy) => await this.CallMethodAsync<object>(PUT_IMAGE_DATA_METHOD, imageData, dx, dy);
 
         public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy);
         public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy, double dWidth, double dHeight) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy, dWidth, dHeight);
