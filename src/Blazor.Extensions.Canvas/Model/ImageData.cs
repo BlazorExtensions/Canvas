@@ -11,5 +11,11 @@ namespace Blazor.Extensions.Canvas.Model
         [JsonPropertyName("data")]
         [JsonConverter(typeof(ImageDataArrayConverter))]
         public byte[] Data { get; set; }
+
+        [JsonPropertyName("width")]
+        public ulong Width { get; set; }
+
+        [JsonPropertyName("height")]
+        public ulong Height { get; set; }
     }
 }

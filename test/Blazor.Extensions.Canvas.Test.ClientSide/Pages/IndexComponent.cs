@@ -25,9 +25,13 @@ namespace Blazor.Extensions.Canvas.Test.ClientSide.Pages
 
             var ImageData = await this._context.GetImageDataAsync(0, 0, 100, 100);
 
-            ImageData.Data = new byte[2];
+            Console.WriteLine("width: " + ImageData.Width);
 
-            await this._context.PutImageDataAsync(ImageData, 0, 0);
+            Console.WriteLine("height: " + ImageData.Height);
+
+            Console.WriteLine("dataLength: " + ImageData.Data.Count());
+
+            await this._context.PutImageDataAsync(ImageData, 40, 40);
             
         }
     }

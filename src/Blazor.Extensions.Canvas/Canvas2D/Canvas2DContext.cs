@@ -1,6 +1,9 @@
 using Blazor.Extensions.Canvas.Model;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using System;
+using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Blazor.Extensions.Canvas.Canvas2D
@@ -93,8 +96,11 @@ namespace Blazor.Extensions.Canvas.Canvas2D
 
         #endregion Properties
 
+        private BECanvasComponent _reference;
+
         internal Canvas2DContext(BECanvasComponent reference) : base(reference, CONTEXT_NAME)
         {
+            this._reference = reference;
         }
 
         #region Property Setters
@@ -323,12 +329,29 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         public async Task RestoreAsync() => await this.BatchCallAsync(RESTORE_METHOD, isMethodCall: true);
 
         [Obsolete("Use the async version instead, which is already called internally.")]
-        public ImageData GetImageData(double sx, double sy, double sh, double sw) => this.CallMethod<ImageData>(GET_IMAGE_DATA_METHOD, sx, sy, sh, sw);
-        public async Task<ImageData> GetImageDataAsync(double sx, double sy, double sh, double sw) => await this.CallMethodAsync<ImageData>(GET_IMAGE_DATA_METHOD, sx, sy, sh, sw);
+        public ImageData GetImageData(double sx, double sy, double sh, double sw)
+        {
+            ImageData imageData = this.CallMethod<ImageData>(GET_IMAGE_DATA_METHOD, sx, sy, sh, sw);
+            imageData.Height = (ulong)sh;
+            imageData.Width = (ulong)sw;
+            return imageData;
+        }
+        public async Task<ImageData> GetImageDataAsync(double sx, double sy, double sh, double sw) {
+            ImageData imageData = await this.CallMethodAsync<ImageData>(GET_IMAGE_DATA_METHOD, sx, sy, sh, sw);
+            imageData.Height = (ulong)sh;
+            imageData.Width = (ulong)sw;
+            return imageData;
+        }
 
         [Obsolete("Use the async version instead, which is already called internally.")]
-        public void PutImageData(ImageData imageData, double dx, double dy) => this.CallMethod<object>(PUT_IMAGE_DATA_METHOD, imageData, dx, dy);
-        public async Task PutImageDataAsync(ImageData imageData, double dx, double dy) => await this.CallMethodAsync<object>(PUT_IMAGE_DATA_METHOD, imageData, dx, dy);
+        public void PutImageData(ImageData imageData, double dx, double dy)
+        {
+            this.CallWindowMethod<object>(PUT_IMAGE_DATA_METHOD, imageData.Data.Select(i => (int)i), imageData.Data.Length, imageData.Width, imageData.Height, this._reference.CanvasReference, dx, dy);
+        }
+        public async Task PutImageDataAsync(ImageData imageData, double dx, double dy)
+        {
+            await this.CallWindowMethodAsync<object>(PUT_IMAGE_DATA_METHOD, imageData.Data.Select(i => (int)i), imageData.Data.Length, imageData.Width, imageData.Height, this._reference.CanvasReference, dx, dy);
+        }
 
         public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy);
         public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy, double dWidth, double dHeight) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy, dWidth, dHeight);
