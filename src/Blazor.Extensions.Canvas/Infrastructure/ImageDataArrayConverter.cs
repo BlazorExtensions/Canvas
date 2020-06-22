@@ -18,7 +18,13 @@ namespace Blazor.Extensions.Canvas.Infrastructure
 
         public override void Write(Utf8JsonWriter writer, byte[] value, JsonSerializerOptions options)
         {
-            JsonSerializer.Serialize(writer, value, options);
+            writer.WriteStartObject();
+            for(int i = 0; i < value.Length; i++)
+            {
+                writer.WritePropertyName(i.ToString());
+                JsonSerializer.Serialize(writer, value[i], options);
+            }
+            writer.WriteEndObject();
         }
     }
 }

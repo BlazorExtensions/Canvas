@@ -113,16 +113,6 @@ namespace Blazor.Extensions
             return await this._jsRuntime.InvokeAsync<T>($"{NAMESPACE_PREFIX}.{this._contextName}.{CALL_METHOD_ACTION}", this.Canvas, method, value);
         }
 
-        protected T CallWindowMethod<T>(string method, params object[] value)
-        {
-            return this.CallWindowMethodAsync<T>(method, value).GetAwaiter().GetResult();
-        }
-
-        protected async Task<T> CallWindowMethodAsync<T>(string method, params object[] value)
-        {
-            return await this._jsRuntime.InvokeAsync<T>($"{NAMESPACE_PREFIX}.{method}", value);
-        }
-
         private async Task BatchCallInnerAsync()
         {
             this._awaitingBatchedCall = true;
