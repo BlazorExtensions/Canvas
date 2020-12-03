@@ -54,11 +54,17 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         private const string RESTORE_METHOD = "restore";
         private const string DRAW_IMAGE_METHOD = "drawImage";
         private const string CREATE_PATTERN_METHOD = "createPattern";
+
+        private readonly string[] _repeatNames = new[]
+        {
+            "repeat", "repeat-x", "repeat-y", "no-repeat"
+        };
+
         #endregion
 
         #region Properties
 
-        public string FillStyle { get; private set; } = "#000";
+        public object FillStyle { get; private set; } = "#000";
 
         public string StrokeStyle { get; private set; } = "#000";
 
@@ -98,10 +104,10 @@ namespace Blazor.Extensions.Canvas.Canvas2D
 
         #region Property Setters
 
-        public async Task SetFillStyleAsync(string value)
+        public async Task SetFillStyleAsync(object value)
         {
             this.FillStyle = value;
-            await this.BatchCallAsync(FILL_STYLE_PROPERTY, isMethodCall: false, value);
+            await this.BatchCallAsync(FILL_STYLE_PROPERTY, false, value);
         }
 
         public async Task SetStrokeStyleAsync(string value)
@@ -326,7 +332,7 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy, double dWidth, double dHeight) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy, dWidth, dHeight);
         public async Task DrawImageAsync(ElementReference elementReference, double sx, double sy, double sWidth, double sHeight, double dx, double dy, double dWidth, double dHeight) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
 
-        public async Task CreatePatternAsync(ElementReference image, RepeatPattern repeat) => await this.BatchCallAsync(CREATE_PATTERN_METHOD, isMethodCall: true, image, repeat.Value);
+        public async Task<object> CreatePatternAsync(ElementReference image, RepeatPattern repeat) => await this.CallMethodAsync<object>(CREATE_PATTERN_METHOD, image, this._repeatNames[(int)repeat]);
 
         #endregion Methods
     }

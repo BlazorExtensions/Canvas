@@ -40,17 +40,11 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         Bevel
     }
 
-    public class RepeatPattern
+    public enum RepeatPattern
     {
-        private RepeatPattern(string value)
-        {
-            this.Value = value;
-        }
-        public string Value { get; }
-
-        public static readonly RepeatPattern Repeat = new RepeatPattern("repeat");
-        public static readonly RepeatPattern RepeatX = new RepeatPattern("repeat-x");
-        public static readonly RepeatPattern RepeatY = new RepeatPattern("repeat-y");
-        public static readonly RepeatPattern NoRepeat = new RepeatPattern("no-repeat");   
+        Repeat = 0,
+        RepeatX,
+        RepeatY,
+        NoRepeat
     }
 }
