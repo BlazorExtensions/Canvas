@@ -53,6 +53,7 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         private const string SAVE_METHOD = "save";
         private const string RESTORE_METHOD = "restore";
         private const string DRAW_IMAGE_METHOD = "drawImage";
+        private const string CREATE_PATTERN_METHOD = "createPattern";
         #endregion
 
         #region Properties
@@ -196,6 +197,7 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         #endregion Property Setters
 
         #region Methods
+
         [Obsolete("Use the async version instead, which is already called internally.")]
         public void FillRect(double x, double y, double width, double height) => this.CallMethod<object>(FILL_RECT_METHOD, x, y, width, height);
         public async Task FillRectAsync(double x, double y, double width, double height) => await this.BatchCallAsync(FILL_RECT_METHOD, isMethodCall: true, x, y, width, height);
@@ -323,6 +325,8 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy);
         public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy, double dWidth, double dHeight) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy, dWidth, dHeight);
         public async Task DrawImageAsync(ElementReference elementReference, double sx, double sy, double sWidth, double sHeight, double dx, double dy, double dWidth, double dHeight) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+
+        public async Task CreatePatternAsync(ElementReference image, RepeatPattern repeat) => await this.BatchCallAsync(CREATE_PATTERN_METHOD, isMethodCall: true, image, repeat.Value);
 
         #endregion Methods
     }
