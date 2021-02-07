@@ -34,6 +34,15 @@ namespace Blazor.Extensions
         [Parameter]
         public Action<MouseEventArgs> OnMouseWheel { get; set; }
 
+        [Parameter]
+        public Action<PointerEventArgs> OnPointerDown { get; set; }
+
+        [Parameter]
+        public Action<PointerEventArgs> OnPointerUp { get; set; }
+
+        [Parameter]
+        public Action<PointerEventArgs> OnPointerMove { get; set; }
+
         protected readonly string Id = Guid.NewGuid().ToString();
         protected ElementReference _canvasRef;
 
