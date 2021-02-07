@@ -17,6 +17,12 @@ namespace Blazor.Extensions
         public Action<MouseEventArgs> OnClick { get; set; }
 
         [Parameter]
+        public Action<MouseEventArgs> OnContextMenu { get; set; }
+
+        [Parameter]
+        public Action<MouseEventArgs> OnDblClick { get; set; }
+
+        [Parameter]
         public Action<MouseEventArgs> OnMouseDown { get; set; }
 
         [Parameter]
