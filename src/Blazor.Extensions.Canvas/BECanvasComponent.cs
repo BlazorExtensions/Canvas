@@ -15,7 +15,7 @@ namespace Blazor.Extensions
         protected readonly string Id = Guid.NewGuid().ToString();
         protected ElementReference _canvasRef;
 
-        internal ElementReference CanvasReference => this._canvasRef;
+        public ElementReference CanvasReference => this._canvasRef;
 
         [Inject]
         internal IJSRuntime JSRuntime { get; set; }
