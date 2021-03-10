@@ -125,7 +125,7 @@ namespace Blazor.Extensions.Canvas.WebGL
         public int DrawingBufferHeight { get; private set; }
         #endregion
 
-        internal WebGLContext(BECanvasComponent reference, WebGLContextAttributes attributes = null) : base(reference, CONTEXT_NAME, attributes)
+        public WebGLContext(BECanvasComponent reference, WebGLContextAttributes attributes = null) : base(reference, CONTEXT_NAME, attributes)
         {
         }
 
