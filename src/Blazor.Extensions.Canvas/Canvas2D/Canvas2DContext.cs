@@ -98,7 +98,7 @@ namespace Blazor.Extensions.Canvas.Canvas2D
 
         #endregion Properties
 
-        internal Canvas2DContext(BECanvasComponent reference) : base(reference, CONTEXT_NAME)
+        public Canvas2DContext(BECanvasComponent reference) : base(reference, CONTEXT_NAME)
         {
         }
 
