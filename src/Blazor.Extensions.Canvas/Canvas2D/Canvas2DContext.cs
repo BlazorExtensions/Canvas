@@ -54,6 +54,7 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         private const string RESTORE_METHOD = "restore";
         private const string DRAW_IMAGE_METHOD = "drawImage";
         private const string CREATE_PATTERN_METHOD = "createPattern";
+        private const string GLOBAL_COMPOSITE_OPERATION_PROPERTY = "globalCompositeOperation";
 
         private readonly string[] _repeatNames = new[]
         {
@@ -95,6 +96,8 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         public float ShadowOffsetY { get; private set; }
 
         public float GlobalAlpha { get; private set; } = 1.0f;
+
+        public string GlobalCompositeOperation { get; private set; } = "source-over";
 
         #endregion Properties
 
@@ -198,6 +201,12 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         {
             this.GlobalAlpha = value;
             await this.BatchCallAsync(GLOBAL_ALPHA_PROPERTY, isMethodCall: false, value);
+        }
+
+        public async Task SetGlobalCompositeOperationAsync(string value)
+        {
+            this.GlobalCompositeOperation = value;
+            await this.BatchCallAsync(GLOBAL_COMPOSITE_OPERATION_PROPERTY, isMethodCall: false, value);
         }
 
         #endregion Property Setters
