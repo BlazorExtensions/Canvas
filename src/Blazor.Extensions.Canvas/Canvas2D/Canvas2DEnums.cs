@@ -39,4 +39,12 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         Round,
         Bevel
     }
+
+    public enum RepeatPattern
+    {
+        Repeat = 0,
+        RepeatX,
+        RepeatY,
+        NoRepeat
+    }
 }
