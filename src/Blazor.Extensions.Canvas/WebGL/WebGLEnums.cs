@@ -14,7 +14,7 @@ namespace Blazor.Extensions.Canvas.WebGL
         LINE_LOOP = 2,
         LINE_STRIP = 3,
         TRIANGLES = 4,
-        TRINAGLE_STRIP = 5,
+        TRIANGLE_STRIP = 5,
         TRIANGLE_FAN = 6
     }
 

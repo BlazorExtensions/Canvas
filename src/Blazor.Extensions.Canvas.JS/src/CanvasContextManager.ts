@@ -1,9 +1,14 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export class ContextManager {
   private readonly contexts = new Map<string, any>();
   private readonly webGLObject = new Array<any>();
   private readonly contextName: string;
   private webGLContext = false;
   private readonly prototypes: any;
+
+  private readonly patterns = new Map<string, any>();
+
   private readonly webGLTypes = [
     WebGLBuffer, WebGLShader, WebGLProgram, WebGLFramebuffer, WebGLRenderbuffer, WebGLTexture, WebGLUniformLocation
   ];
@@ -69,10 +74,23 @@ export class ContextManager {
   }
 
   private callWithContext = (context: any, method: string, args: any) => {
-    return this.serialize(this.prototypes[method].apply(context, args != undefined ? args.map((value) => this.deserialize(method, value)) : []));
+    const result = this.prototypes[method].apply(context, args != undefined ? args.map((value) => this.deserialize(method, value)) : []);
+
+    if (method == 'createPattern') {
+      const key = uuidv4(); 
+      this.patterns.set(key, result);
+      return key;
+    }
+
+    return this.serialize(result);
   }
 
   private setPropertyWithContext = (context: any, property: string, value: any) => {
+
+    if (property == 'fillStyle') {
+      value = this.patterns.get(value) || value;
+    }
+
     context[property] = this.deserialize(property, value);
   }
 
