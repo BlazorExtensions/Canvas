@@ -1,3 +1,9 @@
 @inherits BECanvasComponent
 
-<canvas id="@Id" width="@Width" height="@Height" @ref="_canvasRef"></canvas>
+<canvas id="@Id" width="@Width" height="@Height" @ref="_canvasRef" @attributes="InputAttributes"></canvas>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> InputAttributes { get; set; } =
+        new Dictionary<string, object>();
+}
