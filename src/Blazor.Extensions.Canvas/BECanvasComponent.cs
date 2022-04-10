@@ -12,6 +12,9 @@ namespace Blazor.Extensions
         [Parameter]
         public long Width { get; set; }
 
+        [Parameter]
+        public EventCallback<MouseEventArgs> Click { get; set; }
+
         protected readonly string Id = Guid.NewGuid().ToString();
         protected ElementReference _canvasRef;
 
@@ -19,5 +22,10 @@ namespace Blazor.Extensions
 
         [Inject]
         internal IJSRuntime JSRuntime { get; set; }
+
+        protected async Task Clicked(MouseEventArgs args)
+        {
+          await Click.InvokeAsync();
+        }
     }
 }
