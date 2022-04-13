@@ -18,7 +18,7 @@ Both Canvas 2D and WebGL are supported.
 
 Both Blazor Server Apps and Blazor WebAssembly Apps are supported.
 
-**NOTE** Currently targets the v3.1.5 of Blazor with 3.2.0 of WebAssembly
+**NOTE** Currently targets the v6.0.4 of Blazor with 6.0.4 of WebAssembly
 
 # Installation
 

@@ -11,11 +11,11 @@
     "lodash": "^4.17.20"
   },
   "devDependencies": {
-    "@types/emscripten": "0.0.31",
-    "ts-loader": "^4.4.2",
-    "typescript": "^2.9.2",
-    "webpack": "^4.16.3",
-    "webpack-cli": "^3.1.0",
+    "@types/emscripten": "1.39.6",
+    "ts-loader": "^9.2.8",
+    "typescript": "^3.5.3",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
     "uuid": "8.3.1"
   }
 }

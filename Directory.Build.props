@@ -24,8 +24,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <TestProjectTargetFramework>netstandard2.0</TestProjectTargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <TestProjectTargetFramework>net6.0</TestProjectTargetFramework>
   </PropertyGroup>
 
   <!-- Versioning properties -->

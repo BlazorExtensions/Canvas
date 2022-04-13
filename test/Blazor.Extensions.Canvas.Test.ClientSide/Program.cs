@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Blazor.Extensions.Canvas.Test.ClientSide
 {
-    public class Program
+    public static class Program
     {
         public static async Task Main(string[] args)
         {

@@ -57,7 +57,10 @@ namespace Blazor.Extensions.Canvas.Test.ClientSide.Pages
 
             await this._context.UseProgramAsync(program);
 
+            await this._context.BeginBatchAsync();
+            await this._context.ClearAsync(BufferBits.COLOR_BUFFER_BIT);
             await this._context.DrawArraysAsync(Primitive.TRIANGLES, 0, 3);
+            await this._context.EndBatchAsync();
         }
 
         private async Task<WebGLProgram> InitProgramAsync(WebGLContext gl, string vsSource, string fsSource)

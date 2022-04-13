@@ -35,6 +35,7 @@ namespace Blazor.Extensions.Canvas.Test.ServerSide.Pages
             });
 
             await this._context.ClearColorAsync(0, 0, 0, 1);
+            await this._context.ClearAsync(BufferBits.COLOR_BUFFER_BIT);
 
             var program = await this.InitProgramAsync(this._context, VS_SOURCE, FS_SOURCE);
 

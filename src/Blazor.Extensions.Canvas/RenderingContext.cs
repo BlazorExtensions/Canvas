@@ -15,11 +15,11 @@ namespace Blazor.Extensions
         private const string CALL_BATCH_ACTION = "callBatch";
         private const string ADD_ACTION = "add";
         private const string REMOVE_ACTION = "remove";
-        private readonly List<object[]> _batchedCallObjects = new List<object[]>();
+        private readonly List<object[]> _batchedCallObjects = new();
         private readonly string _contextName;
         private readonly IJSRuntime _jsRuntime;
         private readonly object _parameters;
-        private readonly SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim _semaphoreSlim = new(1, 1);
 
         private bool _awaitingBatchedCall;
         private bool _batching;
@@ -131,6 +131,7 @@ namespace Blazor.Extensions
         public void Dispose()
         {
             Task.Run(async () => await this._jsRuntime.InvokeAsync<object>($"{NAMESPACE_PREFIX}.{this._contextName}.{REMOVE_ACTION}", this.Canvas));
+            GC.SuppressFinalize(this);
         }
 
         #endregion
