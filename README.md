@@ -1,7 +1,7 @@
 # Canvas
 HTML5 Canvas API implementation for Microsoft Blazor
 
-[![Build](https://github.com/BlazorExtensions/Canvas/workflows/CI/badge.svg)](https://github.com/BlazorExtensions/Canvas/actions)
+[![Build](https://github.com/Blazor-Console/Blazor.Extensions.Canvas/workflows/CI/badge.svg)](https://github.com/Blazor-Console/Blazor.Extensions.Canvas/actions)
 [![Package Version](https://img.shields.io/nuget/v/Blazor.Extensions.Canvas.svg)](https://www.nuget.org/packages/Blazor.Extensions.Canvas)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Blazor.Extensions.Canvas.svg)](https://www.nuget.org/packages/Blazor.Extensions.Canvas)
 [![License](https://img.shields.io/github/license/BlazorExtensions/Canvas.svg)](https://github.com/BlazorExtensions/Canvas/blob/master/LICENSE)
@@ -9,6 +9,8 @@ HTML5 Canvas API implementation for Microsoft Blazor
 # Blazor Extensions
 
 Blazor Extensions are a set of packages with the goal of adding useful things to [Blazor](https://blazor.net).
+
+Project formerly maintained by [BlazorExtensions](https://github.com/BlazorExtensions/Canvas), but updated in 2022 by [Digital Defiance](htps://digitaldefiance.org).
 
 # Blazor Extensions Canvas
 
@@ -128,7 +130,13 @@ Please feel free to use the component, open issues, fix bugs or provide feedback
 
 # Contributors
 
-The following people are the maintainers of the Blazor Extensions projects:
+The project has been picked up for maintenance by [Digital Defiance](https://digitaldefiance.org) and on [GitHub](https://github.com/Digital-Defiance/Digital-Defiance)
+
+- [Jessica Mulein](https://github.com/FreddieMercurial)
+- [BDisp](https://github.com/BDisp)
+- [Rui Campos](https://github.com/ruifillipecampos)
+
+The following people are the original maintainers of the Blazor Extensions projects:
 
 - [Attila Hajdrik](https://github.com/attilah)
 - [Gutemberg Ribiero](https://github.com/galvesribeiro)
