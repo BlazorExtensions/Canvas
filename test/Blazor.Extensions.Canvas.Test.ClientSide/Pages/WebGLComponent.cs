@@ -1,7 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using Blazor.Extensions.Canvas.WebGL;
 using Microsoft.AspNetCore.Components;
+using System;
+using System.Threading.Tasks;
 
 namespace Blazor.Extensions.Canvas.Test.ClientSide.Pages
 {
