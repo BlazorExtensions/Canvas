@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
+using System.Threading.Tasks;
 
 namespace Blazor.Extensions
 {
@@ -19,5 +20,12 @@ namespace Blazor.Extensions
 
         [Inject]
         internal IJSRuntime JSRuntime { get; set; }
+
+        public Task SetCanvasSizeAsync(long width, long height) =>
+            Task.Run(() =>
+            {
+                this.Width = width;
+                this.Height = height;
+            });
     }
 }
