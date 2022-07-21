@@ -4,7 +4,9 @@
     <Title>Blazor Extensions Canvas</Title>
     <Description>HTML5 Canvas API implementation for ASP.NET Core Blazor.</Description>
     <PackageId>Blazor.Extensions.Canvas</PackageId>
-    <PackageVersion>1.1.1</PackageVersion>
+    <PackageVersion>1.2.6</PackageVersion>
+    <IsPackable>true</IsPackable>
+    <Authors>CrystalSystems Development Team</Authors>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -18,7 +20,16 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>$(VersionPrefix)-$(VersionSuffix)</Version>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.5" />
@@ -38,6 +49,13 @@
     <Content Update="**\*.razor">
       <Pack>false</Pack>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -1,15 +1,13 @@
 <Project>
   <!-- Set common properties regarding assembly information and nuget packages -->
   <PropertyGroup>
-    <Authors>Blazor Extensions Contributors</Authors>
+    <Authors>CrystalSystems Development Team</Authors>
     <Product>Blazor Extensions</Product>
-    <Copyright>(c) Blazor Extensions Contributors. All rights reserved.</Copyright>
-    <PackageLicenseUrl>https://github.com/BlazorExtensions/Canvas#license</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/BlazorExtensions/Canvas</PackageProjectUrl>
-    <PackageIconUrl>https://avatars2.githubusercontent.com/u/38994076?s%3D128%26v%3D4</PackageIconUrl>
+    <Copyright>(c) CrystalSystems Development Team. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/eazyhunting/Canvas</PackageProjectUrl>
     <PackageTags>Microsoft ASP.NET Core Blazor Extensions Canvas</PackageTags>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <RepositoryUrl>https://github.com/BlazorExtensions/Canvas</RepositoryUrl>
+    <PackageReleaseNotes>Now allows passthrough of some native events and preventing default / propagation of contextMenu event.</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/eazyhunting/Canvas</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
