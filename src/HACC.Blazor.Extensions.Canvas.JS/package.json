@@ -1,0 +1,21 @@
+{
+  "name": "hacc.blazor.extensions.canvas",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack-cli",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "@types/emscripten": "1.39.6",
+    "ts-loader": "^9.3.1",
+    "typescript": "^3.9.10",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "uuid": "8.3.1"
+  }
+}
