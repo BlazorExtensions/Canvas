@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Blazor.Extensions.Canvas\HACC.Blazor.Extensions.Canvas.csproj" />
+    <ProjectReference Include="..\..\src\HACC.Blazor.Extensions.Canvas\HACC.Blazor.Extensions.Canvas.csproj" />
   </ItemGroup>
 
 </Project>

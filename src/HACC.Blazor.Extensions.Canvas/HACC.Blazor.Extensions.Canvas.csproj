@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Title>Blazor Extensions Canvas</Title>
     <Description>HTML5 Canvas API implementation for ASP.NET Core Blazor.</Description>
-    <PackageId>Blazor.Extensions.Canvas</PackageId>
+    <PackageId>HACC.Blazor.Extensions.Canvas</PackageId>
     <PackageVersion>1.1.1</PackageVersion>
   </PropertyGroup>
 
@@ -30,7 +30,7 @@
 
   <Target Name="IncludeP2POutput">
     <ItemGroup>
-      <BuildOutputInPackage Include="$(OutputPath)Blazor.Extensions.Canvas.JS.dll" />
+      <BuildOutputInPackage Include="$(OutputPath)HACC.Blazor.Extensions.Canvas.JS.dll" />
     </ItemGroup>
   </Target>
 

@@ -35,6 +35,6 @@
   </ItemGroup>
 
   <Target Name="CopyDist" AfterTargets="RunWebpack" DependsOnTargets="RunWebpack">
-    <Copy SourceFiles="@(WebpackOutputs)" DestinationFolder="..\Blazor.Extensions.Canvas\wwwroot" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(WebpackOutputs)" DestinationFolder="..\HACC.Blazor.Extensions.Canvas\wwwroot" SkipUnchangedFiles="true" />
   </Target>
 </Project>
