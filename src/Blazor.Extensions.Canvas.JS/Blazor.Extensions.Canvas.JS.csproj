@@ -24,6 +24,7 @@
 
   <Target Name="RunWebpack" AfterTargets="ResolveReferences" Inputs="@(WebpackInputs)" Outputs="dist\blazor.extensions.canvas.js" DependsOnTargets="EnsureNpmRestored">
     <RemoveDir Directories="dist" />
+    <Exec Command="npm ci" />
     <Exec Command="npm run build" />
     <ItemGroup>
       <EmbeddedResource Include="dist\**\*.js" LogicalName="blazor:js:%(RecursiveDir)%(Filename)%(Extension)" />

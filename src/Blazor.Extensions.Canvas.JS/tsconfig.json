@@ -4,12 +4,13 @@
     "noEmitOnError": true,
     "removeComments": true,
     "sourceMap": true,
-    "target": "es6",
+    "target": "ES2021",
     "module": "commonjs",
-    "lib": ["es2016", "dom"],
+    "lib": [ "es2021", "dom" ],
     "strict": true,
     "alwaysStrict": true,
-    "preserveConstEnums": true
+    "preserveConstEnums": true,
+    "types": [ "node" ]
   },
   "exclude": [
     "node_modules"
