@@ -1,10 +1,10 @@
 # Canvas
 HTML5 Canvas API implementation for Microsoft Blazor
 
-[![Build](https://github.com/BlazorExtensions/Canvas/workflows/CI/badge.svg)](https://github.com/BlazorExtensions/Canvas/actions)
+[![Build](https://github.com//PowerfulBacon/BlazorCanvasUpdated/workflows/CI/badge.svg)](https://github.com/PowerfulBacon/BlazorCanvasUpdated/actions)
 [![Package Version](https://img.shields.io/nuget/v/Blazor.Extensions.Canvas.svg)](https://www.nuget.org/packages/Blazor.Extensions.Canvas)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/Blazor.Extensions.Canvas.svg)](https://www.nuget.org/packages/Blazor.Extensions.Canvas)
-[![License](https://img.shields.io/github/license/BlazorExtensions/Canvas.svg)](https://github.com/BlazorExtensions/Canvas/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/PowerfulBacon/BlazorCanvasUpdated.svg)](https://github.com/PowerfulBacon/BlazorCanvasUpdated/blob/master/LICENSE)
 
 # Blazor Extensions
 
