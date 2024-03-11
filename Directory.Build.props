@@ -4,9 +4,7 @@
     <Authors>Blazor Extensions Contributors</Authors>
     <Product>Blazor Extensions</Product>
     <Copyright>(c) Blazor Extensions Contributors. All rights reserved.</Copyright>
-    <PackageLicenseUrl>https://github.com/BlazorExtensions/Canvas#license</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/BlazorExtensions/Canvas</PackageProjectUrl>
-    <PackageIconUrl>https://avatars2.githubusercontent.com/u/38994076?s%3D128%26v%3D4</PackageIconUrl>
     <PackageTags>Microsoft ASP.NET Core Blazor Extensions Canvas</PackageTags>
     <PackageReleaseNotes></PackageReleaseNotes>
     <RepositoryUrl>https://github.com/BlazorExtensions/Canvas</RepositoryUrl>
