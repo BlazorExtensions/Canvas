@@ -1,6 +1,5 @@
 using Blazor.Extensions.Canvas.Model;
 using Microsoft.AspNetCore.Components;
-using System;
 using System.Threading.Tasks;
 
 namespace Blazor.Extensions.Canvas.Canvas2D
@@ -36,6 +35,7 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         private const string QUADRATIC_CURVE_TO_METHOD = "quadraticCurveTo";
         private const string ARC_METHOD = "arc";
         private const string ARC_TO_METHOD = "arcTo";
+        private const string ELLIPSE_METHOD = "ellipse";
         private const string RECT_METHOD = "rect";
         private const string FILL_METHOD = "fill";
         private const string STROKE_METHOD = "stroke";
@@ -66,37 +66,21 @@ namespace Blazor.Extensions.Canvas.Canvas2D
         #region Properties
 
         public object FillStyle { get; private set; } = "#000";
-
         public string StrokeStyle { get; private set; } = "#000";
-
         public string Font { get; private set; } = "10px sans-serif";
-
         public TextAlign TextAlign { get; private set; }
-
         public TextDirection Direction { get; private set; }
-
         public TextBaseline TextBaseline { get; private set; }
-
         public float LineWidth { get; private set; } = 1.0f;
-
         public LineCap LineCap { get; private set; }
-
         public LineJoin LineJoin { get; private set; }
-
         public float MiterLimit { get; private set; } = 10;
-
         public float LineDashOffset { get; private set; }
-
         public float ShadowBlur { get; private set; }
-
         public string ShadowColor { get; private set; } = "black";
-
         public float ShadowOffsetX { get; private set; }
-
         public float ShadowOffsetY { get; private set; }
-
         public float GlobalAlpha { get; private set; } = 1.0f;
-
         public string GlobalCompositeOperation { get; private set; } = "source-over";
 
         #endregion Properties
@@ -213,134 +197,42 @@ namespace Blazor.Extensions.Canvas.Canvas2D
 
         #region Methods
 
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void FillRect(double x, double y, double width, double height) => this.CallMethod<object>(FILL_RECT_METHOD, x, y, width, height);
         public async Task FillRectAsync(double x, double y, double width, double height) => await this.BatchCallAsync(FILL_RECT_METHOD, isMethodCall: true, x, y, width, height);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void ClearRect(double x, double y, double width, double height) => this.CallMethod<object>(CLEAR_RECT_METHOD, x, y, width, height);
         public async Task ClearRectAsync(double x, double y, double width, double height) => await this.BatchCallAsync(CLEAR_RECT_METHOD, isMethodCall: true, x, y, width, height);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void StrokeRect(double x, double y, double width, double height) => this.CallMethod<object>(STROKE_RECT_METHOD, x, y, width, height);
         public async Task StrokeRectAsync(double x, double y, double width, double height) => await this.BatchCallAsync(STROKE_RECT_METHOD, isMethodCall: true, x, y, width, height);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void FillText(string text, double x, double y, double? maxWidth = null) => this.CallMethod<object>(FILL_TEXT_METHOD, maxWidth.HasValue ? new object[] { text, x, y, maxWidth.Value } : new object[] { text, x, y });
         public async Task FillTextAsync(string text, double x, double y, double? maxWidth = null) => await this.BatchCallAsync(FILL_TEXT_METHOD, isMethodCall: true, maxWidth.HasValue ? new object[] { text, x, y, maxWidth.Value } : new object[] { text, x, y });
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void StrokeText(string text, double x, double y, double? maxWidth = null) => this.CallMethod<object>(STROKE_TEXT_METHOD, maxWidth.HasValue ? new object[] { text, x, y, maxWidth.Value } : new object[] { text, x, y });
         public async Task StrokeTextAsync(string text, double x, double y, double? maxWidth = null) => await this.BatchCallAsync(STROKE_TEXT_METHOD, isMethodCall: true, maxWidth.HasValue ? new object[] { text, x, y, maxWidth.Value } : new object[] { text, x, y });
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public TextMetrics MeasureText(string text) => this.CallMethod<TextMetrics>(MEASURE_TEXT_METHOD, text);
         public async Task<TextMetrics> MeasureTextAsync(string text) => await this.CallMethodAsync<TextMetrics>(MEASURE_TEXT_METHOD, text);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public float[] GetLineDash() => this.CallMethod<float[]>(GET_LINE_DASH_METHOD);
         public async Task<float[]> GetLineDashAsync() => await this.CallMethodAsync<float[]>(GET_LINE_DASH_METHOD);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void SetLineDash(float[] segments) => this.CallMethod<object>(SET_LINE_DASH_METHOD, segments);
         public async Task SetLineDashAsync(float[] segments) => await this.BatchCallAsync(SET_LINE_DASH_METHOD, isMethodCall: true, segments);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void BeginPath() => this.CallMethod<object>(BEGIN_PATH_METHOD);
         public async Task BeginPathAsync() => await this.BatchCallAsync(BEGIN_PATH_METHOD, isMethodCall: true);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void ClosePath() => this.CallMethod<object>(CLOSE_PATH_METHOD);
         public async Task ClosePathAsync() => await this.BatchCallAsync(CLOSE_PATH_METHOD, isMethodCall: true);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void MoveTo(double x, double y) => this.CallMethod<object>(MOVE_TO_METHOD, x, y);
         public async Task MoveToAsync(double x, double y) => await this.BatchCallAsync(MOVE_TO_METHOD, isMethodCall: true, x, y);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void LineTo(double x, double y) => this.CallMethod<object>(LINE_TO_METHOD, x, y);
         public async Task LineToAsync(double x, double y) => await this.BatchCallAsync(LINE_TO_METHOD, isMethodCall: true, x, y);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void BezierCurveTo(double cp1X, double cp1Y, double cp2X, double cp2Y, double x, double y) => this.CallMethod<object>(BEZIER_CURVE_TO_METHOD, cp1X, cp1Y, cp2X, cp2Y, x, y);
         public async Task BezierCurveToAsync(double cp1X, double cp1Y, double cp2X, double cp2Y, double x, double y) => await this.BatchCallAsync(BEZIER_CURVE_TO_METHOD, isMethodCall: true, cp1X, cp1Y, cp2X, cp2Y, x, y);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void QuadraticCurveTo(double cpx, double cpy, double x, double y) => this.CallMethod<object>(QUADRATIC_CURVE_TO_METHOD, cpx, cpy, x, y);
         public async Task QuadraticCurveToAsync(double cpx, double cpy, double x, double y) => await this.BatchCallAsync(QUADRATIC_CURVE_TO_METHOD, isMethodCall: true, cpx, cpy, x, y);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Arc(double x, double y, double radius, double startAngle, double endAngle, bool? anticlockwise = null) => this.CallMethod<object>(ARC_METHOD, anticlockwise.HasValue ? new object[] { x, y, radius, startAngle, endAngle, anticlockwise.Value } : new object[] { x, y, radius, startAngle, endAngle });
         public async Task ArcAsync(double x, double y, double radius, double startAngle, double endAngle, bool? anticlockwise = null) => await this.BatchCallAsync(ARC_METHOD, isMethodCall: true, anticlockwise.HasValue ? new object[] { x, y, radius, startAngle, endAngle, anticlockwise.Value } : new object[] { x, y, radius, startAngle, endAngle });
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void ArcTo(double x1, double y1, double x2, double y2, double radius) => this.CallMethod<object>(ARC_TO_METHOD, x1, y1, x2, y2, radius);
         public async Task ArcToAsync(double x1, double y1, double x2, double y2, double radius) => await this.BatchCallAsync(ARC_TO_METHOD, isMethodCall: true, x1, y1, x2, y2, radius);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Rect(double x, double y, double width, double height) => this.CallMethod<object>(RECT_METHOD, x, y, width, height);
+        public async Task EllipseAsync(double x, double y, double radiusX, double radiusY, double rotation, double startAngle, double endAngle) => await this.BatchCallAsync(ELLIPSE_METHOD, isMethodCall: true, x, y, radiusX, radiusY, rotation, startAngle, endAngle);
+        public async Task EllipseAsync(double x, double y, double radiusX, double radiusY, double rotation, double startAngle, double endAngle, bool counterclockwise) => await this.BatchCallAsync(ELLIPSE_METHOD, isMethodCall: true, x, y, radiusX, radiusY, rotation, startAngle, endAngle, counterclockwise);
         public async Task RectAsync(double x, double y, double width, double height) => await this.BatchCallAsync(RECT_METHOD, isMethodCall: true, x, y, width, height);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Fill() => this.CallMethod<object>(FILL_METHOD);
         public async Task FillAsync() => await this.BatchCallAsync(FILL_METHOD, isMethodCall: true);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Stroke() => this.CallMethod<object>(STROKE_METHOD);
         public async Task StrokeAsync() => await this.BatchCallAsync(STROKE_METHOD, isMethodCall: true);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void DrawFocusIfNeeded(ElementReference elementReference) => this.CallMethod<object>(DRAW_FOCUS_IF_NEEDED_METHOD, elementReference);
         public async Task DrawFocusIfNeededAsync(ElementReference elementReference) => await this.BatchCallAsync(DRAW_FOCUS_IF_NEEDED_METHOD, isMethodCall: true, elementReference);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void ScrollPathIntoView() => this.CallMethod<object>(SCROLL_PATH_INTO_VIEW_METHOD);
         public async Task ScrollPathIntoViewAsync() => await this.BatchCallAsync(SCROLL_PATH_INTO_VIEW_METHOD, isMethodCall: true);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Clip() => this.CallMethod<object>(CLIP_METHOD);
         public async Task ClipAsync() => await this.BatchCallAsync(CLIP_METHOD, isMethodCall: true);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public bool IsPointInPath(double x, double y) => this.CallMethod<bool>(IS_POINT_IN_PATH_METHOD, x, y);
         public async Task<bool> IsPointInPathAsync(double x, double y) => await this.CallMethodAsync<bool>(IS_POINT_IN_PATH_METHOD, x, y);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public bool IsPointInStroke(double x, double y) => this.CallMethod<bool>(IS_POINT_IN_STROKE_METHOD, x, y);
         public async Task<bool> IsPointInStrokeAsync(double x, double y) => await this.CallMethodAsync<bool>(IS_POINT_IN_STROKE_METHOD, x, y);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Rotate(float angle) => this.CallMethod<object>(ROTATE_METHOD, angle);
         public async Task RotateAsync(float angle) => await this.BatchCallAsync(ROTATE_METHOD, isMethodCall: true, angle);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Scale(double x, double y) => this.CallMethod<object>(SCALE_METHOD, x, y);
         public async Task ScaleAsync(double x, double y) => await this.BatchCallAsync(SCALE_METHOD, isMethodCall: true, x, y);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Translate(double x, double y) => this.CallMethod<object>(TRANSLATE_METHOD, x, y);
         public async Task TranslateAsync(double x, double y) => await this.BatchCallAsync(TRANSLATE_METHOD, isMethodCall: true, x, y);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Transform(double m11, double m12, double m21, double m22, double dx, double dy) => this.CallMethod<object>(TRANSFORM_METHOD, m11, m12, m21, m22, dx, dy);
         public async Task TransformAsync(double m11, double m12, double m21, double m22, double dx, double dy) => await this.BatchCallAsync(TRANSFORM_METHOD, isMethodCall: true, m11, m12, m21, m22, dx, dy);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void SetTransform(double m11, double m12, double m21, double m22, double dx, double dy) => this.CallMethod<object>(SET_TRANSFORM_METHOD, m11, m12, m21, m22, dx, dy);
         public async Task SetTransformAsync(double m11, double m12, double m21, double m22, double dx, double dy) => await this.BatchCallAsync(SET_TRANSFORM_METHOD, isMethodCall: true, m11, m12, m21, m22, dx, dy);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Save() => this.CallMethod<object>(SAVE_METHOD);
         public async Task SaveAsync() => await this.BatchCallAsync(SAVE_METHOD, isMethodCall: true);
-
-        [Obsolete("Use the async version instead, which is already called internally.")]
-        public void Restore() => this.CallMethod<object>(RESTORE_METHOD);
         public async Task RestoreAsync() => await this.BatchCallAsync(RESTORE_METHOD, isMethodCall: true);
-
         public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy);
         public async Task DrawImageAsync(ElementReference elementReference, double dx, double dy, double dWidth, double dHeight) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, dx, dy, dWidth, dHeight);
         public async Task DrawImageAsync(ElementReference elementReference, double sx, double sy, double sWidth, double sHeight, double dx, double dy, double dWidth, double dHeight) => await this.BatchCallAsync(DRAW_IMAGE_METHOD, isMethodCall: true, elementReference, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-
         public async Task<object> CreatePatternAsync(ElementReference image, RepeatPattern repeat) => await this.CallMethodAsync<object>(CREATE_PATTERN_METHOD, image, this._repeatNames[(int)repeat]);
 
         #endregion Methods
