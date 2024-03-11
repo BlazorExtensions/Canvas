@@ -1,43 +1,48 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
-
   <PropertyGroup>
     <Title>Blazor Extensions Canvas</Title>
     <Description>HTML5 Canvas API implementation for ASP.NET Core Blazor.</Description>
     <PackageId>Blazor.Extensions.Canvas</PackageId>
-    <PackageVersion>1.1.1</PackageVersion>
+    <PackageVersion>1.1.2</PackageVersion>
   </PropertyGroup>
-
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2POutput</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
-
   <PropertyGroup>
     <LangVersion>7.3</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.5" />
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Blazor.Extensions.Canvas.JS\Blazor.Extensions.Canvas.JS.csproj" PrivateAssets="All" />
   </ItemGroup>
-
   <Target Name="IncludeP2POutput">
     <ItemGroup>
       <BuildOutputInPackage Include="$(OutputPath)Blazor.Extensions.Canvas.JS.dll" />
     </ItemGroup>
   </Target>
-
   <ItemGroup>
     <Content Update="**\*.razor">
       <Pack>false</Pack>
     </Content>
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2" />
+  </ItemGroup>
 </Project>
